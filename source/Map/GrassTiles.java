@@ -2,14 +2,14 @@
 
 import java.awt.*;
 
-public class ProtectedTiles extends Tiles {
-    public ProtectedTiles(){
+public class GrassTiles extends Tiles{
+    public GrassTiles(){
         super();
     }
 
     @Override
     public void draw(Graphics g, int x, int y, int width, int height) {
-        g.setColor(Color.RED); // Warna merah
+        g.setColor(Color.GREEN); // Warna hijau
         g.fillRect(x, y, width, height);
     }
 }
