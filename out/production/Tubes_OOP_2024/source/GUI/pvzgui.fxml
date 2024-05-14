@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-
+<?import javafx.scene.layout.StackPane?>
 
 <AnchorPane prefHeight="665.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.Sample">
    <children>
@@ -18,12 +20,12 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="52.0" layoutY="14.0" text="Sun" />
-                  <TextArea fx:id="txtSun" layoutX="30.0" layoutY="38.0" prefHeight="49.0" prefWidth="65.0" />
-                  <GridPane layoutX="41.0" layoutY="113.0" prefHeight="481.0" prefWidth="805.0">
+                  <GridPane layoutX="-2.0" layoutY="124.0" prefHeight="476.0" prefWidth="961.0">
                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,8 +42,397 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
+                     <children>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day00.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day10.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day20.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day30.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day40.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day50.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day60.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day70.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day80.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day90.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day100.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets right="40.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day01.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day11.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day21.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day31.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day41.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day51.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day61.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day71.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day81.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day91.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day101.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets right="40.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day02.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day12.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day22.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day32.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day42.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day52.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day62.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day72.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day82.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day92.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day102.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets right="40.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day03.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day13.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="4">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day04.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day14.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="5">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day05.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../assets/Backyardpool_Day15.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="5" />
+                     </children>
                   </GridPane>
-                  <MenuBar layoutX="836.0" layoutY="19.0">
+                  <MenuBar layoutX="842.0" layoutY="7.0">
                     <menus>
                       <Menu mnemonicParsing="false" text="Menu">
                         <items>
@@ -50,6 +441,63 @@
                       </Menu>
                     </menus>
                   </MenuBar>
+                  <GridPane layoutY="19.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="86.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="70.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="70.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="71.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.0" minWidth="10.0" prefWidth="369.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="60.0">
+                           <image>
+                              <Image url="@../../assets/PVZ_Sun(Edited).png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <Label text="Sun" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="30.0" top="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Cost" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="20.0" top="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Cost" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="25.0" top="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <ImageView fitHeight="42.0" fitWidth="36.0">
+                                 <image>
+                                    <Image url="@../../assets/PVZ_Sunflower.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                           <children>
+                              <ImageView fitHeight="39.0" fitWidth="40.0">
+                                 <image>
+                                    <Image url="@../../assets/PVZ_Peashooter.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" />
+                     </children>
+                  </GridPane>
                </children>
             </AnchorPane>
         </content>
