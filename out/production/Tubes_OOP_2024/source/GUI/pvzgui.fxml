@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
@@ -17,6 +18,7 @@
             <Font size="30.0" />
          </font>
       </Button>
+      <HBox layoutX="205.0" layoutY="8.0" prefHeight="134.0" prefWidth="1027.0" />
       <StackPane layoutX="-1.0" layoutY="-2.0" prefHeight="1083.0" prefWidth="1940.0">
          <children>
             <ImageView fitHeight="1089.0" fitWidth="1940.0">
