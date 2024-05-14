@@ -2,7 +2,7 @@ package source.Characters.Zombie;
 import source.Characters.Characters;
 import source.Characters.Plants.Plants;
 
-public class Zombie extends Characters {
+public abstract class Zombie extends Characters {
     protected boolean is_aquatic;
     protected int speed;
 

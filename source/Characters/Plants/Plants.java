@@ -2,7 +2,7 @@ package source.Characters.Plants;
 import source.Characters.Characters;
 
 
-public class Plants extends Characters{
+public abstract class Plants extends Characters{
     public int cost;
     public int range;
     public int cooldown;
