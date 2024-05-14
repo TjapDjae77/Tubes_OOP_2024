@@ -35,13 +35,9 @@ public class GameMap extends JPanel {
         }
     }
 
-    public int getHeight(){
-        return height;
-    }
+    public int getHeight(){ return height; }
     
-    public int getWidth(){
-        return width;
-    }
+    public int getWidth(){ return width; }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
