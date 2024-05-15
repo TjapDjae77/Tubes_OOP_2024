@@ -40,4 +40,8 @@ public class Characters {
     public void setPosition(int[] position) {
         this.position = position;
     }
+
+    public void is_aquatic() {
+        this.is_aquatic = true;
+    }
 }

@@ -3,12 +3,12 @@ import source.Characters.Characters;
 
 
 public abstract class Plants extends Characters{
-    public int cost;
-    public int range;
-    public int cooldown;
+    protected int cost;
+    protected int range;
+    protected int cooldown;
 
-    public Plants(String name, int health, int attack_damage, int attack_speed, int[] position, int cost, int range, int cooldown) {
-        super(name, health, attack_damage, attack_speed, position);
+    public Plants(String name, int health, int attack_damage, int attack_speed, int[] position, int cost, int range, int cooldown, boolean is_aquatic) {
+        super(name, health, attack_damage, attack_speed, position, is_aquatic);
         this.cost = cost;
         this.range = range;
         this.cooldown = cooldown;
