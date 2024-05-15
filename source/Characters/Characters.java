@@ -3,14 +3,14 @@ package source.Characters;
 public class Characters {
     public String name;
     public int health;
-    public int damage;
+    public int attack_damage;
     public int attack_speed;
     public int[] position;
 
-    public Characters(String name, int health, int damage, int attack_speed, int[] position) {
+    public Characters(String name, int health, int attack_damage, int attack_speed, int[] position) {
         this.name = name;
         this.health = health;
-        this.damage = damage;
+        this.attack_damage = attack_damage;
         this.attack_speed = attack_speed;
         this.position = position;
     }
@@ -23,8 +23,8 @@ public class Characters {
         return this.health;
     }
 
-    public int getDamage() {
-        return this.damage;
+    public int getAttackDamage() {
+        return this.attack_damage;
     }   
 
     public int getAttackSpeed() {

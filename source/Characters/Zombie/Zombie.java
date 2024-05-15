@@ -7,7 +7,7 @@ public abstract class Zombie extends Characters {
     protected int speed;
 
     public Zombie(String name, int health, int damage, int attack_speed, int attack_damage, int[] position, boolean isAquatic, int speed) {
-        super(name, health, damage, attack_speed, position);
+        super(name, health, attack_damage, attack_speed, position);
         this.is_aquatic = isAquatic;
         this.speed = speed;
     }

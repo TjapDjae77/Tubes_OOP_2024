@@ -7,8 +7,8 @@ public class Sunflower extends Plants {
     private int sun = 25;
     Timer timer = new Timer();
 
-    public Sunflower(String name, int health, int damage, int attack_speed, int[] position, int cost, int range, int cooldown, int sun) {
-        super(name, 100, 0, 0, position, 50, 0, 10);
+    public Sunflower(String name, int health, int attack_damage, int attack_speed, int[] position, int cost, int range, int cooldown, int sun) {
+        super("Sunflower", 100, 0, 0, position, 50, 0, 10);
         this.sun = sun; 
     }
 
