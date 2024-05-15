@@ -4,12 +4,12 @@ import source.Inventory.Inventory;
 public class Tester {
     //Make me a main that tests inventory.java features here
     public static void main(String[] args) {
-        Plants plant1 = new Peashooter("Peashooter", 100, 50, 1, null, 1, 1, 0);
-        Plants plant2 = new Sunflower("Sunflower", 50, 25, 1, null, 1, 1, 0, 0);
-        Plants plant3 = new Wallnut("Wallnut", 200, 100, 1, null, 1, 1, 0);
-        Plants plant4 = new Snowpea("Cherry Bomb", 150, 75, 1, null, 1, 1, 0);
-        Plants plant5 = new Tallnut("Potato Mine", 50, 25, 1, null, 1, 1, 0);
-        Plants plant6 = new Spikeweed("Snow Pea", 125, 75, 1, null, 1, 1, 0);
+        Plants plant1 = new Peashooter("Peashooter", 100, 50, 1, 1, 1, 0, false);
+        Plants plant2 = new Sunflower("Sunflower", 50, 25, 1, 1, 1, 0, false, 0);
+        Plants plant3 = new Wallnut("Wallnut", 200, 100, 1, 1, 1, 0, false);
+        Plants plant4 = new Snowpea("Snow Pea", 150, 75, 1, 1, 1, 0, false);
+        Plants plant5 = new Tallnut("Tall Nut", 50, 25, 1, 1, 1, 0, false);
+        Plants plant6 = new Spikeweed("Spikeweed", 125, 75, 1, 1, 1, 0, false);
         Inventory inventory = new Inventory();
         // Inventory.plantsList = new Plants[]{plant1, plant2, plant3, plant4, plant5, plant6};
         // inventory.getGameDeck();
@@ -36,3 +36,4 @@ public class Tester {
         System.out.println("finished testing inventory.java features");
     }
 }
+
