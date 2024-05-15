@@ -25,4 +25,8 @@ public class Sun{
         int randomTime = (random.nextInt((max - min)+1)+ min);
         return randomTime;
     }
+
+    public int getSun(){
+        return sun;
+    }
 }
