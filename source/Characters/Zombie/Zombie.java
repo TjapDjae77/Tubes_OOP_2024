@@ -2,11 +2,10 @@ package source.Characters.Zombie;
 import source.Characters.Characters;
 
 public abstract class Zombie extends Characters {
-    protected boolean is_aquatic;
     protected int speed;
 
-    public Zombie(String name, int health, int attack_damage, int attack_speed, int[] position, boolean isAquatic, int speed) {
-        super(name, health, attack_damage, attack_speed, position, isAquatic);
+    public Zombie(String name, int health, int attack_damage, int attack_speed, int[] position, boolean is_aquatic, int speed) {
+        super(name, health, attack_damage, attack_speed, position, is_aquatic);
         this.speed = speed;
     }
 
