@@ -1,4 +1,4 @@
-//package source.Sun;
+package source.Sun;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,5 +24,9 @@ public class Sun{
         Random random = new Random();
         int randomTime = (random.nextInt((max - min)+1)+ min);
         return randomTime;
+    }
+
+    public int getSun(){
+        return sun;
     }
 }

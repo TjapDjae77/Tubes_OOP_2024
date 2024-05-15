@@ -1,11 +1,10 @@
 package source.Characters.Zombie;
-import source.Characters.Plants.Plants;
 
 public class DuckyTubeZombie extends Zombie {
     private boolean hasDuckyTube;
 
-    public DuckyTubeZombie(String name, int health, int damage, int attack_speed, int attack_damage, int[] position, boolean isAquatic, int speed) {
-        super("Ducky Tube Zombie", 100, damage, 1, 100, position, true, speed);
+    public DuckyTubeZombie() {
+        super("Ducky Tube Zombie", 100, 100, 1, true, 5);
     }
 
     public boolean getHasDuckyTube() {
@@ -16,7 +15,12 @@ public class DuckyTubeZombie extends Zombie {
         this.hasDuckyTube = hasDuckyTube;
     }
 
-    public void attack(Plants tanaman) {
-        super.attack(tanaman);
+    public void showDescription() {
+        System.out.println("Name : " + name);
+        System.out.println("Health : " + health);
+        System.out.println("Attack Damage : " + attack_damage);
+        System.out.println("Attack Speed : " + attack_speed);
+        System.out.println("Is Aquatic : " + is_aquatic);
+        System.out.println("Speed : " + speed);
     }
 }
