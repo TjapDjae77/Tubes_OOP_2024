@@ -3,8 +3,8 @@ package source.Characters.Zombie;
 public class DolphinRiderZombie extends Zombie {
     private boolean hasDolphin;
 
-    public DolphinRiderZombie(String name, int health, int damage, int attack_speed, int attack_damage, int[] position, boolean is_aquatic, int speed) {
-        super("Dolphin Rider Zombie", 175, 100, 1, position, true, speed);
+    public DolphinRiderZombie(String name, int health, int damage, int attack_speed, int attack_damage, boolean is_aquatic, int speed) {
+        super("Dolphin Rider Zombie", 175, 100, 1, true, speed);
     }
 
     public boolean getHasDolphin() {

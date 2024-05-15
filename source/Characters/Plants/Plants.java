@@ -7,8 +7,8 @@ public abstract class Plants extends Characters{
     protected int range;
     protected int cooldown;
 
-    public Plants(String name, int health, int attack_damage, int attack_speed, int[] position, int cost, int range, int cooldown, boolean is_aquatic) {
-        super(name, health, attack_damage, attack_speed, position, is_aquatic);
+    public Plants(String name, int health, int attack_damage, int attack_speed, int cost, int range, int cooldown, boolean is_aquatic) {
+        super(name, health, attack_damage, attack_speed, is_aquatic);
         this.cost = cost;
         this.range = range;
         this.cooldown = cooldown;
