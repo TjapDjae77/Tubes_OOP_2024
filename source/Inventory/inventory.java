@@ -60,4 +60,8 @@ public class Inventory {
             tanamanInDeck--;
         }
     }
+
+    public Plants[] getGameDeck() {
+        return gameDeck;
+    }
 }
