@@ -29,6 +29,8 @@ public abstract class Plants extends Characters{
     public int getHealth() {
         return this.health;
     }
+
+    public abstract void showDescription();
 }
 
 
