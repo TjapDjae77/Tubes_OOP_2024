@@ -1,67 +1,83 @@
 package source.Inventory;
 
 import source.Characters.Plants.Plants;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Inventory {
     public static int tanamanInDeck = 0;
     private Plants selectedPlant;
-    private Plants[] gameDeck;
-    public static Plants[] plantsList;
+    public static ArrayList<Plants> gameDeck;
+    public static ArrayList<Plants> plantsList;
+
+    public Inventory(Plants plant) {
+        this.selectedPlant = plant;
+        gameDeck = new ArrayList<>(Arrays.asList(new Plants[6]));
+        plantsList = new ArrayList<>();
+    }
 
     public Inventory() {
         this.selectedPlant = null;
-        this.gameDeck = new Plants[6];
+        gameDeck = new ArrayList<>(Arrays.asList(new Plants[6]));
+        plantsList = new ArrayList<>();
     }
 
     public void selectPlant(Plants plant, int index) {
-        // LIST OF PLANTS
-        if (gameDeck[index] == null) {
-            gameDeck[index] = plant;
-            tanamanInDeck++;
-        } else {
-            Plants temp = gameDeck[index];
-            gameDeck[index] = plant;
-            gameDeck[tanamanInDeck] = temp;
-            this.selectedPlant = plant;
+        if (index < 0 || index > 5) {
+            return;
         }
+        gameDeck.set(index, plant);
+        tanamanInDeck++;
     }
 
     public void switchPlants(int index1, int index2, int category) {
-        if (index1 == index2) {
+        // Ensure indices are different and within valid range
+        if (index1 == index2 || index1 < 0 || index1 > 5 || index2 < 0 || index2 > 5) {
             return;
         }
-        // Tuker inventory
+
+        // Swap within inventory
         if (category == 1) {
-            // Empty slot
-            if (plantsList[index1] == null || plantsList[index2] == null || index1 > 6 || index2 > 6) {
+            // Ensure neither slot is empty
+            if (plantsList.get(index1) == null || plantsList.get(index2) == null) {
                 return;
             }
-            // Tuker
-            Plants temp = plantsList[index1];
-            plantsList[index1] = plantsList[index2];
-            plantsList[index2] = temp;
+
+            // Swap
+            Plants[] temp = plantsList.toArray(new Plants[0]);
+            temp[index1] = plantsList.get(index2);
+            temp[index2] = plantsList.get(index1);
+            plantsList = new ArrayList<>(Arrays.asList(temp));
         }
-        // Tuker gameDeck
+        // Swap within gameDeck
         else {
-            // Empty slot
-            if (gameDeck[index1] == null || gameDeck[index2] == null || index1 > 6 || index2 > 6) {
+            // Ensure neither slot is empty
+            if (gameDeck.get(index1) == null || gameDeck.get(index2) == null) {
                 return;
             }
-            // Tuker
-            Plants temp = gameDeck[index1];
-            gameDeck[index1] = gameDeck[index2];
-            gameDeck[index2] = temp;
+
+            // Swap
+            Plants temp = gameDeck.get(index1);
+            gameDeck.set(index1, gameDeck.get(index2));
+            gameDeck.set(index2, temp);
         }
     }
 
     public void removePlant(int index) {
-        if (gameDeck[index] != null && index < 6) {
-            gameDeck[index] = null;
+        if (index >= 0 && index < 6 && gameDeck.get(index) != null) {
+            gameDeck.set(index, null);
             tanamanInDeck--;
+        } else {
+            System.out.println("Invalid operation. The selected slot is either out of range or empty.");
         }
     }
 
     public Plants[] getGameDeck() {
-        return gameDeck;
+        for (int i = 0; i < 6; i++) {
+            if (gameDeck.get(i) != null) {
+                System.out.println(gameDeck.get(i).getName());
+            }
+        }
+        return gameDeck.toArray(new Plants[0]);
     }
 }
