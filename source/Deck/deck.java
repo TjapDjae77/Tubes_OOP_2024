@@ -2,7 +2,7 @@ package source.Deck;
 
 import source.Characters.Plants.Plants;
 import source.Inventory.Inventory;
-import source.sun.Sun;
+import source.Sun.Sun;
 
 public class Deck{
     private Plants[] currentDeck;
