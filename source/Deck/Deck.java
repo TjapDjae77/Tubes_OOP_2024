@@ -29,7 +29,7 @@ public class Deck{
 
     }
 
-    public void digPlants(){
+    public void digPlants(int row, int column){
 
     }
 }
