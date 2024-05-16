@@ -1,4 +1,4 @@
-// package source.Map;
+package source.Map;
 
 import java.awt.*;
 
@@ -22,6 +22,6 @@ public abstract class Tiles {
     public String getTilesType(){
         return tilesType;
     }
-    
+
     public abstract void draw(Graphics g, int x, int y, int width, int height);
 }
