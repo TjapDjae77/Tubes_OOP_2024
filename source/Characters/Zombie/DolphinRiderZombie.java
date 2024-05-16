@@ -1,18 +1,9 @@
 package source.Characters.Zombie;
 
 public class DolphinRiderZombie extends Zombie {
-    private boolean hasDolphin;
 
     public DolphinRiderZombie() {
         super("Dolphin Rider Zombie", 175, 100, 1, true, 5);
-    }
-
-    public boolean getHasDolphin() {
-        return hasDolphin;
-    }
-
-    public void setHasDolphin(boolean hasDolphin) {
-        this.hasDolphin = hasDolphin;
     }
 
     public void showDescription() {

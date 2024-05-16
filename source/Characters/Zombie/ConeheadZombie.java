@@ -1,18 +1,9 @@
 package source.Characters.Zombie;
 
 public class ConeheadZombie extends Zombie {
-    private boolean hasCone;
 
     public ConeheadZombie() {
         super("Conehead Zombie", 250, 100, 1, false, 5);
-    }
-
-    public boolean getHasCone() {
-        return hasCone;
-    }
-
-    public void setHasCone(boolean hasCone) {
-        this.hasCone = hasCone;
     }
 
     public void showDescription() {

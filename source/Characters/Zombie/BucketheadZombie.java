@@ -1,18 +1,9 @@
 package source.Characters.Zombie;
 
 public class BucketheadZombie extends Zombie {
-    private boolean hasBuckethead;
 
     public BucketheadZombie() {
         super("Buckethead Zombie", 300, 100, 1, false, 5);
-    }
-
-    public boolean getHasBuckethead() {
-        return hasBuckethead;
-    }
-
-    public void setHasBuckethead(boolean hasBuckethead) {
-        this.hasBuckethead = hasBuckethead;
     }
 
     public void showDescription() {

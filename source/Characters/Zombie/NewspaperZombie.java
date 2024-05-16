@@ -1,18 +1,9 @@
 package source.Characters.Zombie;
 
 public class NewspaperZombie extends Zombie {
-    private boolean hasNewspaper;
 
     public NewspaperZombie() {
         super("Newspaper Zombie", 250, 100, 1, false, 5);
-    }
-
-    public boolean getHasNewspaper() {
-        return hasNewspaper;
-    }
-
-    public void setHasNewspaper(boolean hasNewspaper) {
-        this.hasNewspaper = hasNewspaper;
     }
 
     public void showDescription() {

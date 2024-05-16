@@ -1,5 +1,7 @@
 package source.Characters.Zombie;
 import source.Characters.Characters;
+import source.Characters.Plants.Plants;
+import source.Characters.Plants.Spikeweed;
 
 public abstract class Zombie extends Characters {
     protected int speed;
@@ -39,4 +41,14 @@ public abstract class Zombie extends Characters {
     }
 
     public abstract void showDescription();
+
+    public void attackPlant(Plants plant) {
+        if (plant instanceof Spikeweed) {
+            System.out.println(this.name + " cannot eat Spikeweed!");
+        } else {
+            plant.setHealth(this.attack_damage);
+            System.out.println(this.name + " attacks " + plant.getName() + " for " + this.attack_damage + " damage.");
+            System.out.println(plant.getName() + " has " + plant.getHealth() + " health remaining.");
+        }
+    }
 }

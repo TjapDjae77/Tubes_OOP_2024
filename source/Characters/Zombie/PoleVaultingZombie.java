@@ -1,18 +1,9 @@
 package source.Characters.Zombie;
 
 public class PoleVaultingZombie extends Zombie {
-    private boolean hasPole;
 
     public PoleVaultingZombie() {
         super("Pole Vaulting Zombie", 175, 100, 1, false, 5);
-    }
-
-    public boolean getHasPole() {
-        return hasPole;
-    }
-
-    public void setHasPole(boolean hasPole) {
-        this.hasPole = hasPole;
     }
 
     public void showDescription() {

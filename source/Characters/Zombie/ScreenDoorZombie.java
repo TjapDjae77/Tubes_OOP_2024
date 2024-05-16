@@ -1,18 +1,9 @@
 package source.Characters.Zombie;
 
 public class ScreenDoorZombie extends Zombie {
-    private boolean hasDoor;
 
     public ScreenDoorZombie() {
         super("Screen Door Zombie", 250, 100, 1, false, 5);
-    }
-
-    public boolean getHasDoor() {
-        return hasDoor;
-    }
-
-    public void setHasDoor(boolean hasDoor) {
-        this.hasDoor = hasDoor;
     }
 
     public void showDescription() {
