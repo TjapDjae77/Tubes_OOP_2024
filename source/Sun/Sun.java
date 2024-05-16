@@ -27,10 +27,10 @@ public class Sun{
     }
 
     public int getSun(){
-        return sun;
+        return Sun.sun;
     }
 
     public void reduceSun(int costPlant){
-        this.sun -= costPlant;
+        Sun.sun -= costPlant;
     }
 }
