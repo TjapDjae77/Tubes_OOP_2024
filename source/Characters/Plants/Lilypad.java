@@ -19,16 +19,25 @@ public class Lilypad extends Plants{
         System.out.println("Is Aquatic: " + this.is_aquatic); 
     }
 
-    public boolean isOccupied() {//Harus di air
+    public boolean isCompatible(Plants p) { 
+        // Untuk dipanggil sm class lain, true jika lilypad bisa dipijak oleh p
+        if (!p.is_aquatic && p.name != "Spikeweed") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isOccupied() { // true jika ada tumbuhan yang memijak
         return plantOnTop != null;
     }
 
     public void occupy(Plants plant) {
-        if (!this.isOccupied()) {
+        if (!this.isOccupied()) { // kalau masih kosong, baru inisialisasi plant on top
             this.plantOnTop = plant;
             this.health += plant.getHealth();
             System.out.println("Lilypad is occupied by " + plant.name + ". Combined health: " + this.health);
-        } else {
+        } else { // kalau udah ada plant on top, gabisa
             System.out.println("Lilypad is already occupied.");
         }
     }

@@ -29,9 +29,10 @@ public class Squash extends Plants{
         }
     }
 
-    private void vanish() {//Plant klo ilang lu harus remove dari tilesnya
+    private void vanish() { //Plant klo ilang lu harus remove dari tilesnya
         this.isVanished = true;
         this.health = 0;
+        // Map<Tiles>(row, column).setStatus = true;
         System.out.println(this.name + " has vanished after its attack.");
     }
 

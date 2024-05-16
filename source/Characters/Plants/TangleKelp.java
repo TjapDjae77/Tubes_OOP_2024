@@ -3,7 +3,6 @@ package source.Characters.Plants;
 import source.Characters.Zombie.Zombie;
 
 public class TangleKelp extends Plants{
-    private boolean isVanished;
 
     public TangleKelp() {
         super("Tangle Kelp", 100, 5000, 1, 25, 0, 20, true);
@@ -21,7 +20,7 @@ public class TangleKelp extends Plants{
     }
 
     public void attack(Zombie zombie) {
-        if (zombie != null && !isVanished) {
+        if (zombie != null) {
             zombie.setHealth(zombie.getHealth() - this.attack_damage);
             System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
             System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
@@ -30,12 +29,8 @@ public class TangleKelp extends Plants{
     }
 
     private void vanish() {//Sama kek squash
-        this.isVanished = true;
         this.health = 0;
         System.out.println(this.name + " has vanished after its attack.");
     }
 
-    public boolean isVanished() {
-        return this.isVanished;
-    }
 }
