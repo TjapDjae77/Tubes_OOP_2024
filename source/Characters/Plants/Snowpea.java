@@ -31,7 +31,7 @@ public class Snowpea extends Plants{
 
     public void attack(Zombie zombie) {
         if (zombie != null) {
-            zombie.setHealth(this.attack_damage);
+            zombie.setHealth(zombie.getHealth()-this.attack_damage);
             System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
             System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
             applySlowEffect(zombie);
