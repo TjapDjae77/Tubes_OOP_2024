@@ -13,5 +13,21 @@ public class Deck{
         this.currentDeck = inventory.getGameDeck();
     }
 
-//    public void plantPlants()
+    public void plantPlants(Plants plant, int row, int column){
+        if(sun.getSun() < plant.getCost()){
+            System.out.println("Sun tidak cukup");
+            return;
+        }
+        if(currentDeck[row] != null){
+            System.out.println("Slot sudah terisi");
+            return;
+        }
+        currentDeck[row] = plant;
+        sun.reduceSun(plant.getCost());
+
+    }
+
+    public void digPlants(){
+        
+    }
 }
