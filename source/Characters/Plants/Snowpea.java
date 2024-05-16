@@ -8,13 +8,13 @@ import source.Characters.Zombie.Zombie;
 
 public class Snowpea extends Plants{
     private int slowDuration; // Duration in milliseconds for how long the zombie will be slowed
-    private double slowEffect; // Slow effect as a factor (e.g., 0.5 for 50% speed)
+    private double slowEffect; // Slow effect as a factor (e.g., 1.5 for 150% speed)
     private ScheduledExecutorService scheduler;
 
     public Snowpea() {
         super("Snow Pea", 100, 25, 4, 175, -1, 10, false);
         this.slowDuration = 3000;
-        this.slowEffect = 0.5;
+        this.slowEffect = 1.5;
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
     }
 
@@ -39,8 +39,8 @@ public class Snowpea extends Plants{
     }
 
     private void applySlowEffect(Zombie zombie) {
-        int originalSpeed = zombie.getOriginalSpeed();
-        int slowedSpeed = (int) (originalSpeed * slowEffect);
+        double originalSpeed = zombie.getOriginalSpeed();
+        double slowedSpeed = (double) (originalSpeed * slowEffect);
 
         if (zombie.getSpeed() == originalSpeed) {
             zombie.setSpeed(slowedSpeed);

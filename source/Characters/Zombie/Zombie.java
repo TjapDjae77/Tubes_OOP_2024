@@ -4,10 +4,10 @@ import source.Characters.Plants.Plants;
 import source.Characters.Plants.Spikeweed;
 
 public abstract class Zombie extends Characters {
-    protected int speed;
-    protected int originalSpeed;
+    protected double speed;
+    protected double originalSpeed;
 
-    public Zombie(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic, int speed) {
+    public Zombie(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic, double speed) {
         super(name, health, attack_damage, attack_speed, is_aquatic);
         this.speed = speed;
         this.originalSpeed = speed;
@@ -28,15 +28,15 @@ public abstract class Zombie extends Characters {
         }
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public int getOriginalSpeed() {
+    public double getOriginalSpeed() {
         return originalSpeed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
