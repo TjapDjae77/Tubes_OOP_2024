@@ -13,5 +13,5 @@ public class Deck{
         this.currentDeck = inventory.getGameDeck();
     }
 
-    public void plantPlants()
+//    public void plantPlants()
 }

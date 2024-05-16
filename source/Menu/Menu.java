@@ -57,7 +57,7 @@ public class Menu {
                 case 3:
                     System.out.println("\n*** Plants List ***");
                     for (Plants plant : Inventory.plantsList) {
-                        printPlant(plant);
+//                        printPlant(plant);
                     }
                     // Call the method to show the list of plants
                     // This should include all attributes of the plants
