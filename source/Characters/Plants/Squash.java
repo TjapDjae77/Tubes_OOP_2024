@@ -1,5 +1,10 @@
 package source.Characters.Plants;
+
+import source.Characters.Zombie.Zombie;
+
 public class Squash extends Plants{
+    private boolean isVanished;
+
     public Squash() {
         super("Squash", 100, 5000, 1, 50, 1, 20, false);
     }
@@ -13,5 +18,24 @@ public class Squash extends Plants{
         System.out.println("Range: " + this.range);
         System.out.println("Cooldown: " + this.cooldown);
         System.out.println("Is Aquatic: " + this.is_aquatic); 
+    }
+
+    public void attack(Zombie zombie) {
+        if (zombie != null && !isVanished) {
+            zombie.setHealth(this.attack_damage);
+            System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
+            System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
+            vanish();
+        }
+    }
+
+    private void vanish() {
+        this.isVanished = true;
+        this.health = 0;
+        System.out.println(this.name + " has vanished after its attack.");
+    }
+
+    public boolean isVanished() {
+        return this.isVanished;
     }
 }

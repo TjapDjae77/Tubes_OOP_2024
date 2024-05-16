@@ -50,8 +50,8 @@ public class Snowpea extends Plants{
         }
 
         // Reset any previous task and schedule a new one to reset the speed
-        scheduler.shutdownNow(); // Cancel any existing scheduled tasks
-        scheduler = Executors.newSingleThreadScheduledExecutor(); // Create a new scheduler
+        scheduler.shutdownNow();
+        scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.schedule(() -> {
             if (zombie.getSpeed() == slowedSpeed) {
                 zombie.setSpeed(originalSpeed);
@@ -64,7 +64,7 @@ public class Snowpea extends Plants{
         while (zombie.getHealth() > 0) {
             attack(zombie);
             try {
-                Thread.sleep(10000 / this.attack_speed); // Sleep to simulate attack speed (attacks per second)
+                Thread.sleep(this.attack_speed * 1000); // Sleep to simulate attack speed
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
