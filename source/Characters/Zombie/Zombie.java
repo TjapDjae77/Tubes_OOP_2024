@@ -3,10 +3,12 @@ import source.Characters.Characters;
 
 public abstract class Zombie extends Characters {
     protected int speed;
+    protected int originalSpeed;
 
     public Zombie(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic, int speed) {
         super(name, health, attack_damage, attack_speed, is_aquatic);
         this.speed = speed;
+        this.originalSpeed = speed;
     }
 
     public boolean getIsAquatic() {
@@ -26,6 +28,10 @@ public abstract class Zombie extends Characters {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public int getOriginalSpeed() {
+        return originalSpeed;
     }
 
     public void setSpeed(int speed) {
