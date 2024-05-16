@@ -1,9 +1,11 @@
 package source.Characters.Plants;
+
 public class Lilypad extends Plants{
-    private boolean occupied;
+    private Plants plantOnTop;
 
     public Lilypad() {
         super("Lilypad", 100, 0, 0, 25, 0, 10, true);
+        this.plantOnTop = null;
     }
 
     public void showDescription() {
@@ -18,25 +20,31 @@ public class Lilypad extends Plants{
     }
 
     public boolean isOccupied() {
-        return occupied;
+        return plantOnTop != null;
     }
 
-    public void occupy() {
-        occupied = true;
+    public void occupy(Plants plant) {
+        if (!this.isOccupied()) {
+            this.plantOnTop = plant;
+            this.health += plant.getHealth();
+            System.out.println("Lilypad is occupied by " + plant.name + ". Combined health: " + this.health);
+        } else {
+            System.out.println("Lilypad is already occupied.");
+        }
     }
 
-    public void unoccupy() {
-        occupied = false;
+    public void checkAndRemove() {
+        if (this.health <= 0) {
+            System.out.println("The plant on top of the Lilypad and the Lilypad itself have died.");
+            this.plantOnTop = null; // Remove reference to the plant on top
+        }
     }
 
-    public int getTotalHealth(Plants plant) {
-        return this.health + plant.getHealth();
-    }
-
-    public void checkAndRemovePlant(Plants plant) {
-        if (getTotalHealth(plant) <= 0) {
-            System.out.println("The plant on top of the Lilypad has died. Removing Lilypad...");
-            this.setHealth(0);
+    @Override
+    public void setHealth(int health) {
+        super.setHealth(health);
+        if (this.health <= 0 && this.plantOnTop != null) {
+            this.plantOnTop.setHealth(0); // Ensure the plant on top is also considered dead
         }
     }
 }
