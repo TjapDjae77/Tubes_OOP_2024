@@ -8,13 +8,13 @@ public class Sun{
     private static int sun = 25;
     Timer timer = new Timer();
     
-    public void addSun(){
+    public void spawnSun(){
         timer.schedule(new TimerTask() {
             @Override
             public void run(){
                 sun += 25;
                 System.out.println("Sun saat ini : " + sun);
-                addSun();
+                spawnSun();
             }
         }, randomTime(5, 10)*1000);
         
@@ -28,6 +28,10 @@ public class Sun{
 
     public int getSun(){
         return Sun.sun;
+    }
+
+    public void addSun(int sun){
+        Sun.sun += sun;
     }
 
     public void reduceSun(int costPlant){

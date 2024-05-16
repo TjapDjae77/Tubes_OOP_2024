@@ -6,12 +6,14 @@ public abstract class Plants extends Characters{
     protected int cost;
     protected int range;
     protected int cooldown;
+    protected boolean on_cooldown;
 
     public Plants(String name, int health, int attack_damage, int attack_speed, int cost, int range, int cooldown, boolean is_aquatic) {
         super(name, health, attack_damage, attack_speed, is_aquatic);
         this.cost = cost;
         this.range = range;
         this.cooldown = cooldown;
+        this.on_cooldown = false;
     }
 
     public int getCost() {
@@ -35,6 +37,14 @@ public abstract class Plants extends Characters{
         if (this.health < 0) {
             this.health = 0; 
         }
+    }
+
+    public boolean getCDStatus(){
+        return on_cooldown;
+    }
+    
+    public void setOnCooldown(boolean cdStatus){
+        this.on_cooldown = cdStatus;
     }
 
     public abstract void showDescription();
