@@ -1,4 +1,4 @@
-// package source.Map;
+package source.Map;
 
 import javax.swing.*;
 

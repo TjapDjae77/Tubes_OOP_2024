@@ -1,10 +1,10 @@
-// package source.Map;
+package source.Map;
 
 import java.awt.*;
 
 public class GrassTiles extends Tiles{
     public GrassTiles(){
-        super();
+        super("Grass");
     }
 
     @Override

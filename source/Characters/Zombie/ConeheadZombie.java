@@ -1,9 +1,18 @@
 package source.Characters.Zombie;
 
 public class ConeheadZombie extends Zombie {
+    private boolean Conehead;
 
     public ConeheadZombie() {
         super("Conehead Zombie", 250, 100, 1, false, 5);
+        this.Conehead = true;
+    }
+
+    public void State() {
+        if (this.health < 100 && Conehead) {
+            Conehead = false; 
+            System.out.println("The cone has been destroyed!");
+        }
     }
 
     public void showDescription() {

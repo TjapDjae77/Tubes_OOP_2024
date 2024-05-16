@@ -1,3 +1,5 @@
+package source.Map;
+
 import javax.swing.*;
 import java.awt.*;
 
