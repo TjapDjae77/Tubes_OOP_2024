@@ -1,7 +1,10 @@
 package source.Characters.Plants;
+
+import source.Characters.Zombie.Zombie;
+
 public class Spikeweed extends Plants{
     public Spikeweed() {
-        super("Spikeweed", 100, 20, 5, 100, 0, 10, false);
+        super("Spikeweed", 100, 20, 3, 100, 0, 10, false);
     }
 
     public void showDescription() {
@@ -13,5 +16,25 @@ public class Spikeweed extends Plants{
         System.out.println("Range: " + this.range);
         System.out.println("Cooldown: " + this.cooldown);
         System.out.println("Is Aquatic: " + this.is_aquatic); 
+    }
+
+    public void attack(Zombie zombie) {
+        if (zombie != null) {
+            zombie.setHealth(this.attack_damage);
+            System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
+            System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
+        }
+    }
+
+    public void continuousAttack(Zombie zombie) {
+        while (zombie.getHealth() > 0) {
+            attack(zombie);
+            try {
+                Thread.sleep(this.attack_speed * 1000); // Sleep to simulate attack speed
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(zombie.getName() + " has been defeated.");
     }
 }

@@ -30,7 +30,7 @@ public class Peashooter extends Plants{
         while (zombie.getHealth() > 0) {
             attack(zombie);
             try {
-                Thread.sleep(1000 / this.attack_speed); // Sleep to simulate attack speed (attacks per second)
+                Thread.sleep(this.attack_speed * 1000); // Sleep to simulate attack speed
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
