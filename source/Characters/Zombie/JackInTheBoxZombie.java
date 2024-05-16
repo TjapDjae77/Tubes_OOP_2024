@@ -2,7 +2,8 @@ package source.Characters.Zombie;
 
 public class JackInTheBoxZombie extends Zombie {
     public JackInTheBoxZombie() {
-        super("Jack In The Box Zombie", 175, 100, 1, false, 5);
+        super("Jack In The Box Zombie", 175, 100, 1, false, 5, 8, 0);
+        setCurrentColumn(randomColumn());
     }
 
     public void showDescription() {

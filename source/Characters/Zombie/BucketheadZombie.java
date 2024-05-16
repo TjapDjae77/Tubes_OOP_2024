@@ -3,7 +3,8 @@ package source.Characters.Zombie;
 public class BucketheadZombie extends Zombie {
 
     public BucketheadZombie() {
-        super("Buckethead Zombie", 300, 100, 1, false, 5);
+        super("Buckethead Zombie", 300, 100, 1, false, 5, 8, 0);
+        setCurrentColumn(randomColumn());
     }
 
     public void showDescription() {

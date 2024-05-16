@@ -2,7 +2,8 @@ package source.Characters.Zombie;
 
 public class FootballZombie extends Zombie {
     public FootballZombie() {
-        super("Football Zombie", 200, 100, 1, false, 5);
+        super("Football Zombie", 200, 100, 1, false, 5, 8, 0);
+        setCurrentColumn(randomColumn());
     }
 
     public void showDescription() {

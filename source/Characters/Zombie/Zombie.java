@@ -2,12 +2,15 @@ package source.Characters.Zombie;
 import source.Characters.Characters;
 import source.Characters.Plants.Plants;
 import source.Characters.Plants.Spikeweed;
+import java.util.Random;
 
 public abstract class Zombie extends Characters {
     protected double speed;
     protected double originalSpeed;
+    private int row;
+    private int column;
 
-    public Zombie(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic, double speed) {
+    public Zombie(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic, double speed,int row,int column) {
         super(name, health, attack_damage, attack_speed, is_aquatic);
         this.speed = speed;
         this.originalSpeed = speed;
@@ -38,6 +41,30 @@ public abstract class Zombie extends Characters {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+    public int getCurrentRow() {
+        return this.row;
+    }
+    public int getCurrentColumn() {
+        return this.column;
+    }
+    public void setCurrentRow(int row) {
+        this.row = row;
+    }
+    public void setCurrentColumn(int column) {
+        this.column = column;
+    }
+    public int randomColumn() {
+        if (is_aquatic){
+            int [] numbers = {2,3};
+            Random rand = new Random();
+            return numbers[rand.nextInt(numbers.length)];
+        }
+        else{
+            int [] numbers = {0,1,4,5};
+            Random rand = new Random();
+            return numbers[rand.nextInt(numbers.length)];
+        }
     }
 
     public abstract void showDescription();

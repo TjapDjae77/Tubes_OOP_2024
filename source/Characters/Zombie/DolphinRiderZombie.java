@@ -3,7 +3,8 @@ package source.Characters.Zombie;
 public class DolphinRiderZombie extends Zombie {
 
     public DolphinRiderZombie() {
-        super("Dolphin Rider Zombie", 175, 100, 1, true, 5);
+        super("Dolphin Rider Zombie", 175, 100, 1, true, 5, 8, 0);
+        setCurrentColumn(randomColumn());
     }
 
     public void showDescription() {

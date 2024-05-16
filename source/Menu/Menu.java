@@ -4,28 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import source.Inventory.Inventory;
 import source.Sun.Sun;
-import source.Characters.Zombie.BucketheadZombie;
-import source.Characters.Zombie.ConeheadZombie;
-import source.Characters.Zombie.DolphinRiderZombie;
-import source.Characters.Zombie.DuckyTubeZombie;
-import source.Characters.Zombie.FootballZombie;
-import source.Characters.Zombie.JackInTheBoxZombie;
-import source.Characters.Zombie.NewspaperZombie;
-import source.Characters.Zombie.NormalZombie;
-import source.Characters.Zombie.PoleVaultingZombie;
-import source.Characters.Zombie.ScreenDoorZombie;
-import source.Characters.Zombie.Zombie;
-import source.Characters.Plants.Lilypad;
-import source.Characters.Plants.Peashooter;
-import source.Characters.Plants.Plants; // Import the Plants class
-import source.Characters.Plants.Seashroom;
-import source.Characters.Plants.Snowpea;
-import source.Characters.Plants.Spikeweed;
-import source.Characters.Plants.Squash;
-import source.Characters.Plants.Sunflower;
-import source.Characters.Plants.Tallnut;
-import source.Characters.Plants.TangleKelp;
-import source.Characters.Plants.Wallnut;
+import source.Characters.Plants.*;
+import source.Characters.Zombie.*;
+import source.Deck.*;
 
 public class Menu {
     public static ArrayList<Zombie> zombieList;
@@ -46,6 +27,9 @@ public class Menu {
 
             switch (choice) {
                 case 1:
+                    Inventory inventory = new Inventory();
+                    Deck deck = new Deck();
+                    inventory.getGameDeck();
                     // Call the method to start the game
                     // You might need to setup the deck of plants here
                     break;

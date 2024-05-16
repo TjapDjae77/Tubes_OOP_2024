@@ -1,9 +1,32 @@
 package source.Characters.Zombie;
 
+import source.Characters.Plants.*;
+import source.Map.*;
+
 public class PoleVaultingZombie extends Zombie {
+    private boolean pole = true;
 
     public PoleVaultingZombie() {
-        super("Pole Vaulting Zombie", 175, 100, 1, false, 5);
+        super("Pole Vaulting Zombie", 175, 100, 1, false, 5, 8,0);
+        setCurrentColumn(randomColumn());
+    }
+
+    public void jump(){
+        GameMap gameMap = new GameMap();
+        int row = getCurrentRow(); // Replace getCurrentRow() with the actual method to get the current row.
+        int column = getCurrentColumn(); // Replace getCurrentColumn() with the actual method to get the current column.
+        if(gameMap.getTile(row+1,column).getPlanted()!=null&&!(gameMap.getTile(row+1,column).getPlanted()instanceof Spikeweed))
+        {
+            pole = false;
+            if (gameMap.getTile(row + 1, column).getPlanted() instanceof Tallnut) {
+                return;
+            } else {
+                gameMap.getTile(row + 1, column).setPlanted(null);
+                setCurrentRow(row+1);
+            }
+        } else {
+            return;
+        }
     }
 
     public void showDescription() {

@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 public class Inventory {
     public static int tanamanInDeck = 0;
-    private Plants selectedPlant;
     public static ArrayList<Plants> gameDeck;
     public static ArrayList<Plants> plantsList;
 
