@@ -19,7 +19,7 @@ public class Lilypad extends Plants{
         System.out.println("Is Aquatic: " + this.is_aquatic); 
     }
 
-    public boolean isOccupied() {
+    public boolean isOccupied() {//Harus di air
         return plantOnTop != null;
     }
 

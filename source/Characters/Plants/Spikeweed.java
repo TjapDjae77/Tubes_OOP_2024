@@ -26,7 +26,7 @@ public class Spikeweed extends Plants{
         }
     }
 
-    public void continuousAttack(Zombie zombie) {
+    public void continuousAttack(Zombie zombie) {//Dia cuman nyerang yang ada di tiles dia sesuaiin yak
         while (zombie.getHealth() > 0) {
             attack(zombie);
             try {

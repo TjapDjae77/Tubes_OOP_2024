@@ -4,7 +4,7 @@ public class Tallnut extends Plants{
     public Tallnut() {
         super("Tall-nut", 2000, 0, 0, 125, 0, 20, false);
     }
-
+    //Tallnut ngehandle pole jumper
     public void showDescription() {
         System.out.println("Name: " + this.name);
         System.out.println("Health: " + this.health);

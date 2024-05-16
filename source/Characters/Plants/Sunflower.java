@@ -15,7 +15,7 @@ public class Sunflower extends Plants {
         timer.schedule(new TimerTask() {
             @Override
             public void run(){
-                sun += 25;
+                sun += 25;//Add sunflower in general bukan yg local disini ambil dari Sun static
                 System.out.println("Sun saat ini : " + sun);
                 addSunSunflower();
             }

@@ -29,7 +29,7 @@ public class TangleKelp extends Plants{
         }
     }
 
-    private void vanish() {
+    private void vanish() {//Sama kek squash
         this.isVanished = true;
         this.health = 0;
         System.out.println(this.name + " has vanished after its attack.");
