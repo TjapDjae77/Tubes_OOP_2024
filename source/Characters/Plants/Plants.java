@@ -30,6 +30,13 @@ public abstract class Plants extends Characters{
         return this.health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+        if (this.health < 0) {
+            this.health = 0; 
+        }
+    }
+
     public abstract void showDescription();
 }
 

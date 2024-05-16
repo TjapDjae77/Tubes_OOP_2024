@@ -19,8 +19,8 @@ public abstract class Zombie extends Characters {
         return this.health;
     }
 
-    public void setHealth(int damage) {
-        this.health -= damage;
+    public void setHealth(int health) {
+        this.health = health;
         if (this.health < 0) {
             this.health = 0; 
         }
