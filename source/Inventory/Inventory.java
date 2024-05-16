@@ -26,6 +26,18 @@ public class Inventory {
         if (index < 0 || index > 5) {
             return;
         }
+        else if (gameDeck.get(index) != null) {
+            System.out.println("Invalid operation. The selected slot "+(index+1)+ " is already occupied.");
+            //search for empty slot and insert there
+            for (int i = 0; i < 6; i++) {
+                if (gameDeck.get(i) == null) {
+                    gameDeck.set(i, plant);
+                    tanamanInDeck++;
+                    System.out.println(plant.getName() + " has been added to slot " + (i+1) + " in your deck.");
+                    return;
+                }
+            }
+        }
         gameDeck.set(index, plant);
         tanamanInDeck++;
     }
@@ -48,6 +60,7 @@ public class Inventory {
             temp[index1] = plantsList.get(index2);
             temp[index2] = plantsList.get(index1);
             plantsList = new ArrayList<>(Arrays.asList(temp));
+            System.out.println(plantsList.get(index1).getName() + " in inventory has been switched with " + plantsList.get(index2).getName()+"\n");
         }
         // Swap within gameDeck
         else {
@@ -60,6 +73,7 @@ public class Inventory {
             Plants temp = gameDeck.get(index1);
             gameDeck.set(index1, gameDeck.get(index2));
             gameDeck.set(index2, temp);
+            System.out.println(gameDeck.get(index1).getName() + " in gamedeck has been switched with " + gameDeck.get(index2).getName()+"\n");
         }
     }
 
@@ -73,10 +87,14 @@ public class Inventory {
     }
 
     public Plants[] getGameDeck() {
+        System.out.println("\n*** Game Deck ***");
         for (int i = 0; i < 6; i++) {
             if (gameDeck.get(i) != null) {
-                System.out.println(gameDeck.get(i).getName());
+                System.out.println(String.valueOf(i+1)+". " + gameDeck.get(i).getName());
             }
+        }
+        if (tanamanInDeck < 6 && tanamanInDeck >= 0) {
+            System.out.println("You have " + tanamanInDeck + " plants in your deck, please add " + (6 - tanamanInDeck) + " more plants.");
         }
         return gameDeck.toArray(new Plants[0]);
     }

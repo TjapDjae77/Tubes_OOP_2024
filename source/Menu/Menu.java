@@ -3,6 +3,7 @@ package source.Menu;
 import java.util.ArrayList;
 import java.util.Scanner;
 import source.Inventory.Inventory;
+import source.Sun.Sun;
 import source.Characters.Zombie.BucketheadZombie;
 import source.Characters.Zombie.ConeheadZombie;
 import source.Characters.Zombie.DolphinRiderZombie;
@@ -14,7 +15,17 @@ import source.Characters.Zombie.NormalZombie;
 import source.Characters.Zombie.PoleVaultingZombie;
 import source.Characters.Zombie.ScreenDoorZombie;
 import source.Characters.Zombie.Zombie;
+import source.Characters.Plants.Lilypad;
+import source.Characters.Plants.Peashooter;
 import source.Characters.Plants.Plants; // Import the Plants class
+import source.Characters.Plants.Seashroom;
+import source.Characters.Plants.Snowpea;
+import source.Characters.Plants.Spikeweed;
+import source.Characters.Plants.Squash;
+import source.Characters.Plants.Sunflower;
+import source.Characters.Plants.Tallnut;
+import source.Characters.Plants.TangleKelp;
+import source.Characters.Plants.Wallnut;
 
 public class Menu {
     public static ArrayList<Zombie> zombieList;
@@ -55,9 +66,31 @@ public class Menu {
                     // ...
 
                 case 3:
+                    Lilypad lilypad = new Lilypad();
+                    Peashooter peashooter = new Peashooter();
+                    Seashroom seashroom = new Seashroom();
+                    Snowpea snowpea = new Snowpea();
+                    Spikeweed spikeweed = new Spikeweed();
+                    Squash squash = new Squash();
+                    Sunflower sunflower = new Sunflower();  
+                    Tallnut tallnut = new Tallnut();
+                    TangleKelp tangleKelp = new TangleKelp();
+                    Wallnut wallnut = new Wallnut();
+                    Inventory.plantsList = new ArrayList<>();
+                    Inventory.plantsList.add(lilypad);
+                    Inventory.plantsList.add(peashooter);
+                    Inventory.plantsList.add(seashroom);
+                    Inventory.plantsList.add(snowpea);
+                    Inventory.plantsList.add(spikeweed);
+                    Inventory.plantsList.add(squash);
+                    Inventory.plantsList.add(sunflower);
+                    Inventory.plantsList.add(tallnut);
+                    Inventory.plantsList.add(tangleKelp);
+                    Inventory.plantsList.add(wallnut);                  
                     System.out.println("\n*** Plants List ***");
                     for (Plants plant : Inventory.plantsList) {
-//                        printPlant(plant);
+                        plant.showDescription();
+                        System.out.println("--------------------");
                     }
                     // Call the method to show the list of plants
                     // This should include all attributes of the plants
@@ -87,6 +120,7 @@ public class Menu {
                     System.out.println("\n*** Zombies List ***");
                     for (Zombie zombie : zombieList) {
                         zombie.showDescription();
+                        System.out.println("--------------------");
                     }
                     // Call the method to show the list of zombies
                     // This should include all attributes of the zombies
