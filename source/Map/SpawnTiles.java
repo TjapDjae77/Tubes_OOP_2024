@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class SpawnTiles extends Tiles {
     public SpawnTiles(){
-        super();
+        super("Spawn");
     }
 
     @Override

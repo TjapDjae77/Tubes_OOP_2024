@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class PoolTiles extends Tiles {
     public PoolTiles(){
-        super();
+        super("Pool");
     }
 
     @Override

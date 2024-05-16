@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class ProtectedTiles extends Tiles {
     public ProtectedTiles(){
-        super();
+        super("Protected");
     }
 
     @Override
