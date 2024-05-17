@@ -42,6 +42,11 @@ public abstract class Zombie extends Characters {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
+    
+    public void setOriginalSpeed(double originalSpeed) {
+        this.originalSpeed = originalSpeed;
+    }
+    
     public int getCurrentRow() {
         return this.row;
     }

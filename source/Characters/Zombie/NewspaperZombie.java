@@ -9,10 +9,17 @@ public class NewspaperZombie extends Zombie {
         this.Newspaper = true;
     }
 
+    @Override
+    public void setHealth(int health) {
+        super.setHealth(health);
+        removeNewspaper(); // Check if the newspaper should be removed whenever health is updated
+    }
+
     public void removeNewspaper() {
-        if (this.health < 100 && Newspaper) {
+        if (this.health < 100 && this.Newspaper) {
             Newspaper = false; 
-            System.out.println("The helmet has been destroyed!");
+            setOriginalSpeed(2);
+            System.out.println("The newspaper has been destroyed!");
         }
     }
 

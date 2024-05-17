@@ -5,7 +5,7 @@ import source.Characters.Zombie.*;
 public class demo {
     public static void main(String[] args) {
         Snowpea snopy = new Snowpea();
-        ScreenDoorZombie Zombie = new ScreenDoorZombie();
+        NewspaperZombie Zombie = new NewspaperZombie();
 
         snopy.continuousAttack(Zombie);
     }
