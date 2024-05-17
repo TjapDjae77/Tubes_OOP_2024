@@ -1,4 +1,4 @@
-package source.Map.*;
+package source.Map;
 import source.Characters.Plants.*;
 import java.awt.*;
 

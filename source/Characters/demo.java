@@ -4,10 +4,10 @@ import source.Characters.Zombie.*;
 
 public class demo {
     public static void main(String[] args) {
-        Seashroom sishrom = new Seashroom();
-        BucketheadZombie Zombie = new BucketheadZombie();
+        Snowpea snopy = new Snowpea();
+        ScreenDoorZombie Zombie = new ScreenDoorZombie();
 
-        sishrom.continuousAttack(Zombie);
+        snopy.continuousAttack(Zombie);
     }
 }
 // javac source/Characters/Characters.java source/Characters/Plants/Plants.java source/Characters/Plants/Peashooter.java source/Characters/Zombie/Zombie.java source/Characters/Zombie/NormalZombie.java

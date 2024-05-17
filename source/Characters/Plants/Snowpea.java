@@ -4,6 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ScheduledExecutorService;
 
+import source.Characters.Zombie.ScreenDoorZombie;
 import source.Characters.Zombie.Zombie;
 
 public class Snowpea extends Plants{
@@ -46,6 +47,15 @@ public class Snowpea extends Plants{
     }
 
     private void applySlowEffect(Zombie zombie) {
+        // Check if the zombie is a ScreenDoorZombie and still has its door
+        if (zombie instanceof ScreenDoorZombie) {
+            ScreenDoorZombie screenDoorZombie = (ScreenDoorZombie) zombie;
+            if (screenDoorZombie.hasDoor()) {   
+                System.out.println(zombie.getName() + " is protected by a screen door and cannot be slowed.");
+                return;
+            }
+        }
+
         double originalSpeed = zombie.getOriginalSpeed();
         double slowedSpeed = (double) (originalSpeed * slowEffect);
 

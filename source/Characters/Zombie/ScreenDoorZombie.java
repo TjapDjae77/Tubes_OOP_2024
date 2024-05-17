@@ -9,9 +9,19 @@ public class ScreenDoorZombie extends Zombie {
         this.door = true;
     }
 
+    public boolean hasDoor() {
+        return door;
+    }
+
+    @Override
+    public void setHealth(int health) {
+        super.setHealth(health);
+        removeDoor(); // Check if the door should be removed whenever health is updated
+    }
+
     public void removeDoor() {
-        if (this.health <= 50 && door) {
-            door = false; 
+        if (this.health <= 100) {
+            this.door = false; 
             System.out.println("The door has been destroyed!");
         }
     }
