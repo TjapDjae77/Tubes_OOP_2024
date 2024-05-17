@@ -1,18 +1,29 @@
 package source.Characters.Zombie;
 
+import source.Characters.Plants.Spikeweed;
+import source.Map.GameMap;
+
 public class JackInTheBoxZombie extends Zombie {
-    private boolean JackInTheBox;
 
     public JackInTheBoxZombie() {
-        super("Jack In The Box Zombie", 175, 100, 1, false, 5, 8, 0);
+        super("Jack In The Box Zombie", 175, 5000, 1, false, 2.5, 8, 0);
         setCurrentColumn(randomColumn());
-        this.JackInTheBox = true;
+
     }
 
-    public void removeJack() {
-        if (this.health < 100 && JackInTheBox) {
-            JackInTheBox = false; 
-            System.out.println("The Jack In The Box has been destroyed!");
+    public void explode() {
+        GameMap gameMap = new GameMap();
+        int row = getCurrentRow(); 
+        int column = getCurrentColumn();
+        if (gameMap.getTile(row, column).getPlanted() != null) {
+            if (gameMap.getTile(row, column).getPlanted() instanceof Spikeweed) {
+                return;
+            } else {
+                setCurrentRow(row);
+                setCurrentColumn(column);
+                setHealth(0);
+                return;
+            }
         }
     }
 
@@ -23,6 +34,5 @@ public class JackInTheBoxZombie extends Zombie {
         System.out.println("Attack Speed : " + attack_speed);
         System.out.println("Is Aquatic : " + is_aquatic);
         System.out.println("Speed : " + speed);
-        System.out.println("Jack In The Box : " + JackInTheBox);
     }
 }
