@@ -4,8 +4,12 @@ import source.Characters.Zombie.Zombie;
 
 public class TangleKelp extends Plants{
 
+    public TangleKelp(int row, int column) {
+        super("Tangle Kelp", 100, 5000, 1, 25, 0, 20, true, row, column);
+    }
+
     public TangleKelp() {
-        super("Tangle Kelp", 100, 5000, 1, 25, 0, 20, true);
+        super("Tangle Kelp", 100, 5000, 1, 25, 0, 20, true, 0, 0);
     }
 
     public void showDescription() {

@@ -8,8 +8,12 @@ import java.util.TimerTask;
 public class Sunflower extends Plants {
     Timer timer = new Timer();
 
+    public Sunflower(int row, int column) {
+        super("Sunflower", 100, 0, 0, 50, 0, 10, false, row, column);
+    }
+
     public Sunflower() {
-        super("Sunflower", 100, 0, 0, 50, 0, 10, false);
+        super("Sunflower", 100, 0, 0, 50, 0, 10, false, 0, 0);
     }
 
     public void addSunSunflower(){

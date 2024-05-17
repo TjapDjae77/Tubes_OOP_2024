@@ -3,8 +3,12 @@ package source.Characters.Plants;
 import source.Characters.Zombie.Zombie;
 
 public class Spikeweed extends Plants{
+    public Spikeweed(int row, int column) {
+        super("Spikeweed", 100, 20, 3, 100, 0, 10, false, row, column);
+    }
+
     public Spikeweed() {
-        super("Spikeweed", 100, 20, 3, 100, 0, 10, false);
+        super("Spikeweed", 100, 20, 3, 100, 0, 10, false, 0, 0);
     }
 
     public void showDescription() {

@@ -1,7 +1,11 @@
 package source.Characters.Plants;
 public class Wallnut extends Plants{
+    public Wallnut(int row, int column) {
+        super("Wall-nut", 1000, 0, 0, 50, 0, 20, false, row, column);
+    }
+
     public Wallnut() {
-        super("Wall-nut", 1000, 0, 0, 50, 0, 20, false);
+        super("Wall-nut", 1000, 0, 0, 50, 0, 20, false, 0, 0);
     }
 
     public void showDescription() {

@@ -4,9 +4,12 @@ import source.Characters.Zombie.Zombie;
 
 public class Squash extends Plants{
     private boolean isVanished;
+    public Squash(int row, int column) {
+        super("Squash", 100, 5000, 1, 50, 1, 20, false, row, column);
+    }
 
     public Squash() {
-        super("Squash", 100, 5000, 1, 50, 1, 20, false);
+        super("Squash", 100, 5000, 1, 50, 1, 20, false, 0, 0);
     }
 
     public void showDescription() {

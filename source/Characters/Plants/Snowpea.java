@@ -10,9 +10,16 @@ public class Snowpea extends Plants{
     private int slowDuration; // Duration in milliseconds for how long the zombie will be slowed
     private double slowEffect; // Slow effect as a factor (e.g., 1.5 for 150% speed)
     private ScheduledExecutorService scheduler;
+    
+    public Snowpea(int row, int column) {
+        super("Snow Pea", 100, 25, 4, 175, -1, 10, false, row, column);
+        this.slowDuration = 3000;
+        this.slowEffect = 1.5;
+        this.scheduler = Executors.newSingleThreadScheduledExecutor();
+    }
 
     public Snowpea() {
-        super("Snow Pea", 100, 25, 4, 175, -1, 10, false);
+        super("Snow Pea", 100, 25, 4, 175, -1, 10, false, 0, 0);
         this.slowDuration = 3000;
         this.slowEffect = 1.5;
         this.scheduler = Executors.newSingleThreadScheduledExecutor();

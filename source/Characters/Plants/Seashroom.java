@@ -3,8 +3,12 @@ package source.Characters.Plants;
 import source.Characters.Zombie.Zombie;
 
 public class Seashroom extends Plants{
+    public Seashroom(int row, int column) {
+        super("Sea-shroom", 100, 15, 4, 0, 3, 25, true, row, column);
+    }
+
     public Seashroom() {
-        super("Sea-shroom", 100, 15, 4, 0, 3, 25, true);
+        super("Sea-shroom", 100, 15, 4, 0, 3, 25, true, 0, 0);
     }
 
     public void showDescription() {

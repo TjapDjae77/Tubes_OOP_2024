@@ -1,8 +1,12 @@
 package source.Characters.Plants;
 
 public class Tallnut extends Plants{
+    public Tallnut(int row, int column) {
+        super("Tall-nut", 2000, 0, 0, 125, 0, 20, false, row, column);
+    }
+
     public Tallnut() {
-        super("Tall-nut", 2000, 0, 0, 125, 0, 20, false);
+        super("Tall-nut", 2000, 0, 0, 125, 0, 20, false, 0, 0);
     }
 
     public void showDescription() {

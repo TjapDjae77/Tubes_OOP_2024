@@ -2,9 +2,13 @@ package source.Characters.Plants;
 
 public class Lilypad extends Plants{
     private Plants plantOnTop;
+    public Lilypad(int row, int column) {
+        super("Lilypad", 100, 0, 0, 25, 0, 10, true, row, column);
+        this.plantOnTop = null;
+    }
 
     public Lilypad() {
-        super("Lilypad", 100, 0, 0, 25, 0, 10, true);
+        super("Lilypad", 100, 0, 0, 25, 0, 10, true, 0, 0);
         this.plantOnTop = null;
     }
 

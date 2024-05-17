@@ -3,8 +3,12 @@ package source.Characters.Plants;
 import source.Characters.Zombie.Zombie;
 
 public class Peashooter extends Plants{
+    public Peashooter(int row, int column) {
+        super("Peashooter", 100, 25, 4, 100, -1, 10, false, row, column);
+    }
+
     public Peashooter() {
-        super("Peashooter", 100, 25, 4, 100, -1, 10, false);
+        super("Peashooter", 100, 25, 4, 100, -1, 10, false, 0, 0);
     }
 
     public void showDescription() {
