@@ -44,45 +44,34 @@ public class ControllerMainMenu implements Initializable {
 
     @FXML
     void startGame(MouseEvent event) throws IOException {
-        Stage mainGame = (Stage) startButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/source/GUI/prepgame.fxml"));
-        mainGame.setTitle("Plants vs. Zombies");
-        mainGame.setScene(new Scene(root));
-        mediaPlayer.stop();
+        loadScene((Stage) startButton.getScene().getWindow(), "/source/GUI/prepgame.fxml");
     }
 
     @FXML
     void showPlantsList(MouseEvent event) throws IOException {
-        Stage plantsList = (Stage) plantListButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/source/GUI/plantslist.fxml"));
-        plantsList.setTitle("Plants vs. Zombies");
-        plantsList.setScene(new Scene(root));
-        mediaPlayer.stop();
+        loadScene((Stage) plantListButton.getScene().getWindow(), "/source/GUI/plantslist.fxml");
     }
 
     @FXML
     void showZombiesList(MouseEvent event) throws IOException {
-        Stage zombiesList = (Stage) zombieListButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/source/GUI/zombieslist.fxml"));
-        zombiesList.setTitle("Plants vs. Zombies");
-        zombiesList.setScene(new Scene(root));
-        mediaPlayer.stop();
+        loadScene((Stage) zombieListButton.getScene().getWindow(), "/source/GUI/zombieslist.fxml");
     }
-
-
 
     @FXML
     void showHelp(MouseEvent event) throws IOException {
-        Stage zombiesList = (Stage) helpButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/source/GUI/help.fxml"));
-        zombiesList.setTitle("Plants vs. Zombies");
-        zombiesList.setScene(new Scene(root));
-        mediaPlayer.stop();
+        loadScene((Stage) helpButton.getScene().getWindow(), "/source/GUI/help.fxml");
     }
 
     @FXML
     void exitGame(MouseEvent event) {
         System.exit(0);
+    }
+
+    private void loadScene(Stage stage, String fxmlPath) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+        stage.setTitle("Michael vs. Lalapan");
+        stage.setScene(new Scene(root));
+        mediaPlayer.stop();
     }
 
     @Override

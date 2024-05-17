@@ -87,7 +87,7 @@ public class Controller implements Initializable {
     void backToMenu(MouseEvent event) throws IOException {
         Stage mainMenu = (Stage) menubutton.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/source/GUI/mainmenu.fxml"));
-        mainMenu.setTitle("Plants vs. Zombies");
+        mainMenu.setTitle("Michael vs. Lalapan");
         mainMenu.setScene(new Scene(root));
         mediaPlayer.stop();
     }

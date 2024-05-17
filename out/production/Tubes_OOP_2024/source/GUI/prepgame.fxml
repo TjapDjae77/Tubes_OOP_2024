@@ -13,18 +13,23 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.ControllerPrepGame">
+<AnchorPane fx:id="layardasar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.ControllerPrepGame">
    <children>
+      <ImageView fitHeight="1076.0" fitWidth="1921.0">
+         <image>
+            <Image url="@../../assets/Menu/PrepGameTemplate.png" />
+         </image>
+      </ImageView>
       <Pane prefHeight="1080.0" prefWidth="1922.0">
          <children>
-            <Button fx:id="menubutton" layoutX="1636.0" mnemonicParsing="false" onMouseClicked="#backToMenu" prefHeight="38.0" prefWidth="282.0" text="Menu" textFill="#0eae16">
+            <Button fx:id="menubutton" layoutX="1651.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#backToMenu" prefHeight="65.0" prefWidth="230.0" text="Menu" textFill="#0eae16">
                <font>
                   <Font size="29.0" />
                </font>
                <effect>
                   <ImageInput>
                      <source>
-                        <Image url="@../../assets/Menu/MenuButton.png" />
+                        <Image url="@../../assets/Menu/MenuButtonPrep.png" />
                      </source>
                   </ImageInput>
                </effect>
@@ -32,205 +37,31 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <HBox fx:id="hboxdeck" layoutX="62.0" layoutY="53.0" prefHeight="130.0" prefWidth="1004.0" spacing="85.0">
-               <children>
-                  <Pane fx:id="paneSlot1" onDragDropped="#insertPlant" onDragOver="#handleDragOver" prefHeight="200.0" prefWidth="200.0" />
-                  <Pane fx:id="paneSlot2" onDragDropped="#insertPlant" onDragOver="#handleDragOver" prefHeight="200.0" prefWidth="200.0" />
-                  <Pane fx:id="paneSlot3" onDragDropped="#insertPlant" onDragOver="#handleDragOver" prefHeight="200.0" prefWidth="200.0" />
-                  <Pane fx:id="paneSlot4" onDragDropped="#insertPlant" onDragOver="#handleDragOver" prefHeight="200.0" prefWidth="200.0" />
-                  <Pane fx:id="paneSlot5" onDragDropped="#insertPlant" onDragOver="#handleDragOver" prefHeight="200.0" prefWidth="200.0" />
-                  <Pane fx:id="paneSlot6" onDragDropped="#insertPlant" onDragOver="#handleDragOver" prefHeight="200.0" prefWidth="200.0" />
-               </children>
-            </HBox>
-            <GridPane layoutX="52.0" layoutY="275.0" prefHeight="494.0" prefWidth="1098.0">
+            <HBox fx:id="hboxdeck" layoutX="289.0" layoutY="17.0" prefHeight="165.0" prefWidth="1108.0" />
+            <GridPane fx:id="inventoryGridPane" layoutX="137.0" layoutY="271.0" prefHeight="703.0" prefWidth="743.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="187.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="622.3333435058594" minWidth="10.0" prefWidth="179.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="597.6666564941406" minWidth="10.0" prefWidth="184.66668701171875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.9999389648438" minWidth="10.0" prefWidth="193.33331298828125" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="313.0" minHeight="10.0" prefHeight="199.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="338.0" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="313.0" minHeight="10.0" prefHeight="227.66665649414062" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="338.0" minHeight="10.0" prefHeight="238.33334350585938" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="338.0" minHeight="10.0" prefHeight="234.66668701171875" vgrow="SOMETIMES" />
               </rowConstraints>
-               <children>
-                  <Pane fx:id="inv1" onDragDetected="#choosePlant" onMouseDragReleased="#insertToDeck" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Sunflower_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant1" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant" onMouseDragReleased="#insertToDeck">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Sunflower.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="inv2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Peashooter_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant2" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Peashooter.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="inv3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_SnowPea_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant3" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_SnowPea.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="inv4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Wallnut_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant4" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Wallnut.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="inv5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Squash_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant5" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Squash.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="inv6" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Spikeweed_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant6" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Spikeweed.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="inv7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Tallnut_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant7" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Tallnut.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="inv8" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Lilypad_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant8" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_Lilypad.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="inv9" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_SeaShroom_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant9" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_SeaShroom.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="inv10" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <children>
-                        <ImageView fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_TangleKelp_Dark.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="plant10" fitHeight="190.0" fitWidth="141.0" layoutX="40.0" layoutY="20.0" onDragDetected="#choosePlant">
-                           <image>
-                              <Image url="@../../assets/Seed%20Packet/Seeds_TangleKelp.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-               </children>
             </GridPane>
-            <Button fx:id="startGameButton" layoutX="1620.0" layoutY="915.0" mnemonicParsing="false" onMouseClicked="#goToPlay" prefHeight="119.0" prefWidth="252.0" text="Play">
-               <font>
-                  <Font size="47.0" />
-               </font>
+            <Button fx:id="letsrockbutton" layoutX="373.0" layoutY="984.0" mnemonicParsing="false" onMouseClicked="#goToPlay" prefHeight="87.0" prefWidth="307.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <ImageInput>
+                     <source>
+                        <Image url="@../../assets/Menu/LetsRockButton.png" />
+                     </source>
+                  </ImageInput>
+               </effect>
             </Button>
          </children>
       </Pane>
