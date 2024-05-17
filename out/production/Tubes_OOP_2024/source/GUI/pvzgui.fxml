@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.Controller">
    <children>
       <StackPane layoutX="-1.0" layoutY="-2.0" prefHeight="1083.0" prefWidth="1940.0">
          <children>
@@ -61,16 +61,16 @@
       </StackPane>
       <HBox layoutX="222.0" layoutY="18.0" prefHeight="130.0" prefWidth="1004.0" spacing="85.0">
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="paneSlot1" onDragDetected="#selectedPlant" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="slot1" fitHeight="126.0" fitWidth="90.0" onDragDetected="#selectedPlant">
+                  <ImageView fx:id="slot1" fitHeight="126.0" fitWidth="90.0" onMouseDragReleased="#checkPlantable">
                      <image>
                         <Image url="@../../assets/Seed%20Packet/Seeds_Sunflower.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="paneSlot2" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="slot2" fitHeight="126.0" fitWidth="90.0">
                      <image>
@@ -79,7 +79,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="paneSlot3" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="slot3" fitHeight="126.0" fitWidth="90.0">
                      <image>
@@ -88,7 +88,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="paneSlot4" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="slot4" fitHeight="126.0" fitWidth="90.0">
                      <image>
@@ -97,7 +97,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="paneSlot5" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="slot5" fitHeight="126.0" fitWidth="90.0">
                      <image>
@@ -106,7 +106,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="paneSlot6" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="slot6" fitHeight="126.0" fitWidth="90.0">
                      <image>
@@ -136,7 +136,7 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="file:/C:/Users/Admin/Documents/GitHub/Tubes_OOP_2024/assets/Menu/MenuButton.png" />
+                  <Image url="@../../assets/Menu/MenuButton.png" />
                </source>
             </ImageInput>
          </effect>

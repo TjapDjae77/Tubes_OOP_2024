@@ -43,6 +43,24 @@ public class Controller implements Initializable {
     private Button menubutton;
 
     @FXML
+    private Pane paneSlot1;
+
+    @FXML
+    private Pane paneSlot2;
+
+    @FXML
+    private Pane paneSlot3;
+
+    @FXML
+    private Pane paneSlot4;
+
+    @FXML
+    private Pane paneSlot5;
+
+    @FXML
+    private Pane paneSlot6;
+
+    @FXML
     private ImageView slot1;
 
     @FXML
@@ -82,22 +100,23 @@ public class Controller implements Initializable {
 
     @FXML
     void selectedPlant(MouseEvent event) {
-        ImageView selectedImageView = (ImageView) event.getSource();
-        Dragboard dragboard = selectedImageView.startDragAndDrop(TransferMode.MOVE);
-        ClipboardContent content = new ClipboardContent();
-        content.putImage(selectedImageView.getImage());
-        dragboard.setContent(content);
-        selectedImageView.setOnDragDone(e -> {
-            // Mengecek apakah operasi drag berhasil
-            if (e.getTransferMode() == TransferMode.MOVE) {
-                // Logika untuk menempatkan tanaman ke petak
-                // Misalnya, Anda dapat menambahkan tanaman ke petak di sini
-                Pane targetPane = (Pane) e.getSource(); // Mendapatkan petak yang menjadi target
-                ImageView draggedPlant = (ImageView) e.getGestureSource(); // Mendapatkan gambar tanaman yang ditarik
-                // Misalkan kita ingin menempatkan gambar tanaman ke dalam petak target
-                targetPane.getChildren().add(draggedPlant);
-            }
-        });
+//        Pane selectedSlot = (DeckPane) event.getSource();
+//
+//        Dragboard dragboard = selectedSlot.startDragAndDrop(TransferMode.MOVE);
+//        ClipboardContent content = new ClipboardContent();
+//        content.putImage(selectedImageView.getImage());
+//        dragboard.setContent(content);
+//        selectedImageView.setOnDragDone(e -> {
+//            // Mengecek apakah operasi drag berhasil
+//            if (e.getTransferMode() == TransferMode.MOVE) {
+//                // Logika untuk menempatkan tanaman ke petak
+//                // Misalnya, Anda dapat menambahkan tanaman ke petak di sini
+//                Pane targetPane = (Pane) e.getSource(); // Mendapatkan petak yang menjadi target
+//                ImageView draggedPlant = (ImageView) e.getGestureSource(); // Mendapatkan gambar tanaman yang ditarik
+//                // Misalkan kita ingin menempatkan gambar tanaman ke dalam petak target
+//                targetPane.getChildren().add(draggedPlant);
+//            }
+//        });
     }
 
 

@@ -45,7 +45,7 @@ public class ControllerMainMenu implements Initializable {
     @FXML
     void startGame(MouseEvent event) throws IOException {
         Stage mainGame = (Stage) startButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/source/GUI/pvzgui.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/source/GUI/prepgame.fxml"));
         mainGame.setTitle("Plants vs. Zombies");
         mainGame.setScene(new Scene(root));
         mediaPlayer.stop();
