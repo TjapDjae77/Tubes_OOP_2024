@@ -1,10 +1,19 @@
 package source.Characters.Zombie;
 
 public class BucketheadZombie extends Zombie {
+    private boolean Buckethead;
 
     public BucketheadZombie() {
         super("Buckethead Zombie", 300, 100, 1, false, 5, 8, 0);
         setCurrentColumn(randomColumn());
+        this.Buckethead = true;
+    }
+
+    public void removeBucket() {
+        if (this.health < 100 && Buckethead) {
+            Buckethead = false; 
+            System.out.println("The bucket has been destroyed!");
+        }
     }
 
     public void showDescription() {

@@ -9,7 +9,7 @@ public class ConeheadZombie extends Zombie {
         this.Conehead = true;
     }
 
-    public void State() {
+    public void removeCone() {
         if (this.health < 100 && Conehead) {
             Conehead = false; 
             System.out.println("The cone has been destroyed!");

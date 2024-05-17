@@ -1,9 +1,19 @@
 package source.Characters.Zombie;
 
 public class FootballZombie extends Zombie {
+    private boolean Football;
+
     public FootballZombie() {
         super("Football Zombie", 200, 100, 1, false, 5, 8, 0);
         setCurrentColumn(randomColumn());
+        this.Football = true;
+    }
+
+    public void removeHelmet() {
+        if (this.health < 100 && Football) {
+            Football = false; 
+            System.out.println("The helmet has been destroyed!");
+        }
     }
 
     public void showDescription() {

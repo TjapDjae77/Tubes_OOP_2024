@@ -13,8 +13,8 @@ public class PoleVaultingZombie extends Zombie {
 
     public void jump(){
         GameMap gameMap = new GameMap();
-        int row = getCurrentRow(); // Replace getCurrentRow() with the actual method to get the current row.
-        int column = getCurrentColumn(); // Replace getCurrentColumn() with the actual method to get the current column.
+        int row = getCurrentRow(); 
+        int column = getCurrentColumn(); 
         if(gameMap.getTile(row+1,column).getPlanted()!=null&&!(gameMap.getTile(row+1,column).getPlanted()instanceof Spikeweed))
         {
             pole = false;

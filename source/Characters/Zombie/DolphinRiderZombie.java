@@ -1,10 +1,34 @@
 package source.Characters.Zombie;
 
+import source.Characters.Plants.Spikeweed;
+import source.Characters.Plants.Tallnut;
+import source.Map.GameMap;
+
 public class DolphinRiderZombie extends Zombie {
+    private boolean Dolphin;
 
     public DolphinRiderZombie() {
         super("Dolphin Rider Zombie", 175, 100, 1, true, 5, 8, 0);
         setCurrentColumn(randomColumn());
+        this.Dolphin = true;
+    }
+
+    public void jump(){
+        GameMap gameMap = new GameMap();
+        int row = getCurrentRow(); 
+        int column = getCurrentColumn(); 
+        if(gameMap.getTile(row+1,column).getPlanted()!=null&&!(gameMap.getTile(row+1,column).getPlanted()instanceof Spikeweed))
+        {
+            Dolphin = false;
+            if (gameMap.getTile(row + 1, column).getPlanted() instanceof Tallnut) {
+                return;
+            } else {
+                gameMap.getTile(row + 1, column).setPlanted(null);
+                setCurrentRow(row+1);
+            }
+        } else {
+            return;
+        }
     }
 
     public void showDescription() {

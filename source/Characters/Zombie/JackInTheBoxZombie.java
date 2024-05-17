@@ -1,9 +1,19 @@
 package source.Characters.Zombie;
 
 public class JackInTheBoxZombie extends Zombie {
+    private boolean JackInTheBox;
+
     public JackInTheBoxZombie() {
         super("Jack In The Box Zombie", 175, 100, 1, false, 5, 8, 0);
         setCurrentColumn(randomColumn());
+        this.JackInTheBox = true;
+    }
+
+    public void removeJack() {
+        if (this.health < 100 && JackInTheBox) {
+            JackInTheBox = false; 
+            System.out.println("The Jack In The Box has been destroyed!");
+        }
     }
 
     public void showDescription() {
