@@ -8,7 +8,7 @@ public class DolphinRiderZombie extends Zombie {
     private boolean Dolphin;
 
     public DolphinRiderZombie() {
-        super("Dolphin Rider Zombie", 175, 100, 1, true, 5, 8, 0);
+        super("Dolphin Rider Zombie", 175, 100, 1, true, 1, 8, 0);
         setCurrentColumn(randomColumn());
         this.Dolphin = true;
     }
@@ -17,9 +17,9 @@ public class DolphinRiderZombie extends Zombie {
         GameMap gameMap = new GameMap();
         int row = getCurrentRow(); 
         int column = getCurrentColumn(); 
-        if(gameMap.getTile(row+1,column).getPlanted()!=null&&!(gameMap.getTile(row+1,column).getPlanted()instanceof Spikeweed))
-        {
+        if(gameMap.getTile(row+1,column).getPlanted()!=null&&!(gameMap.getTile(row+1,column).getPlanted()instanceof Spikeweed)) {
             Dolphin = false;
+            setSpeed(5);
             if (gameMap.getTile(row + 1, column).getPlanted() instanceof Tallnut) {
                 return;
             } else {

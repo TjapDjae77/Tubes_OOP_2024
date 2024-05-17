@@ -20,7 +20,7 @@ public class ScreenDoorZombie extends Zombie {
     }
 
     public void removeDoor() {
-        if (this.health <= 100) {
+        if (this.health <= 100 && this.door) {
             this.door = false; 
             System.out.println("The door has been destroyed!");
         }
