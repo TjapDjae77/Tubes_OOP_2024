@@ -23,5 +23,6 @@ public class JackInTheBoxZombie extends Zombie {
         System.out.println("Attack Speed : " + attack_speed);
         System.out.println("Is Aquatic : " + is_aquatic);
         System.out.println("Speed : " + speed);
+        System.out.println("Jack In The Box : " + JackInTheBox);
     }
 }

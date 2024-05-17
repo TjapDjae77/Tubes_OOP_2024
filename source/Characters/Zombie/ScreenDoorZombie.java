@@ -22,6 +22,7 @@ public class ScreenDoorZombie extends Zombie {
         System.out.println("Attack Damage: " + this.attack_damage);
         System.out.println("Attack Speed: " + this.attack_speed);
         System.out.println("Speed: " + this.speed);
+        System.out.println("Door : " + door);
     }
     
 } 
