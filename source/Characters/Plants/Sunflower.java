@@ -6,20 +6,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Sunflower extends Plants {
-    private static Sun sunSunflower;
     Timer timer = new Timer();
 
     public Sunflower() {
         super("Sunflower", 100, 0, 0, 50, 0, 10, false);
-        sunSunflower = new Sun();
     }
 
     public void addSunSunflower(){
         timer.schedule(new TimerTask() {
             @Override
             public void run(){
-                sunSunflower.addSun(25);
-                System.out.println("Sun saat ini : " + sunSunflower.getSun());
+                Sun.addSun(25);
+                System.out.println("Sun saat ini : " + Sun.getSun());
                 addSunSunflower();
             }
         }, 3000);

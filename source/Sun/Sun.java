@@ -26,11 +26,11 @@ public class Sun{
         return randomTime;
     }
 
-    public int getSun(){
+    public static int getSun(){
         return Sun.sun;
     }
 
-    public void addSun(int sun){
+    public static void addSun(int sun){
         Sun.sun += sun;
     }
 
