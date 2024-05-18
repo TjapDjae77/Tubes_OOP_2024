@@ -6,7 +6,7 @@ import source.Map.GameMap;
 public class JackInTheBoxZombie extends Zombie {
 
     public JackInTheBoxZombie() {
-        super("Jack In The Box Zombie", 175, 5000, 1, false, 5, 8, 0);
+        super("Jack In The Box Zombie", 175, 5000, 1, false, 5, 0, 8);
         setCurrentColumn(randomColumn());
 
     }

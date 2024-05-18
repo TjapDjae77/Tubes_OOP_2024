@@ -7,7 +7,7 @@ public class PoleVaultingZombie extends Zombie {
     private boolean pole = true;
 
     public PoleVaultingZombie() {
-        super("Pole Vaulting Zombie", 175, 100, 1, false, 5, 8,0);
+        super("Pole Vaulting Zombie", 175, 100, 1, false, 5, 0,8);
         setCurrentColumn(randomColumn());
     }
 
