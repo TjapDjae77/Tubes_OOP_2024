@@ -21,7 +21,7 @@ public class BucketheadZombie extends Zombie {
         System.out.println("Attack Damage : " + getAttackDamage());
         System.out.println("Attack Speed : " + getAttackSpeed());
         System.out.println("Is Aquatic : " + getIsAquatic());
-        System.out.println("Speed : " + getOriginalSpeed());
+        System.out.println("Speed : " + speed);
         System.out.println("Buckethead : " + Buckethead);
     }
 }

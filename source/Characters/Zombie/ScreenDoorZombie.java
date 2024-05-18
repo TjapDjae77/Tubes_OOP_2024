@@ -20,7 +20,7 @@ public class ScreenDoorZombie extends Zombie {
     }
 
     public void removeDoor() {
-        if (this.health <= 100 && this.door) {
+        if (getHealth() <= 100 && this.door) {
             this.door = false; 
             System.out.println("The door has been destroyed!");
         }
@@ -28,10 +28,12 @@ public class ScreenDoorZombie extends Zombie {
 
     public void showDescription() {
         System.out.println("Screen Door Zombie: A zombie that has a screen door to protect itself.");
-        System.out.println("Health: " + this.health);
-        System.out.println("Attack Damage: " + this.attack_damage);
-        System.out.println("Attack Speed: " + this.attack_speed);
-        System.out.println("Speed: " + this.speed);
+        System.out.println("Name : " + getName());
+        System.out.println("Health : " + getHealth());
+        System.out.println("Attack Damage : " + getAttackDamage());
+        System.out.println("Attack Speed : " + getAttackSpeed());
+        System.out.println("Is Aquatic : " + getIsAquatic());
+        System.out.println("Speed: " + speed);
         System.out.println("Door : " + door);
     }
     

@@ -19,18 +19,10 @@ public abstract class Zombie extends Characters {
         this.column = 10;
     }
 
-    public boolean getIsAquatic() {
-        return is_aquatic;
-    }
-
-    public int getHealth() {
-        return this.health;
-    }
-
     public void setHealth(int health) {
-        this.health = health;
-        if (this.health < 0) {
-            this.health = 0; 
+        getHealth();
+        if (getHealth() < 0) {
+            health = 0; 
         }
     }
 
@@ -63,7 +55,7 @@ public abstract class Zombie extends Characters {
         this.column = column;
     }
     public int randomColumn() {
-        if (is_aquatic){
+        if (getIsAquatic() == true){
             int [] numbers = {2,3};
             Random rand = new Random();
             return numbers[rand.nextInt(numbers.length)];
@@ -75,9 +67,9 @@ public abstract class Zombie extends Characters {
         }
     }
     public void deadZombie(GameMap gameMap) {
-        if (this.health <= 0){
+        if (getHealth() <= 0){
             gameMap.deadZombie(this);
-            System.out.println(this.name + " has died!");
+            System.out.println(getName() + " has died!");
         }
     }
 
@@ -85,10 +77,10 @@ public abstract class Zombie extends Characters {
 
     public void attackPlant(Plants plant, GameMap gameMap) {
         if (plant instanceof Spikeweed) {
-            System.out.println(this.name + " cannot eat Spikeweed!");
+            System.out.println(getName() + " cannot eat Spikeweed!");
         } else {
-            plant.setHealth(plant.getHealth() - this.attack_damage, gameMap);
-            System.out.println(this.name + " attacks " + plant.getName() + " for " + this.attack_damage + " damage.");
+            plant.setHealth(plant.getHealth() - getAttackDamage(), gameMap);
+            System.out.println(getName() + " attacks " + plant.getName() + " for " + getAttackDamage() + " damage.");
             System.out.println(plant.getName() + " has " + plant.getHealth() + " health remaining.");
         }
     }
