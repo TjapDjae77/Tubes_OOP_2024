@@ -38,12 +38,8 @@ public class Snowpea extends Plants{
     }
 
     public void attack(Zombie zombie) {
-        if (zombie != null) {
-            zombie.setHealth(zombie.getHealth() - this.attack_damage);
-            System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
-            System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
-            applySlowEffect(zombie);
-        }
+        super.attack(zombie);
+        applySlowEffect(zombie);
     }
 
     private void applySlowEffect(Zombie zombie) {
@@ -75,17 +71,5 @@ public class Snowpea extends Plants{
                 System.out.println(zombie.getName() + " has returned to normal speed: " + originalSpeed);
             }
         }, slowDuration, TimeUnit.MILLISECONDS);
-    }
-
-    public void continuousAttack(Zombie zombie) {
-        while (zombie.getHealth() > 0) {
-            attack(zombie);
-            try {
-                Thread.sleep(this.attack_speed * 1000); // Sleep to simulate attack speed
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println(zombie.getName() + " has been defeated.");
     }
 }

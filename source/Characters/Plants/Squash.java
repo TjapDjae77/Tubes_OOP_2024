@@ -3,7 +3,6 @@ package source.Characters.Plants;
 import source.Characters.Zombie.Zombie;
 
 public class Squash extends Plants{
-    private boolean isVanished;
     public Squash(int row, int column) {
         super("Squash", 100, 5000, 1, 50, 1, 20, false, row, column);
     }
@@ -24,22 +23,15 @@ public class Squash extends Plants{
     }
 
     public void attack(Zombie zombie) {
-        if (zombie != null && !isVanished) {
-            zombie.setHealth(zombie.getHealth() - this.attack_damage);
-            System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
-            System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
-            vanish();
+        super.attack(zombie);
+        if (this.health > 0) {
+            this.vanish();
         }
     }
 
-    private void vanish() { //Plant klo ilang lu harus remove dari tilesnya
-        this.isVanished = true;
+    private void vanish() { 
         this.health = 0;
-        // Map<Tiles>(row, column).setStatus = true;
         System.out.println(this.name + " has vanished after its attack.");
     }
 
-    public boolean isVanished() {
-        return this.isVanished;
-    }
 }

@@ -23,22 +23,6 @@ public class Peashooter extends Plants{
     }
 
     public void attack(Zombie zombie) {
-        if (zombie != null) {
-            zombie.setHealth(zombie.getHealth() - this.attack_damage);
-            System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
-            System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
-        }
-    }
-
-    public void continuousAttack(Zombie zombie) {
-        while (zombie.getHealth() > 0) {
-            attack(zombie);
-            try {
-                Thread.sleep(this.attack_speed * 1000); // Sleep to simulate attack speed
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println(zombie.getName() + " has been defeated.");
+        super.attack(zombie);
     }
 }

@@ -5,9 +5,9 @@ import source.Characters.Zombie.*;
 public class demo {
     public static void main(String[] args) {
         Snowpea snopy = new Snowpea();
-        NewspaperZombie Zombie = new NewspaperZombie();
+        NormalZombie zombie = new NormalZombie();
 
-        snopy.continuousAttack(Zombie);
+        snopy.startAttacking(zombie);
     }
 }
 // javac source/Characters/Characters.java source/Characters/Plants/Plants.java source/Characters/Plants/Peashooter.java source/Characters/Zombie/Zombie.java source/Characters/Zombie/NormalZombie.java

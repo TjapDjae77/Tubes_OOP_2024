@@ -1,6 +1,6 @@
 package source.Characters.Plants;
 import source.Characters.Characters;
-
+import source.Characters.Zombie.Zombie;
 import source.Map.*;
 
 public abstract class Plants extends Characters{
@@ -85,6 +85,48 @@ public abstract class Plants extends Characters{
         } else {
             return false;
         }
+    }
+
+    public void attack(Zombie zombie) {
+        if (zombie != null) {
+            zombie.setHealth(zombie.getHealth() - this.attack_damage);
+            System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
+            System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
+        }
+    }
+
+    public void attackZombiesInRange(GameMap gameMap) {
+        int range = this.getRange();
+        if (range == -1) {
+            // Infinite range: attack all zombies in the same row to the right
+            for (int col = this.getCurrentColumn() + 1; col < gameMap.getWidth(); col++) {
+                Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
+                for (Zombie zombie : tile.getZombies()) {
+                    attack(zombie);
+                }
+            }
+        } else {
+            // Finite range: attack zombies within the specified range
+            for (int col = this.getCurrentColumn() + 1; col <= this.getCurrentColumn() + range && col < gameMap.getWidth(); col++) {
+                Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
+                for (Zombie zombie : tile.getZombies()) {
+                    attack(zombie);
+                }
+            }
+        }
+    }
+
+    public void startAttacking(GameMap gameMap) {
+        new Thread(() -> {
+            while (true) {
+                attackZombiesInRange(gameMap);
+                try {
+                    Thread.sleep(this.attack_speed * 1000); // Sleep to simulate attack speed
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public abstract void showDescription();

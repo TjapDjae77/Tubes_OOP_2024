@@ -24,15 +24,13 @@ public class TangleKelp extends Plants{
     }
 
     public void attack(Zombie zombie) {
-        if (zombie != null) {
-            zombie.setHealth(zombie.getHealth() - this.attack_damage);
-            System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
-            System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
-            vanish();
+        super.attack(zombie);
+        if (this.health > 0) {
+            this.vanish();
         }
     }
 
-    private void vanish() {//Sama kek squash
+    private void vanish() {
         this.health = 0;
         System.out.println(this.name + " has vanished after its attack.");
     }
