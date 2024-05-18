@@ -22,13 +22,13 @@ public class DolphinRiderZombie extends Zombie {
                 return;
             } else if (gameMap.getTile(row + 1, column).getPlanted() instanceof Tallnut) {
                 this.Dolphin = false;
-                setSpeed(5);
+                setOriginalSpeed(5);
                 return;
             } else {
                 gameMap.getTile(row + 1, column).setPlanted(null);
                 setCurrentRow(row + 1);
                 this.Dolphin = false;
-                setSpeed(5);
+                setOriginalSpeed(5);
             }
         } else {
             return;
