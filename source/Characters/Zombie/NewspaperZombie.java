@@ -4,7 +4,7 @@ public class NewspaperZombie extends Zombie {
     private boolean Newspaper;
 
     public NewspaperZombie() {
-        super("Newspaper Zombie", 250, 100, 1, false, 10, 0, 8);
+        super("Newspaper Zombie", 250, 100, 1, false, 10, 0, 10);
         setCurrentColumn(randomColumn());
         this.Newspaper = true;
     }

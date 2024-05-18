@@ -8,7 +8,7 @@ public class DolphinRiderZombie extends Zombie {
     private boolean Dolphin;
 
     public DolphinRiderZombie() {
-        super("Dolphin Rider Zombie", 175, 100, 1, true, 4, 0, 8);
+        super("Dolphin Rider Zombie", 175, 100, 1, true, 4, 0, 10);
         setCurrentColumn(randomColumn());
         this.Dolphin = true;
     }

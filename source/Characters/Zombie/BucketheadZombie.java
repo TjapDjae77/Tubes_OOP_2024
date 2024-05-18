@@ -4,7 +4,7 @@ public class BucketheadZombie extends Zombie {
     private boolean Buckethead;
 
     public BucketheadZombie() {
-        super("Buckethead Zombie", 300, 100, 1, false, 10, 0, 8);
+        super("Buckethead Zombie", 300, 100, 1, false, 10, 0, 10);
         this.Buckethead = true;
     }
 
