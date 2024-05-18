@@ -11,11 +11,11 @@ public class InventoryPane extends Pane {
     private String plantsName;
     private boolean used;
 
-    public InventoryPane(String plantsName, String plantImageActivePath, String plantImageInactivePath, boolean used) {
+    public InventoryPane(String plantsName) {
         this.plantsName = plantsName;
-        plantImageActive = new ImageView(new Image(plantImageActivePath));
-        plantImageInactive = new ImageView(new Image(plantImageInactivePath));
-        this.used = used;
+        plantImageActive = new ImageView(new Image("@../../assets/Seed Packet/Seeds_" + plantsName + ".png"));
+        plantImageInactive = new ImageView(new Image("@../../assets/Seed Packet/Seeds_" + plantsName + "_Dark.png"));
+        this.used = false;
     }
 
     public InventoryPane(InventoryPane referenceInventoryPane){
