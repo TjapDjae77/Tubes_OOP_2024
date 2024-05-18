@@ -35,5 +35,7 @@ public abstract class Characters {
         this.is_aquatic = true;
     }
 
-    
+    public boolean getIsAquatic() {
+        return this.is_aquatic;
+    }
 }

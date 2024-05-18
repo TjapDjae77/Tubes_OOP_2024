@@ -9,19 +9,19 @@ public class BucketheadZombie extends Zombie {
     }
 
     public void removeBucket() {
-        if (this.health < 100 && Buckethead) {
+        if (getHealth() < 100 && Buckethead) {
             Buckethead = false; 
             System.out.println("The bucket has been destroyed!");
         }
     }
 
     public void showDescription() {
-        System.out.println("Name : " + name);
-        System.out.println("Health : " + health);
-        System.out.println("Attack Damage : " + attack_damage);
-        System.out.println("Attack Speed : " + attack_speed);
-        System.out.println("Is Aquatic : " + is_aquatic);
-        System.out.println("Speed : " + speed);
+        System.out.println("Name : " + getName());
+        System.out.println("Health : " + getHealth());
+        System.out.println("Attack Damage : " + getAttackDamage());
+        System.out.println("Attack Speed : " + getAttackSpeed());
+        System.out.println("Is Aquatic : " + getIsAquatic());
+        System.out.println("Speed : " + getOriginalSpeed());
         System.out.println("Buckethead : " + Buckethead);
     }
 }
