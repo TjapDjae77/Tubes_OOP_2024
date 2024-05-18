@@ -84,4 +84,24 @@ public abstract class Zombie extends Characters {
             System.out.println(plant.getName() + " has " + plant.getHealth() + " health remaining.");
         }
     }
+    public void move(GameMap gameMap) {
+        new Thread(() -> {
+            while (getHealth() > 0 && !gameMap.getGameOver()) {
+                try {
+                    Thread.sleep((long) (1000 * speed));
+                    if (getHealth() > 0) {
+                        if (getCurrentColumn() == 0) {
+                            System.out.println(getName() + " has reached the house and eaten the brains!");
+                            gameMap.setGameOver(true);
+                        } else {
+                            setCurrentColumn(getCurrentColumn() - 1);
+                            System.out.println(getName() + " has moved to column " + getCurrentColumn() + ".");
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 }

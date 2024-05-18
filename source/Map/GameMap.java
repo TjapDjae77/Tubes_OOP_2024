@@ -14,6 +14,7 @@ public class GameMap extends JPanel {
     private Tiles[][] grid;
     private static ZombieList<Zombie> inGameZombie;
     private static ZombieList<Zombie> zombieList = new ZombieList<>();
+    private static boolean gameOver =false;
     public GameMap() {
         BucketheadZombie bucketheadZombie = new BucketheadZombie();
         ConeheadZombie coneheadZombie = new ConeheadZombie();
@@ -107,6 +108,12 @@ public class GameMap extends JPanel {
             }
         }
     }
+    public boolean getGameOver(){
+        return gameOver;
+    }
+    public void setGameOver(boolean gameOver){
+        this.gameOver = gameOver;
+    }
 }
 // public class Main {
 //     public static void main(String[] args) {
@@ -114,15 +121,15 @@ public class GameMap extends JPanel {
 //         timer.schedule(new SpawnZombieTask(), 0, 1000);
 //     }
 // }
-// class SpawnZombieTask extends TimerTask {
-//     private GameMap gameMap;
-//     @Override
-//     public void run() {
-//         for(int i = 0; i < 6; i++){
-//             //there's a 0,3 chance that a zombie would spawn in that row
-//             if(Math.random() < 0.3){
-//                 gameMap.spawnZombie(i);
-//             }
-//         }
-//     }
-// }
+class SpawnZombieTask extends TimerTask {
+    private GameMap gameMap;
+    @Override
+    public void run() {
+        for(int i = 0; i < 6; i++){
+            //there's a 0,3 chance that a zombie would spawn in that row
+            if(Math.random() < 0.3){
+                gameMap.spawnZombie(i);
+            }
+        }
+    }
+}
