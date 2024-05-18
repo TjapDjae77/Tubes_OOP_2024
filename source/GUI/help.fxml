@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -10,16 +13,26 @@
    <children>
       <Pane fx:id="pane" layoutX="-4.0" layoutY="6.0" prefHeight="1078.0" prefWidth="1914.0">
          <children>
-            <Button fx:id="backButton" layoutX="-1.0" layoutY="955.0" mnemonicParsing="false" onMouseClicked="#backToMenu" prefHeight="93.0" prefWidth="214.0" text="Back">
+            <ImageView fitHeight="1076.0" fitWidth="1921.0">
+               <image>
+                  <Image url="@../../assets/Menu/Help.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="backButton" layoutX="67.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backToMenu" prefHeight="93.0" prefWidth="214.0" text="Back">
                <font>
                   <Font size="56.0" />
                </font>
+               <effect>
+                  <ImageInput>
+                     <source>
+                        <Image url="@../../assets/Menu/BackHelpButton.png" />
+                     </source>
+                  </ImageInput>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Label layoutX="737.0" layoutY="-6.0" prefHeight="303.0" prefWidth="510.0" text="How to Play">
-               <font>
-                  <Font size="96.0" />
-               </font>
-            </Label>
          </children>
       </Pane>
    </children>

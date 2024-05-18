@@ -15,6 +15,9 @@ public class DeckPane extends Pane {
         this.plantImageActive = plantImageActive;
         this.plantImageInactive = plantImageInactive;
         String plantImageOriginalPath = "@../../assets/Plants/PVZ_" +  plantsName +".png";
+        if(plantsName.equals("Peashooter")){
+            plantImageOriginalPath = "@../../assets/Plants/PVZ_" +  plantsName +"2.png";
+        }
         this.plantImageOriginal = new ImageView(new Image(plantImageOriginalPath));
     }
 

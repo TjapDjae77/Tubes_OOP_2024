@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,136 +12,63 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.Controller">
+<AnchorPane fx:id="layardasar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.ControllerMainGame">
    <children>
-      <StackPane layoutX="-1.0" layoutY="-2.0" prefHeight="1083.0" prefWidth="1940.0">
+      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+         <image>
+            <Image url="@../../assets/Tiles/Day/Template%20Day%20kosong.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="1080.0" prefWidth="1920.0">
          <children>
-            <ImageView fitHeight="1066.0" fitWidth="1938.0">
-               <image>
-                  <Image url="@../../assets/Tiles/Day/Template%20Day%20kosong.png" />
-               </image>
-            </ImageView>
-            <GridPane prefHeight="951.0" prefWidth="1904.0">
+            <GridPane fx:id="gridtilesmap" layoutX="-6.0" layoutY="162.0" prefHeight="919.0" prefWidth="2054.0">
               <columnConstraints>
-                <ColumnConstraints maxWidth="96.0" minWidth="10.0" prefWidth="94.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="189.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="174.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="214.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="186.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="565.0" minWidth="10.0" prefWidth="206.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="197.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="572.0" minWidth="10.0" prefWidth="177.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="607.0" minWidth="10.0" prefWidth="184.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="660.0" minWidth="10.0" prefWidth="192.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="0.0" prefWidth="109.0" />
+                <ColumnConstraints maxWidth="98.0" minWidth="10.0" prefWidth="94.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="188.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="203.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="201.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="187.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="565.0" minWidth="10.0" prefWidth="203.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="180.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="572.0" minWidth="10.0" prefWidth="181.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="607.0" minWidth="10.0" prefWidth="189.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="660.0" minWidth="10.0" prefWidth="177.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="0.0" prefWidth="236.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="287.6666564941406" minHeight="10.0" prefHeight="137.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="166.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="165.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="271.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="154.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="201.33331298828125" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="287.6666564941406" minHeight="10.0" prefHeight="154.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="185.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="155.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="271.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="134.0" vgrow="SOMETIMES" />
               </rowConstraints>
-               <children>
-                  <Pane fx:id="cell11" onDragDropped="#checkPlantable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Pane fx:id="cell21" onDragDropped="#checkPlantable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Pane fx:id="cell31" onDragDropped="#checkPlantable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Pane fx:id="cell12" onDragDropped="#checkPlantable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Pane fx:id="cell22" onDragDropped="#checkPlantable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Pane fx:id="cell32" onDragDropped="#checkPlantable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-               </children>
             </GridPane>
-         </children>
-      </StackPane>
-      <HBox layoutX="222.0" layoutY="18.0" prefHeight="130.0" prefWidth="1004.0" spacing="85.0">
-         <children>
-            <Pane fx:id="paneSlot1" onDragDetected="#selectedPlant" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="slot1" fitHeight="126.0" fitWidth="90.0" onMouseDragReleased="#checkPlantable">
-                     <image>
-                        <Image url="@../../assets/Seed%20Packet/Seeds_Sunflower.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="paneSlot2" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="slot2" fitHeight="126.0" fitWidth="90.0">
-                     <image>
-                        <Image url="@../../assets/Seed%20Packet/Seeds_Peashooter.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="paneSlot3" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="slot3" fitHeight="126.0" fitWidth="90.0">
-                     <image>
-                        <Image url="@../../assets/Seed%20Packet/Seeds_SnowPea.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="paneSlot4" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="slot4" fitHeight="126.0" fitWidth="90.0">
-                     <image>
-                        <Image url="@../../assets/Seed%20Packet/Seeds_Lilypad.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="paneSlot5" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="slot5" fitHeight="126.0" fitWidth="90.0">
-                     <image>
-                        <Image url="@../../assets/Seed%20Packet/Seeds_Squash.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="paneSlot6" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="slot6" fitHeight="126.0" fitWidth="90.0">
-                     <image>
-                        <Image url="@../../assets/Seed%20Packet/Seeds_Wallnut.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children>
-      </HBox>
-      <HBox layoutX="52.0" layoutY="106.0" prefHeight="42.0" prefWidth="130.0">
-         <children>
-            <Label fx:id="sunValue" prefHeight="42.0" prefWidth="88.0" text="0" textAlignment="CENTER">
+            <Label fx:id="sunValue" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="107.0" prefHeight="42.0" prefWidth="115.0" text="0" textAlignment="CENTER">
                <font>
                   <Font name="Retro Gaming" size="30.0" />
                </font>
-               <HBox.margin>
-                  <Insets left="55.0" top="10.0" />
-               </HBox.margin>
             </Label>
+            <Button fx:id="menubutton" layoutX="1644.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#backToMenu" prefHeight="38.0" prefWidth="282.0" text="Menu" textFill="#0eae16">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <effect>
+                  <ImageInput>
+                     <source>
+                        <Image url="@../../assets/Menu/MenuButton.png" />
+                     </source>
+                  </ImageInput>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox fx:id="hboxdeck" layoutX="207.0" layoutY="13.0" prefHeight="130.0" prefWidth="1004.0" spacing="85.0" />
+            <Pane fx:id="shovelPane" layoutX="1236.0" layoutY="4.0" prefHeight="144.0" prefWidth="141.0" />
          </children>
-      </HBox>
-      <Button fx:id="menubutton" layoutX="1660.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#backToMenu" prefHeight="38.0" prefWidth="282.0" text="Menu" textFill="#0eae16">
-         <font>
-            <Font size="29.0" />
-         </font>
-         <effect>
-            <ImageInput>
-               <source>
-                  <Image url="@../../assets/Menu/MenuButton.png" />
-               </source>
-            </ImageInput>
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
+      </Pane>
    </children>
 </AnchorPane>
