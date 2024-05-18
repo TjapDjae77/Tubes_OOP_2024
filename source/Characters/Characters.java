@@ -1,11 +1,11 @@
 package source.Characters;
 
 public abstract class Characters {
-    public String name;
-    public int health;
-    public int attack_damage;
-    public int attack_speed;
-    public boolean is_aquatic;
+    private String name;
+    private int health;
+    private int attack_damage;
+    private int attack_speed;
+    private boolean is_aquatic;
 
     public Characters(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic) {
         this.name = name;
