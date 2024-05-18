@@ -66,6 +66,9 @@ public class GameMap extends JPanel {
         inGameZombie.getZombies().get(inGameZombie.getZombies().size()-1).setCurrentRow(row);
     }
     
+    public void deadZombie(Zombie zombie){
+        inGameZombie.removeZombie(zombie);
+    }
     //Lane spawner
     public void laneSpawner(){
         for(int i = 0; i < height; i++){

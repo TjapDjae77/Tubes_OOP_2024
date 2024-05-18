@@ -74,6 +74,12 @@ public abstract class Zombie extends Characters {
             return numbers[rand.nextInt(numbers.length)];
         }
     }
+    public void deadZombie(GameMap gameMap) {
+        if (this.health <= 0){
+            gameMap.deadZombie(this);
+            System.out.println(this.name + " has died!");
+        }
+    }
 
     public abstract void showDescription();
 
