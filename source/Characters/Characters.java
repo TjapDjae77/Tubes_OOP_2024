@@ -34,4 +34,6 @@ public class Characters {
     public void is_aquatic() {
         this.is_aquatic = true;
     }
+
+    
 }
