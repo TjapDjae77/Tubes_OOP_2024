@@ -16,7 +16,7 @@ public abstract class Zombie extends Characters {
         super(name, health, attack_damage, attack_speed, is_aquatic);
         this.speed = speed;
         this.originalSpeed = speed;
-        this.column = 8;
+        this.column = 10;
     }
 
     public boolean getIsAquatic() {
