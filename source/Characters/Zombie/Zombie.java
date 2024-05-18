@@ -10,11 +10,13 @@ public abstract class Zombie extends Characters {
     protected double originalSpeed;
     private int row;
     private int column;
+    
 
     public Zombie(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic, double speed,int row,int column) {
         super(name, health, attack_damage, attack_speed, is_aquatic);
         this.speed = speed;
         this.originalSpeed = speed;
+        this.column = 8;
     }
 
     public boolean getIsAquatic() {
