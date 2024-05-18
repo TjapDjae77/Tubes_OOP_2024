@@ -80,6 +80,10 @@ public class GameMap extends JPanel {
         }
     }
 
+    public ZombieList<Zombie> getInGameZombies(){
+        return inGameZombie;
+    }
+
     public Tiles getTile(int row, int column){
         if (row >= 0 && row < grid.length && column >= 0 && column < grid[0].length) {
             return grid[row][column];

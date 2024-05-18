@@ -1,6 +1,9 @@
 package source.Characters.Plants;
+import java.util.List;
+
 import source.Characters.Characters;
 import source.Characters.Zombie.Zombie;
+import source.Characters.Zombie.ZombieList;
 import source.Map.*;
 
 public abstract class Plants extends Characters{
@@ -100,36 +103,37 @@ public abstract class Plants extends Characters{
         Zombie closestZombie = null;
         int minDistance = Integer.MAX_VALUE;
     
+        // Obtain the list of zombies currently in the game
+        ZombieList<Zombie> inGameZombies = gameMap.getInGameZombies();
+        List<Zombie> zombiesInRow = inGameZombies.getZombies().stream()
+                .filter(z -> z.getCurrentRow() == this.row)
+                .toList();
+                
         if (range == -1) {
             // Infinite range: search all zombies in the same row to the right
-            for (int col = this.getCurrentColumn() + 1; col < gameMap.getWidth(); col++) {
-                Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
-                for (Zombie zombie : tile.getZombies()) {
-                    if (col < minDistance) { // Checking if this zombie is closer
-                        closestZombie = zombie;
-                        minDistance = col;
-                    }
+            for (Zombie zombie : zombiesInRow) {
+                int zombieColumn = zombie.getCurrentColumn();
+                if (zombieColumn > this.column && zombieColumn < minDistance) {
+                    closestZombie = zombie;
+                    minDistance = zombieColumn;
                 }
             }
         } else {
             // Finite range: search zombies within the specified range
-            for (int col = this.getCurrentColumn() + 1; col <= this.getCurrentColumn() + range && col < gameMap.getWidth(); col++) {
-                Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
-                for (Zombie zombie : tile.getZombies()) {
-                    if (col < minDistance) { // Checking if this zombie is closer
-                        closestZombie = zombie;
-                        minDistance = col;
+            for (Zombie zombie : zombiesInRow) {
+                int zombieColumn = zombie.getCurrentColumn();
+                if (zombieColumn > this.column && zombieColumn <= this.column + range && zombieColumn < minDistance) {
+                    closestZombie = zombie;
+                    minDistance = zombieColumn;
                     }
                 }
             }
-        }
-    
         // Attack the closest zombie if found
         if (closestZombie != null) {
             attack(closestZombie);
         }
     }
-    
+
     // public void attackZombiesInRange(GameMap gameMap) {
     //     int range = this.getRange();
     //     if (range == -1) {

@@ -1,6 +1,6 @@
 package source.Characters;
 
-public class Characters {
+public abstract class Characters {
     public String name;
     public int health;
     public int attack_damage;
