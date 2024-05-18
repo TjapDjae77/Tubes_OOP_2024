@@ -19,7 +19,7 @@ public class JackInTheBoxZombie extends Zombie {
             if (gameMap.getTile(row, column).getPlanted() instanceof Spikeweed) {
                 return;
             } else {
-                gameMap.getTile(row, column).getPlanted().setHealth(0);
+                gameMap.getTile(row, column).getPlanted().setHealth(0, gameMap);
                 setHealth(0);
             }
         }

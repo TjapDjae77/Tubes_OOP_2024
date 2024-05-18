@@ -35,10 +35,11 @@ public abstract class Plants extends Characters{
         return this.health;
     }
 
-    public void setHealth(int health) {
+    public void setHealth(int health, GameMap gameMap) {
         this.health = health;
-        if (this.health < 0) {
+        if (this.health <= 0) {
             this.health = 0; 
+            gameMap.getTile(this.row, this.column).setPlanted(null);
         }
     }
 

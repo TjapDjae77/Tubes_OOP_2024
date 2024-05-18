@@ -2,6 +2,7 @@ package source.Characters.Zombie;
 import source.Characters.Characters;
 import source.Characters.Plants.Plants;
 import source.Characters.Plants.Spikeweed;
+import source.Map.GameMap;
 import java.util.Random;
 
 public abstract class Zombie extends Characters {
@@ -74,11 +75,11 @@ public abstract class Zombie extends Characters {
 
     public abstract void showDescription();
 
-    public void attackPlant(Plants plant) {
+    public void attackPlant(Plants plant, GameMap gameMap) {
         if (plant instanceof Spikeweed) {
             System.out.println(this.name + " cannot eat Spikeweed!");
         } else {
-            plant.setHealth(plant.getHealth() - this.attack_damage);
+            plant.setHealth(plant.getHealth() - this.attack_damage, gameMap);
             System.out.println(this.name + " attacks " + plant.getName() + " for " + this.attack_damage + " damage.");
             System.out.println(plant.getName() + " has " + plant.getHealth() + " health remaining.");
         }

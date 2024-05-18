@@ -1,5 +1,7 @@
 package source.Characters.Plants;
 
+import source.Map.GameMap;
+
 public class Lilypad extends Plants{
     private Plants plantOnTop;
     public Lilypad(int row, int column) {
@@ -23,9 +25,9 @@ public class Lilypad extends Plants{
         System.out.println("Is Aquatic: " + this.is_aquatic); 
     }
 
-    public boolean isCompatible(Plants p) { 
+    public boolean isCompatible(Plants plant) { 
         // Untuk dipanggil sm class lain, true jika lilypad bisa dipijak oleh p
-        if (!p.is_aquatic && p.name != "Spikeweed") {
+        if (!plant.is_aquatic && !plant.getName().equals("Spikeweed")) {
             return true;
         } else {
             return false;
@@ -46,18 +48,19 @@ public class Lilypad extends Plants{
         }
     }
 
-    public void checkAndRemove() {
+    public void checkAndRemove(GameMap gameMap) {
         if (this.health <= 0) {
             System.out.println("The plant on top of the Lilypad and the Lilypad itself have died.");
             this.plantOnTop = null; // Remove reference to the plant on top
+            gameMap.getTile(this.row, this.column).setPlanted(null);
         }
     }
 
     @Override
-    public void setHealth(int health) {
-        super.setHealth(health);
+    public void setHealth(int health, GameMap gameMap) {
+        super.setHealth(health, gameMap);
         if (this.health <= 0 && this.plantOnTop != null) {
-            this.plantOnTop.setHealth(0); // Ensure the plant on top is also considered dead
+            this.plantOnTop.setHealth(0, gameMap); // Ensure the plant on top is also considered dead
         }
     }
 }
