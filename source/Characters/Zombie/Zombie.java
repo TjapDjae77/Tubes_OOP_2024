@@ -88,7 +88,7 @@ public abstract class Zombie extends Characters {
         new Thread(() -> {
             while (getHealth() > 0 && !gameMap.getGameOver()) {
                 try {
-                    Thread.sleep((long) (1000 * speed));
+                    Thread.sleep((long) (1000 * speed));//Kondisi klo mogok lagi makan
                     if (getHealth() > 0) {
                         if (getCurrentColumn() == 0) {
                             System.out.println(getName() + " has reached the house and eaten the brains!");
@@ -98,6 +98,19 @@ public abstract class Zombie extends Characters {
                             System.out.println(getName() + " has moved to column " + getCurrentColumn() + ".");
                         }
                     }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void eat(Plants plant, GameMap gameMap) {
+        new Thread(() -> {
+            while (plant.getHealth() > 0 && getHealth() > 0 && !gameMap.getGameOver()) {
+                attackPlant(plant, gameMap);
+                try {
+                    Thread.sleep(getAttackSpeed() * 1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

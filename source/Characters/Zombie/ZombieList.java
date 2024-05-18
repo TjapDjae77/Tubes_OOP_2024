@@ -19,7 +19,9 @@ public class ZombieList<T extends Zombie> {
 
     public List<T> getZombies() {
         return zombies;
+        // inGameZombie.getZombies()
     }
+
     public Zombie getZombie(int index) {
         return zombies.get(index);
     }
