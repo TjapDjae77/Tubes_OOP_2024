@@ -34,14 +34,9 @@ public abstract class Plants extends Characters{
         return this.cooldown;
     }
 
-    public int getHealth() {
-        return this.health;
-    }
-
     public void setHealth(int health, GameMap gameMap) {
-        this.health = health;
-        if (this.health <= 0) {
-            this.health = 0; 
+        this.setHealth(health); 
+        if (this.getHealth() <= 0) {
             gameMap.getTile(this.row, this.column).setPlanted(null);
         }
     }
@@ -71,7 +66,7 @@ public abstract class Plants extends Characters{
     }
 
     public boolean validatePosition(Tiles tile) {
-        if (is_aquatic) {
+        if (this.getIsAquatic()) {
             return tile instanceof PoolTiles;
         } else {
             return tile instanceof GrassTiles || (tile instanceof PoolTiles && tile.getPlanted() instanceof Lilypad);
@@ -92,8 +87,8 @@ public abstract class Plants extends Characters{
 
     public void attack(Zombie zombie) {
         if (zombie != null) {
-            zombie.setHealth(zombie.getHealth() - this.attack_damage);
-            System.out.println(this.name + " attacks " + zombie.getName() + " for " + this.attack_damage + " damage.");
+            zombie.setHealth(zombie.getHealth() - this.getAttackDamage());
+            System.out.println(this.getName() + " attacks " + zombie.getName() + " for " + this.getAttackDamage() + " damage.");
             System.out.println(zombie.getName() + " has " + zombie.getHealth() + " health remaining.");
         }
     }
@@ -160,7 +155,7 @@ public abstract class Plants extends Characters{
             while (true) {
                 attackZombiesInRange(gameMap);
                 try {
-                    Thread.sleep(this.attack_speed * 1000); // Sleep to simulate attack speed
+                    Thread.sleep(this.getAttackSpeed() * 1000); // Sleep to simulate attack speed
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

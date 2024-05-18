@@ -12,14 +12,14 @@ public class Peashooter extends Plants{
     }
 
     public void showDescription() {
-        System.out.println("Name: " + this.name);
-        System.out.println("Health: " + this.health);
-        System.out.println("Attack Damage: " + this.attack_damage);
-        System.out.println("Attack Speed: " + this.attack_speed);
+        System.out.println("Name: " + this.getName());
+        System.out.println("Health: " + this.getHealth());
+        System.out.println("Attack Damage: " + this.getAttackDamage());
+        System.out.println("Attack Speed: " + this.getAttackSpeed());
         System.out.println("Cost: " + this.cost);
         System.out.println("Range: " + this.range);
         System.out.println("Cooldown: " + this.cooldown);
-        System.out.println("Is Aquatic: " + this.is_aquatic); 
+        System.out.println("Is Aquatic: " + this.getIsAquatic()); 
     }
 
     public void attack(Zombie zombie) {

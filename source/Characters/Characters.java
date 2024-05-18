@@ -23,6 +23,10 @@ public abstract class Characters {
         return this.health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public int getAttackDamage() {
         return this.attack_damage;
     }   
