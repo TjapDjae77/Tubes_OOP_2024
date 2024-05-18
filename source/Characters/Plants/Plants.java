@@ -97,24 +97,59 @@ public abstract class Plants extends Characters{
 
     public void attackZombiesInRange(GameMap gameMap) {
         int range = this.getRange();
+        Zombie closestZombie = null;
+        int minDistance = Integer.MAX_VALUE;
+    
         if (range == -1) {
-            // Infinite range: attack all zombies in the same row to the right
+            // Infinite range: search all zombies in the same row to the right
             for (int col = this.getCurrentColumn() + 1; col < gameMap.getWidth(); col++) {
                 Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
                 for (Zombie zombie : tile.getZombies()) {
-                    attack(zombie);
+                    if (col < minDistance) { // Checking if this zombie is closer
+                        closestZombie = zombie;
+                        minDistance = col;
+                    }
                 }
             }
         } else {
-            // Finite range: attack zombies within the specified range
+            // Finite range: search zombies within the specified range
             for (int col = this.getCurrentColumn() + 1; col <= this.getCurrentColumn() + range && col < gameMap.getWidth(); col++) {
                 Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
                 for (Zombie zombie : tile.getZombies()) {
-                    attack(zombie);
+                    if (col < minDistance) { // Checking if this zombie is closer
+                        closestZombie = zombie;
+                        minDistance = col;
+                    }
                 }
             }
         }
+    
+        // Attack the closest zombie if found
+        if (closestZombie != null) {
+            attack(closestZombie);
+        }
     }
+    
+    // public void attackZombiesInRange(GameMap gameMap) {
+    //     int range = this.getRange();
+    //     if (range == -1) {
+    //         // Infinite range: attack all zombies in the same row to the right
+    //         for (int col = this.getCurrentColumn() + 1; col < gameMap.getWidth(); col++) {
+    //             Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
+    //             for (Zombie zombie : tile.getZombies()) {
+    //                 attack(zombie);
+    //             }
+    //         }
+    //     } else {
+    //         // Finite range: attack zombies within the specified range
+    //         for (int col = this.getCurrentColumn() + 1; col <= this.getCurrentColumn() + range && col < gameMap.getWidth(); col++) {
+    //             Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
+    //             for (Zombie zombie : tile.getZombies()) {
+    //                 attack(zombie);
+    //             }
+    //         }
+    //     }
+    // }
 
     public void startAttacking(GameMap gameMap) {
         new Thread(() -> {

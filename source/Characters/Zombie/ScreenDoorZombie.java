@@ -4,7 +4,7 @@ public class ScreenDoorZombie extends Zombie {
     private boolean door;
 
     public ScreenDoorZombie() {
-        super("Screen Door Zombie", 250, 100, 1, false, 5,8,0);
+        super("Screen Door Zombie", 250, 100, 1, false, 10, 8, 0);
         setCurrentColumn(randomColumn());
         this.door = true;
     }

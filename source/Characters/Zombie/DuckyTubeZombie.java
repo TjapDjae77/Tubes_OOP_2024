@@ -3,7 +3,7 @@ package source.Characters.Zombie;
 public class DuckyTubeZombie extends Zombie {
 
     public DuckyTubeZombie() {
-        super("Ducky Tube Zombie", 100, 100, 1, true,5 , 8, 0);
+        super("Ducky Tube Zombie", 100, 100, 1, true, 10, 8, 0);
         setCurrentColumn(randomColumn());
     }
 

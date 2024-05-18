@@ -4,7 +4,7 @@ public class NewspaperZombie extends Zombie {
     private boolean Newspaper;
 
     public NewspaperZombie() {
-        super("Newspaper Zombie", 250, 100, 1, false, 5, 8, 0);
+        super("Newspaper Zombie", 250, 100, 1, false, 10, 8, 0);
         setCurrentColumn(randomColumn());
         this.Newspaper = true;
     }
@@ -18,7 +18,7 @@ public class NewspaperZombie extends Zombie {
     public void removeNewspaper() {
         if (this.health < 100 && this.Newspaper) {
             Newspaper = false; 
-            setOriginalSpeed(2);
+            setOriginalSpeed(5);
             System.out.println("The newspaper has been destroyed!");
         }
     }

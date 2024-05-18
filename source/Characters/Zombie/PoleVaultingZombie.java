@@ -7,7 +7,7 @@ public class PoleVaultingZombie extends Zombie {
     private boolean pole = true;
 
     public PoleVaultingZombie() {
-        super("Pole Vaulting Zombie", 175, 100, 1, false, 2.5, 8,0);
+        super("Pole Vaulting Zombie", 175, 100, 1, false, 5, 8,0);
         setCurrentColumn(randomColumn());
     }
 
@@ -15,18 +15,18 @@ public class PoleVaultingZombie extends Zombie {
         GameMap gameMap = new GameMap();
         int row = getCurrentRow(); 
         int column = getCurrentColumn(); 
-        if (gameMap.getTile(row + 1, column).getPlanted() != null) {
-            if (gameMap.getTile(row + 1, column).getPlanted() instanceof Spikeweed) {
+        if (gameMap.getTile(row, column).getPlanted() != null) {
+            if (gameMap.getTile(row, column).getPlanted() instanceof Spikeweed) {
                 return;
-            } else if (gameMap.getTile(row + 1, column).getPlanted() instanceof Tallnut) {
+            } else if (gameMap.getTile(row, column).getPlanted() instanceof Tallnut) {
                 this.pole = false;
-                setOriginalSpeed(5);
+                setOriginalSpeed(10);
                 return;
             } else {
-                gameMap.getTile(row + 1, column).setPlanted(null);
-                setCurrentRow(row + 1);
+                gameMap.getTile(row, column).setPlanted(null);
+                setCurrentColumn(column - 1);
                 this.pole = false;
-                setOriginalSpeed(5);
+                setOriginalSpeed(10);
             }
         } else {
             return;

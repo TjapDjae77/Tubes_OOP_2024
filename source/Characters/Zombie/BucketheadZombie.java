@@ -4,7 +4,7 @@ public class BucketheadZombie extends Zombie {
     private boolean Buckethead;
 
     public BucketheadZombie() {
-        super("Buckethead Zombie", 300, 100, 1, false, 5, 8, 0);
+        super("Buckethead Zombie", 300, 100, 1, false, 10, 8, 0);
         setCurrentColumn(randomColumn());
         this.Buckethead = true;
     }
