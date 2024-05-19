@@ -22,6 +22,12 @@ public class Deck{
         if(!(map.getTile(row, column) instanceof PoolTiles) && plant.getIsAquatic()){ // Exception untuk tanaman aquatic yang ingin ditanam di Grass Tiles.
             throw new NotAquaticException("Plant tipe aquatic hanya bisa ditanam di pool tiles!");
         }
+        if(map.getTile(row, column).getPlanted() != null){ // Exception untuk menanam tanaman di Tiles yang sudah terisi.
+            throw new TileOccupiedException("Tile sudah terisi oleh tanaman lain!");
+        }
+        if(!(plant.getCDStatus())){ // Exception untuk menanam tanaman yang masih cooldown.
+            throw new CooldownException("Tanaman masih dalam cooldown. Tunggu beberapa saat lagi untuk menanam tanaman ini!");
+        }
         if(Sun.getSun() < plant.getCost()){ // Exception untuk menanam tanaman namun Sun tidak cukup untuk menanam tanaman tersebut.
             throw new InsufficientSunException("Sun tidak cukup untuk menanam tanaman ini!");
         }

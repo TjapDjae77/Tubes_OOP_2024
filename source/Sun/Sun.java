@@ -5,7 +5,7 @@ import java.util.TimerTask;
 import java.util.Random;
 
 public class Sun{
-    private static int sun = 25;
+    private static int sun = 50;
     Timer timer = new Timer();
     
     public void spawnSun(){
