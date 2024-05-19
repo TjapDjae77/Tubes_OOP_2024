@@ -34,7 +34,7 @@ public class Sun{
         Sun.sun += sun;
     }
 
-    public void reduceSun(int costPlant){
+    public static void reduceSun(int costPlant){
         Sun.sun -= costPlant;
     }
 }
