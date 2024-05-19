@@ -9,11 +9,8 @@ import java.util.TimerTask;
 import java.util.Random;
 
 public class Sun{
-<<<<<<< Updated upstream
-    private static int sun = 50;
-=======
-    private static final IntegerProperty sun = new SimpleIntegerProperty(25);
->>>>>>> Stashed changes
+    private static final IntegerProperty sun = new SimpleIntegerProperty(50);
+
     Timer timer = new Timer();
 
     public Sun(){
