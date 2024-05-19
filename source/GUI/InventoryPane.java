@@ -3,14 +3,14 @@ package source.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import source.Characters.Plants.Plants;
+
 
 public class InventoryPane extends Pane {
 
     private ImageView plantImageActive;
     private ImageView plantImageInactive;
     private String plantsName;
-    private Plants plant;
+
     private boolean used;
 
     public InventoryPane(String plantsName) {

@@ -1,6 +1,6 @@
 package source.Characters.Plants;
 
-import source.Characters.Zombie.Zombie;
+//import source.Characters.Zombie.Zombie;
 
 public class Peashooter extends Plants{
     public Peashooter(int row, int column) {
@@ -19,10 +19,10 @@ public class Peashooter extends Plants{
         System.out.println("Cost: " + this.cost);
         System.out.println("Range: " + this.range);
         System.out.println("Cooldown: " + this.cooldown);
-        System.out.println("Is Aquatic: " + this.getIsAquatic()); 
+        System.out.println("Is Aquatic: " + this.getIsAquatic());
     }
 
-    public void attack(Zombie zombie) {
-        super.attack(zombie);
-    }
+//    public void attack(Zombie zombie) {
+//        super.attack(zombie);
+//    }
 }

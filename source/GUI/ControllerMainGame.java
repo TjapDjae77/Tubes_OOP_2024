@@ -24,6 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import source.Characters.Plants.*;
+import source.Sun.Sun;
+import javafx.application.Platform;
+
 public class ControllerMainGame implements Initializable {
 
     @FXML
@@ -51,6 +55,8 @@ public class ControllerMainGame implements Initializable {
 
     private ArrayList<Pane> listdeckpane;
 
+    private Sun sun;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -70,13 +76,20 @@ public class ControllerMainGame implements Initializable {
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.setVolume(0);
         mediaPlayer.play();
-        System.out.println("CEKKK");
-        for(DeckPane dp: deck){
-            System.out.println(dp.getPlantsName());
-        }
+
         initializeDeck(deck);
-        initializeGridPane();
         initializeShovelPane();
+        initializeGridPane();
+        initializeSun();
+
+        Sun.sunProperty().addListener((observable, oldValue, newValue) -> {
+            Platform.runLater(() -> sunValue.setText(newValue.toString()));
+        });
+    }
+
+    private void initializeSun(){
+        sun = new Sun();
+        sunValue.setText(String.valueOf(Sun.getSun()));
     }
 
     private void initializeDeck(ArrayList<DeckPane> initialdeck) {
@@ -103,7 +116,8 @@ public class ControllerMainGame implements Initializable {
             img3.setOnDragDetected(this::chooseplant);
             img3.setCursor(Cursor.HAND);
             Pane pane = new Pane();
-            pane.getChildren().addAll(deck.get(i), img1, img2, img3);
+            pane.setId("Plant"+i);
+            pane.getChildren().addAll(initialdeck.get(i), img1, img2, img3);
 
             listdeckpane.add(pane);
             hboxdeck.getChildren().add(pane);
@@ -171,16 +185,14 @@ public class ControllerMainGame implements Initializable {
                     targetPane.getChildren().clear();
                 }
                 else {
-                    ImageView sourceImage = (ImageView) sourcePane.getChildren().get(3);
-                    ImageView duplicateImage = new ImageView(sourceImage.getImage());
-                    setupImageView(duplicateImage, 126, 126, 0, 0);
-                    duplicateImage.setOpacity(0);
-                    duplicateImage.setOnDragDetected(this::chooseplant);
-                    sourcePane.getChildren().add(duplicateImage);
-                    sourceImage.setFitWidth(0);
-                    sourceImage.setFitHeight(0);
-                    sourceImage.setOpacity(1);
-                    targetPane.getChildren().add(sourceImage);
+                    DeckPane dp = new DeckPane ((DeckPane) sourcePane.getChildren().get(0));
+                    System.out.println(dp.getPlantsName());
+                    if(targetPane.getChildren().size() < 2) {
+                        addingPlant(sourcePane, targetPane, dp);
+                    }
+                    else if (((DeckPane)targetPane.getChildren().getFirst()).getPlantsName().equals("Lilypad")) { // Nanti diimplementasiin pake isaquatic
+                        addingPlant(sourcePane, targetPane, dp);
+                    }
                 }
             }
 
@@ -188,6 +200,47 @@ public class ControllerMainGame implements Initializable {
         }
         dragEvent.setDropCompleted(success);
         dragEvent.consume();
+    }
+
+    private void addingPlant(Pane sourcePane, Pane targetPane, DeckPane dp){
+        ImageView sourceImage = (ImageView) sourcePane.getChildren().get(3);
+        ImageView duplicateImage = new ImageView(sourceImage.getImage());
+        setupImageView(duplicateImage, 126, 126, 0, 0);
+        duplicateImage.setOpacity(0);
+        duplicateImage.setOnDragDetected(this::chooseplant);
+        sourcePane.getChildren().add(duplicateImage);
+        sourceImage.setFitWidth(0);
+        sourceImage.setFitHeight(0);
+        sourceImage.setOpacity(1);
+        if (dp.getPlantsName().equals("Lilypad")){
+            sourceImage.setLayoutX(11);
+            sourceImage.setLayoutY(35);
+        }
+
+        int row = GridPane.getRowIndex(targetPane);
+        int column = GridPane.getColumnIndex(targetPane);
+
+        Plants plant = createPlant(dp.getPlantsName(), row, column);
+
+//        targetPane.getChildren().add((Node) plant);
+        targetPane.getChildren().add(dp);
+        targetPane.getChildren().add(sourceImage);
+
+        Sun.reduceSun(plant.getCost());
+    }
+
+    private Plants createPlant(String plantName, int row, int column){
+        switch (plantName) {
+            case "Peashooter":
+                return new Peashooter(row, column);
+
+            // Add cases for other plants as needed
+            case "Sunflower":
+                return new Sunflower(row, column);
+            default:
+                throw new IllegalArgumentException("Unknown plant type: " + plantName);
+        }
+
     }
 
     private void foreshadowingplant(DragEvent dragEvent) {
@@ -198,13 +251,15 @@ public class ControllerMainGame implements Initializable {
             Node source = (Node) dragEvent.getGestureSource();
             if (target instanceof Pane && source instanceof ImageView) {
                 Pane targetPane = (Pane) target;
-                ImageView sourceImage = (ImageView) source;
-                ImageView shadowImage = new ImageView(sourceImage.getImage());
-                shadowImage.setOpacity(0.5);
-                shadowImage.setFitWidth(0);
-                shadowImage.setFitHeight(0);
-                shadowImage.setId("shadowImage");  // Set an ID to identify this shadow image later
-                targetPane.getChildren().add(shadowImage);
+                if(targetPane.getChildren().isEmpty()) {
+                    ImageView sourceImage = (ImageView) source;
+                    ImageView shadowImage = new ImageView(sourceImage.getImage());
+                    shadowImage.setOpacity(0.5);
+                    shadowImage.setFitWidth(0);
+                    shadowImage.setFitHeight(0);
+                    shadowImage.setId("shadowImage");  // Set an ID to identify this shadow image later
+                    targetPane.getChildren().add(shadowImage);
+                }
             }
         }
         dragEvent.consume();
