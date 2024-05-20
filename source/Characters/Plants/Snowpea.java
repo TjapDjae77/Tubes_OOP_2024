@@ -26,6 +26,10 @@ public class Snowpea extends Plants{
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
     }
 
+    public boolean canShoot() {
+        return true;
+    }
+    
     public void showDescription() {
         System.out.println("Name: " + this.getName());
         System.out.println("Health: " + this.getHealth());

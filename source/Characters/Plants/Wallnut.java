@@ -8,6 +8,10 @@ public class Wallnut extends Plants{
         super("Wall-nut", 1000, 0, 0, 50, 0, 20, false, 0, 0);
     }
 
+    public boolean canShoot() {
+        return false;
+    }
+    
     public void showDescription() {
         System.out.println("Name: " + this.getName());
         System.out.println("Health: " + this.getHealth());

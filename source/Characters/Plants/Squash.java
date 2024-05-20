@@ -11,6 +11,11 @@ public class Squash extends Plants{
         super("Squash", 100, 5000, 1, 50, 1, 20, false, 0, 0);
     }
 
+    @Override
+    public boolean canShoot() {
+        return false;
+    }
+
     public void showDescription() {
         System.out.println("Name: " + this.getName());
         System.out.println("Health: " + this.getHealth());

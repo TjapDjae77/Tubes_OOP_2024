@@ -12,6 +12,10 @@ public class TangleKelp extends Plants{
         super("Tangle Kelp", 100, 5000, 1, 25, 0, 20, true, 0, 0);
     }
 
+    public boolean canShoot() {
+        return false;
+    }
+    
     public void showDescription() {
         System.out.println("Name: " + this.getName());
         System.out.println("Health: " + this.getHealth());

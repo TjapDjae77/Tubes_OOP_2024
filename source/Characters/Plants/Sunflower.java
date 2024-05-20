@@ -16,6 +16,10 @@ public class Sunflower extends Plants {
         super("Sunflower", 100, 0, 0, 50, 0, 10, false, 0, 0);
     }
 
+    public boolean canShoot() {
+        return false;
+    }
+    
     public void addSunSunflower(){
         timer.schedule(new TimerTask() {
             @Override

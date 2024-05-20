@@ -11,6 +11,10 @@ public class Seashroom extends Plants{
         super("Sea-shroom", 100, 15, 4, 0, 3, 25, true, 0, 0);
     }
 
+    public boolean canShoot() {
+        return true;
+    }
+
     public void showDescription() {
         System.out.println("Name: " + this.getName());
         System.out.println("Health: " + this.getHealth());

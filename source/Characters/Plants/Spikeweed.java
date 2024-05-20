@@ -11,6 +11,10 @@ public class Spikeweed extends Plants{
         super("Spikeweed", 100, 20, 3, 100, 0, 10, false, 0, 0);
     }
 
+    public boolean canShoot() {
+        return false;
+    }
+    
     public void showDescription() {
         System.out.println("Name: " + this.getName());
         System.out.println("Health: " + this.getHealth());

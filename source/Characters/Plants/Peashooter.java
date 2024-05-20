@@ -11,6 +11,10 @@ public class Peashooter extends Plants{
         super("Peashooter", 100, 25, 4, 100, -1, 10, false, 0, 0);
     }
 
+    public boolean canShoot() {
+        return true;
+    }
+
     public void showDescription() {
         System.out.println("Name: " + this.getName());
         System.out.println("Health: " + this.getHealth());

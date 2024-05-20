@@ -97,13 +97,13 @@ public abstract class Plants extends Characters{
         int range = this.getRange();
         Zombie closestZombie = null;
         int minDistance = Integer.MAX_VALUE;
-    
+
         // Obtain the list of zombies currently in the game
         ZombieList<Zombie> inGameZombies = gameMap.getInGameZombies();
         List<Zombie> zombiesInRow = inGameZombies.getZombies().stream()
                 .filter(z -> z.getCurrentRow() == this.row)
                 .toList();
-                
+
         if (range == -1) {
             // Infinite range: search all zombies in the same row to the right
             for (Zombie zombie : zombiesInRow) {
@@ -120,35 +120,24 @@ public abstract class Plants extends Characters{
                 if (zombieColumn > this.column && zombieColumn <= this.column + range && zombieColumn < minDistance) {
                     closestZombie = zombie;
                     minDistance = zombieColumn;
-                    }
                 }
             }
+        }
         // Attack the closest zombie if found
         if (closestZombie != null) {
-            attack(closestZombie);
+            if (this.canShoot()) {  // Check if the plant can shoot
+                shoot(gameMap);     // Highlight Create a projectile to attack the closest zombie
+            } else {
+                attack(closestZombie); // Perform a melee attack if the plant cannot shoot
+            }
         }
     }
 
-    // public void attackZombiesInRange(GameMap gameMap) {
-    //     int range = this.getRange();
-    //     if (range == -1) {
-    //         // Infinite range: attack all zombies in the same row to the right
-    //         for (int col = this.getCurrentColumn() + 1; col < gameMap.getWidth(); col++) {
-    //             Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
-    //             for (Zombie zombie : tile.getZombies()) {
-    //                 attack(zombie);
-    //             }
-    //         }
-    //     } else {
-    //         // Finite range: attack zombies within the specified range
-    //         for (int col = this.getCurrentColumn() + 1; col <= this.getCurrentColumn() + range && col < gameMap.getWidth(); col++) {
-    //             Tiles tile = gameMap.getTile(this.getCurrentRow(), col);
-    //             for (Zombie zombie : tile.getZombies()) {
-    //                 attack(zombie);
-    //             }
-    //         }
-    //     }
-    // }
+    public void shoot(GameMap gameMap) {
+        Projectile projectile = new Projectile(this.getAttackDamage(), 1.0, this.row, this.column);
+        projectile.move(gameMap);
+    }
+
 
     public void startAttacking(GameMap gameMap) {
         new Thread(() -> {
@@ -162,6 +151,8 @@ public abstract class Plants extends Characters{
             }
         }).start();
     }
+
+    public abstract boolean canShoot();
 
     public abstract void showDescription();
 }

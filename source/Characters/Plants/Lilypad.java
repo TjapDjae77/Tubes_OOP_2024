@@ -14,6 +14,10 @@ public class Lilypad extends Plants{
         this.plantOnTop = null;
     }
 
+    public boolean canShoot() {
+        return false;
+    }
+
     public void showDescription() {
         System.out.println("Name: " + this.getName());
         System.out.println("Health: " + this.getHealth());
