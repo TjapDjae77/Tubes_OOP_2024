@@ -85,7 +85,7 @@ public class ControllerMainMenu implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.setVolume(0);
+        mediaPlayer.setVolume(1);
         mediaPlayer.play();
     }
 }

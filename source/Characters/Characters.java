@@ -35,11 +35,11 @@ public abstract class Characters {
         return this.attack_speed;
     }
 
-    public void is_aquatic() {
+    public void set_aquatic() {
         this.is_aquatic = true;
     }
 
     public boolean getIsAquatic() {
-        return this.is_aquatic;
+        return is_aquatic;
     }
 }

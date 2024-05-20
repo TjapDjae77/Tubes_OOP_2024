@@ -26,6 +26,8 @@ import java.util.ResourceBundle;
 
 import source.Characters.Plants.*;
 import source.Sun.Sun;
+import source.Map.*;
+
 import javafx.application.Platform;
 
 public class ControllerMainGame implements Initializable {
@@ -74,7 +76,7 @@ public class ControllerMainGame implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.setVolume(0);
+        mediaPlayer.setVolume(1);
         mediaPlayer.play();
 
         initializeDeck(deck);
@@ -136,8 +138,7 @@ public class ControllerMainGame implements Initializable {
 
     private void initializeGridPane(){
         ArrayList<Pane> tilescontentpane = new ArrayList<>();
-        int row = 0;
-        int col = 0;
+
         for(int i = 0; i < 66; i++){
             Pane pane = new Pane();
             if(i % 11 != 0 && i % 11 != 10){
@@ -148,7 +149,31 @@ public class ControllerMainGame implements Initializable {
             }
             tilescontentpane.add(pane);
         }
+
+        int row = 0;
+        int col = 0;
+
         for(Pane p : tilescontentpane){
+            if(col == 0){
+                Tiles tiles = createTiles("Protected");
+                TilesPane tilesPane = new TilesPane(tiles);
+                p.getChildren().add(tilesPane);
+            }
+            else if(col == 10){
+                Tiles tiles = createTiles("Spawn");
+                TilesPane tilesPane = new TilesPane(tiles);
+                p.getChildren().add(tilesPane);
+            }
+            else if(row == 2 || row == 3){
+                Tiles tiles = createTiles("Pool");
+                TilesPane tilesPane = new TilesPane(tiles);
+                p.getChildren().add(tilesPane);
+            }
+            else{
+                Tiles tiles = createTiles("Grass");
+                TilesPane tilesPane = new TilesPane(tiles);
+                p.getChildren().add(tilesPane);
+            }
             GridPane.setConstraints(p, col, row);
             gridtilesmap.getChildren().add(p);
             col++;
@@ -156,6 +181,25 @@ public class ControllerMainGame implements Initializable {
                 col = 0;
                 row++;
             }
+        }
+    }
+
+    private Tiles createTiles(String tilestype) {
+        switch (tilestype) {
+            case "Protected":
+                return new ProtectedTiles();
+
+            case "Grass":
+                return new GrassTiles();
+
+            case "Pool":
+                return new PoolTiles();
+
+            case "Spawn":
+                return new SpawnTiles();
+
+            default:
+                throw new IllegalArgumentException("Unknown tiles type: " + tilestype);
         }
     }
 
@@ -169,6 +213,7 @@ public class ControllerMainGame implements Initializable {
         shovel.setOnDragDone(this::showshovel);
         shovelPane.getChildren().add(imageViewShovelPane);
         shovelPane.getChildren().add(shovel);
+        shovelPane.setId("shovelPane");
     }
 
     private void operationOnPlant(DragEvent dragEvent) {
@@ -182,17 +227,31 @@ public class ControllerMainGame implements Initializable {
                 Pane targetPane = (Pane) target;
                 Pane sourcePane = (Pane) source.getParent();
                 if(sourcePane.getId().equals("shovelPane")){
-                    targetPane.getChildren().clear();
+                    int sizepane = targetPane.getChildren().size();
+
+                    targetPane.getChildren().remove(1, sizepane-1);
                 }
                 else {
-                    DeckPane dp = new DeckPane ((DeckPane) sourcePane.getChildren().get(0));
-                    System.out.println(dp.getPlantsName());
-                    if(targetPane.getChildren().size() < 2) {
-                        addingPlant(sourcePane, targetPane, dp);
+                    DeckPane dp = new DeckPane((DeckPane) sourcePane.getChildren().getFirst());
+
+                    if (targetPane.getChildren().size() < 3){
+                        if(((TilesPane) targetPane.getChildren().getFirst()).getTiles() instanceof PoolTiles && dp.getPlants().getIsAquatic()){
+                            addingPlant(sourcePane, targetPane, dp);
+                        }
+                        else if (((TilesPane) targetPane.getChildren().getFirst()).getTiles() instanceof GrassTiles && !dp.getPlants().getIsAquatic()){
+                            addingPlant(sourcePane, targetPane, dp);
+                        }
+                        else{
+//                            throw new IllegalArgumentException("Tanaman harus ditanam sesuai dengan tipe tiles");
+                        }
                     }
-                    else if (((DeckPane)targetPane.getChildren().getFirst()).getPlantsName().equals("Lilypad")) { // Nanti diimplementasiin pake isaquatic
+                    else if(((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !dp.getPlants().getIsAquatic()){
                         addingPlant(sourcePane, targetPane, dp);
+
                     }
+                    // Terapin Exceptions
+
+//                    System.out.println(targetPane.getChildren().get(0).getClass().getSimpleName());
                 }
             }
 
@@ -207,6 +266,7 @@ public class ControllerMainGame implements Initializable {
         ImageView duplicateImage = new ImageView(sourceImage.getImage());
         setupImageView(duplicateImage, 126, 126, 0, 0);
         duplicateImage.setOpacity(0);
+        duplicateImage.setCursor(Cursor.HAND);
         duplicateImage.setOnDragDetected(this::chooseplant);
         sourcePane.getChildren().add(duplicateImage);
         sourceImage.setFitWidth(0);
@@ -216,27 +276,68 @@ public class ControllerMainGame implements Initializable {
             sourceImage.setLayoutX(11);
             sourceImage.setLayoutY(35);
         }
+        else if (dp.getPlantsName().equals("Tallnut")) {
+            sourceImage.setLayoutY(-63);
+            sourceImage.setLayoutX(15);
+        }
+        else {
+            sourceImage.setLayoutX(15);
+        }
 
         int row = GridPane.getRowIndex(targetPane);
         int column = GridPane.getColumnIndex(targetPane);
 
         Plants plant = createPlant(dp.getPlantsName(), row, column);
 
-//        targetPane.getChildren().add((Node) plant);
+        InformationPlant plantInfo = new InformationPlant(plant);
+
+        sourceImage.setOnDragDetected(null);
+        sourceImage.setCursor(Cursor.DEFAULT);
+
+        targetPane.getChildren().add(plantInfo);
         targetPane.getChildren().add(dp);
         targetPane.getChildren().add(sourceImage);
+
+        Node shadowImage = targetPane.lookup("#shadowImage");
+        if(shadowImage != null){
+            targetPane.getChildren().remove(shadowImage);
+        }
 
         Sun.reduceSun(plant.getCost());
     }
 
     private Plants createPlant(String plantName, int row, int column){
         switch (plantName) {
+            case "Sunflower":
+                return new Sunflower(row, column);
+
             case "Peashooter":
                 return new Peashooter(row, column);
 
-            // Add cases for other plants as needed
-            case "Sunflower":
-                return new Sunflower(row, column);
+            case "Wallnut":
+                return new Wallnut(row, column);
+
+            case "SnowPea":
+                return new Snowpea(row, column);
+
+            case "Squash":
+                return new Squash(row, column);
+
+            case "Lilypad":
+                return new Lilypad(row, column);
+
+            case "TangleKelp":
+                return new TangleKelp(row, column);
+
+            case "SeaShroom":
+                return new Seashroom(row, column);
+
+            case "Tallnut":
+                return new Tallnut(row, column);
+
+            case "Spikeweed":
+                return new Spikeweed(row, column);
+
             default:
                 throw new IllegalArgumentException("Unknown plant type: " + plantName);
         }
@@ -251,18 +352,63 @@ public class ControllerMainGame implements Initializable {
             Node source = (Node) dragEvent.getGestureSource();
             if (target instanceof Pane && source instanceof ImageView) {
                 Pane targetPane = (Pane) target;
-                if(targetPane.getChildren().isEmpty()) {
-                    ImageView sourceImage = (ImageView) source;
-                    ImageView shadowImage = new ImageView(sourceImage.getImage());
-                    shadowImage.setOpacity(0.5);
-                    shadowImage.setFitWidth(0);
-                    shadowImage.setFitHeight(0);
-                    shadowImage.setId("shadowImage");  // Set an ID to identify this shadow image later
-                    targetPane.getChildren().add(shadowImage);
+                Pane sourcePane = (Pane) source.getParent();
+
+                if (sourcePane.getId().equals("shovelPane")) {
+                    addingShovelImage(source, targetPane);
+                }
+                else {
+                    boolean aquatic = ((DeckPane) sourcePane.getChildren().getFirst()).getPlants().getIsAquatic();
+
+                    DeckPane dp = new DeckPane((DeckPane) sourcePane.getChildren().getFirst());
+
+                    if (targetPane.getChildren().size() < 2) {
+                        if (((TilesPane) targetPane.getChildren().getFirst()).getTiles() instanceof PoolTiles && aquatic) {
+                            showtransparent(source, targetPane, dp);
+                        } else if (((TilesPane) targetPane.getChildren().getFirst()).getTiles() instanceof GrassTiles && !aquatic) {
+                            showtransparent(source, targetPane, dp);
+                        }
+//                    else{
+//                            throw new IllegalArgumentException("Tanaman harus ditanam sesuai dengan tipe tiles");
+//                    }
+                    } else if (((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !aquatic) {
+                        showtransparent(source, targetPane, dp);
+                    }
                 }
             }
         }
         dragEvent.consume();
+    }
+
+    private void addingShovelImage(Node source, Pane targetPane) {
+        ImageView sourceImage = (ImageView) source;
+        ImageView shadowImage = new ImageView(sourceImage.getImage());
+        shadowImage.setOpacity(0.5);
+        shadowImage.setFitWidth(0);
+        shadowImage.setFitHeight(0);
+        shadowImage.setId("shadowImage");  // Set an ID to identify this shadow image
+        targetPane.getChildren().add(shadowImage);
+    }
+
+    private void showtransparent(Node source, Pane targetPane, DeckPane dp){
+        ImageView sourceImage = (ImageView) source;
+        ImageView shadowImage = new ImageView(sourceImage.getImage());
+        shadowImage.setOpacity(0.5);
+        shadowImage.setFitWidth(0);
+        shadowImage.setFitHeight(0);
+        if (dp.getPlantsName().equals("Lilypad")){
+            shadowImage.setLayoutX(11);
+            shadowImage.setLayoutY(35);
+        }
+        else if (dp.getPlantsName().equals("Tallnut")) {
+            shadowImage.setLayoutY(-63);
+            shadowImage.setLayoutX(15);
+        }
+        else {
+            shadowImage.setLayoutX(15);
+        }
+        shadowImage.setId("shadowImage");  // Set an ID to identify this shadow image
+        targetPane.getChildren().add(shadowImage);
     }
 
     private void diseappearingplant(DragEvent dragEvent) {

@@ -98,16 +98,6 @@ public class GameMap extends JPanel {
     
     public int getWidth(){ return width; }
 
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        int tileSize = 100; // Ukuran petak yang diinginkan (100x100)
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                // Menggambar petak pada koordinat (j*tileSize, i*tileSize)
-                grid[i][j].draw(g, j * tileSize, i * tileSize, tileSize, tileSize);
-            }
-        }
-    }
     public boolean getGameOver(){
         return gameOver;
     }
