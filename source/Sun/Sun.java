@@ -1,7 +1,7 @@
 package source.Sun;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+// import javafx.beans.property.IntegerProperty;
+// import javafx.beans.property.SimpleIntegerProperty;
 
 
 import java.util.Timer;
@@ -9,7 +9,7 @@ import java.util.TimerTask;
 import java.util.Random;
 
 public class Sun{
-    private static final IntegerProperty sun = new SimpleIntegerProperty(50);
+    private static int sun = 50;
 
     Timer timer = new Timer();
 
@@ -34,19 +34,15 @@ public class Sun{
         return (random.nextInt((max - min)+1)+ min);
     }
 
-    public static int getSun(){
-        return sun.get();
+    public static synchronized int getSun(){
+        return sun;
     }
 
-    public static void addSun(int value){
-        sun.set(sun.get() + value);
+    public static synchronized void addSun(int value){
+        sun = sun + value;
     }
 
     public static void reduceSun(int costPlant){
-        sun.set(sun.get() - costPlant);
-    }
-
-    public static IntegerProperty sunProperty() {
-        return sun;
+        sun = sun-costPlant;
     }
 }

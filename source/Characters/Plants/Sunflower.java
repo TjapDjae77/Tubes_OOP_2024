@@ -4,32 +4,49 @@ import source.Sun.Sun;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Sunflower extends Plants {
     Timer timer = new Timer();
 
     public Sunflower(int row, int column) {
         super("Sunflower", 100, 0, 0, 50, 0, 10, false, row, column);
+        startGeneratingSun();
     }
 
     public Sunflower() {
         super("Sunflower", 100, 0, 0, 50, 0, 10, false, 0, 0);
+        startGeneratingSun();
     }
-
+    public void startGeneratingSun() {
+        new Thread(() -> {
+            try {
+                while (true) {
+                    Thread.sleep(3000);
+                    synchronized (Sun.class) {
+                        Sun.addSun(25); // Generate 25 sun every 3 seconds
+                        System.out.println("Sun saat ini ding : " + Sun.getSun() + " di row " + this.getCurrentRow() + " dan column " + getCurrentColumn());
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
     public boolean canShoot() {
         return false;
     }
     
-    public void addSunSunflower(){
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run(){
-                Sun.addSun(25);
-                System.out.println("Sun saat ini : " + Sun.getSun());
-                addSunSunflower();
-            }
-        }, 3000);
-    }
+    // public void addSunSunflower(){
+    //     timer.schedule(new TimerTask() {
+    //         @Override
+    //         public void run(){
+    //             Sun.addSun(25);
+    //             System.out.println("Sun saat ini : " + Sun.getSun());
+    //             addSunSunflower();
+    //         }
+    //     }, 3000);
+    // }
 
     public void showDescription() {
         System.out.println("Name: " + this.getName());
