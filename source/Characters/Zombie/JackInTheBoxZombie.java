@@ -15,14 +15,14 @@ public class JackInTheBoxZombie extends Zombie {
         GameMap gameMap = new GameMap();
         int row = getCurrentRow(); 
         int column = getCurrentColumn();
-        if (gameMap.getTile(row, column).getPlanted() != null) {
-            if (gameMap.getTile(row, column).getPlanted() instanceof Spikeweed) {
-                return;
-            } else {
-                gameMap.getTile(row, column).getPlanted().setHealth(0, gameMap);
-                setHealth(0);
-            }
-        }
+//        if (gameMap.getTile(row, column).getPlanted() != null) {
+//            if (gameMap.getTile(row, column).getPlanted() instanceof Spikeweed) {
+//                return;
+//            } else {
+//                gameMap.getTile(row, column).getPlanted().setHealth(0, gameMap);
+//                setHealth(0);
+//            }
+//        }
     }
 
     public void showDescription() {

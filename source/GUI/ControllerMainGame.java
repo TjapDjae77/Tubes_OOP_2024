@@ -23,6 +23,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import source.Characters.Plants.*;
 import source.Sun.Sun;
@@ -59,6 +65,10 @@ public class ControllerMainGame implements Initializable {
 
     private Sun sun;
 
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+    Timer timer = new Timer();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,6 +76,8 @@ public class ControllerMainGame implements Initializable {
         listdeckpane = new ArrayList<>();
         ControllerPrepGame prepGameController = ControllerPrepGame.getInstance();
         deck = prepGameController.getListDeck();
+
+        Timer tm = new Timer();
 
         java.net.URL resource = getClass().getClassLoader().getResource("assets/Music/Pool_Day_Song.mp3");
         if (resource == null) {
@@ -84,9 +96,18 @@ public class ControllerMainGame implements Initializable {
         initializeGridPane();
         initializeSun();
 
+        startUpdatingDeckPaneAvailability();
+
         Sun.sunProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> sunValue.setText(newValue.toString()));
+
         });
+    }
+
+    private void startUpdatingDeckPaneAvailability() {
+        scheduler.scheduleAtFixedRate(() -> {
+            Platform.runLater(this::updateDeckPaneAvailability);
+        }, 0, 500, TimeUnit.MILLISECONDS);
     }
 
     private void initializeSun(){
@@ -102,6 +123,7 @@ public class ControllerMainGame implements Initializable {
 
             ImageView img2 = new ImageView(new Image("@../../assets/Seed Packet/Seeds_" + initialdeck.get(i).getPlantsName() + ".png"));
             setupImageView(img2, 90, 126, 0,0);
+
             ImageView img3 = null;
 
             if(!initialdeck.get(i).getPlantsName().equals("Peashooter")){
@@ -115,8 +137,15 @@ public class ControllerMainGame implements Initializable {
 
             img3.setOpacity(0);
             img2.setOnDragDetected(null);
-            img3.setOnDragDetected(this::chooseplant);
-            img3.setCursor(Cursor.HAND);
+            img2.setVisible(false);
+            if (Sun.getSun() >= initialdeck.get(i).getPlants().getCost() && !initialdeck.get(i).getPlants().getCDStatus()) {
+                img3.setOnDragDetected(this::chooseplant);
+                img3.setCursor(Cursor.HAND);
+                img2.setVisible(true);
+            }
+            else {
+                img3.setCursor(Cursor.DEFAULT);
+            }
             Pane pane = new Pane();
             pane.setId("Plant"+i);
             pane.getChildren().addAll(initialdeck.get(i), img1, img2, img3);
@@ -127,6 +156,31 @@ public class ControllerMainGame implements Initializable {
 
     }
 
+    private void updateDeckPaneAvailability(){
+        int i = 0;
+        System.out.println("--------ITERASI AVAILABILITY--------");
+        for(Pane pane : listdeckpane){
+            System.out.println("Slot ke-"+i);
+            DeckPane dp = (DeckPane) pane.getChildren().getFirst();
+            ImageView img3 = (ImageView) pane.getChildren().get(3);
+            ImageView img2 = (ImageView) pane.getChildren().get(2);
+            System.out.println("Get Status: " + dp.getPlants().getCDStatus());
+            if(Sun.getSun() >= dp.getPlants().getCost() && !dp.getPlants().getCDStatus()){
+                img3.setOnDragDetected(this::chooseplant);
+                img3.setCursor(Cursor.HAND);
+                img2.setVisible(true);
+                System.out.println("AVAILABLE");
+            }
+            else {
+                img3.setOnDragDetected(null);
+                img3.setCursor(Cursor.DEFAULT);
+                img2.setVisible(false);
+                System.out.println("NONE");
+            }
+            i++;
+
+        }
+    }
 
 
 
@@ -227,26 +281,36 @@ public class ControllerMainGame implements Initializable {
                 Pane targetPane = (Pane) target;
                 Pane sourcePane = (Pane) source.getParent();
                 if(sourcePane.getId().equals("shovelPane")){
+
+                    for(Node node : targetPane.getChildren()){
+                        if(node instanceof InformationPlant){
+                            if(((InformationPlant) node).getPlant().getName().equals("Sunflower")){
+                                InformationPlant infoPlant = (InformationPlant) node;
+                                ((Sunflower)infoPlant.getPlant()).stopGeneratingSun();
+                            }
+                        }
+                    }
+
                     int sizepane = targetPane.getChildren().size();
 
                     targetPane.getChildren().remove(1, sizepane-1);
                 }
                 else {
                     DeckPane dp = new DeckPane((DeckPane) sourcePane.getChildren().getFirst());
-
-                    if (targetPane.getChildren().size() < 3){
+                    DeckPane dpold = (DeckPane) sourcePane.getChildren().getFirst();
+                    if (targetPane.getChildren().size() < 2){
                         if(((TilesPane) targetPane.getChildren().getFirst()).getTiles() instanceof PoolTiles && dp.getPlants().getIsAquatic()){
-                            addingPlant(sourcePane, targetPane, dp);
+                            addingPlant(sourcePane, targetPane, dp, dpold);
                         }
                         else if (((TilesPane) targetPane.getChildren().getFirst()).getTiles() instanceof GrassTiles && !dp.getPlants().getIsAquatic()){
-                            addingPlant(sourcePane, targetPane, dp);
+                            addingPlant(sourcePane, targetPane, dp, dpold);
                         }
                         else{
 //                            throw new IllegalArgumentException("Tanaman harus ditanam sesuai dengan tipe tiles");
                         }
                     }
-                    else if(((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !dp.getPlants().getIsAquatic()){
-                        addingPlant(sourcePane, targetPane, dp);
+                    else if(((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !dp.getPlants().getIsAquatic() && targetPane.getChildren().size() == 2){
+                        addingPlant(sourcePane, targetPane, dp, dpold);
 
                     }
                     // Terapin Exceptions
@@ -261,7 +325,7 @@ public class ControllerMainGame implements Initializable {
         dragEvent.consume();
     }
 
-    private void addingPlant(Pane sourcePane, Pane targetPane, DeckPane dp){
+    private void addingPlant(Pane sourcePane, Pane targetPane, DeckPane dp, DeckPane dpold){
         ImageView sourceImage = (ImageView) sourcePane.getChildren().get(3);
         ImageView duplicateImage = new ImageView(sourceImage.getImage());
         setupImageView(duplicateImage, 126, 126, 0, 0);
@@ -280,6 +344,9 @@ public class ControllerMainGame implements Initializable {
             sourceImage.setLayoutY(-63);
             sourceImage.setLayoutX(15);
         }
+        else if (dp.getPlantsName().equals("Spikeweed")) {
+            sourceImage.setLayoutX(-15);
+        }
         else {
             sourceImage.setLayoutX(15);
         }
@@ -294,9 +361,15 @@ public class ControllerMainGame implements Initializable {
         sourceImage.setOnDragDetected(null);
         sourceImage.setCursor(Cursor.DEFAULT);
 
+        if(dp.getPlantsName().equals("Sunflower")){
+            ((Sunflower) dp.getPlants()).setStartproduce(true);
+        }
+
         targetPane.getChildren().add(plantInfo);
-        targetPane.getChildren().add(dp);
+//        targetPane.getChildren().add(dp);
         targetPane.getChildren().add(sourceImage);
+
+
 
         Node shadowImage = targetPane.lookup("#shadowImage");
         if(shadowImage != null){
@@ -304,6 +377,31 @@ public class ControllerMainGame implements Initializable {
         }
 
         Sun.reduceSun(plant.getCost());
+        sourcePane.getChildren().get(2).setVisible(false);
+        sourcePane.getChildren().get(3).setOnDragDetected(null);
+        sourcePane.getChildren().get(3).setCursor(Cursor.DEFAULT);
+        startCooldown(dpold);
+    }
+
+    private void startCooldown(DeckPane deckPane) {
+
+        Timer tm = new Timer();
+        deckPane.getPlants().setOnCooldown(true);
+        System.out.println("INI DI START COOLDOWN");
+        System.out.println(deckPane.getPlants().getCDStatus());
+//        Platform.runLater(() -> updateDeckPaneAvailability());
+
+//        scheduler.schedule(() -> {
+//            deckPane.getPlants().setOnCooldown(false);
+//
+//            Platform.runLater(() -> updateDeckPaneAvailability());
+//        }, cooldownTime, TimeUnit.SECONDS);
+
+        tm.schedule(new TimerTask() {
+            public void run() {
+                deckPane.getPlants().setOnCooldown(false);
+            }
+        }, deckPane.getPlants().getCooldown()*1000);
     }
 
     private Plants createPlant(String plantName, int row, int column){
@@ -404,6 +502,9 @@ public class ControllerMainGame implements Initializable {
             shadowImage.setLayoutY(-63);
             shadowImage.setLayoutX(15);
         }
+        else if (dp.getPlantsName().equals("Spikeweed")){
+            shadowImage.setLayoutX(-15);
+        }
         else {
             shadowImage.setLayoutX(15);
         }
@@ -428,14 +529,18 @@ public class ControllerMainGame implements Initializable {
     }
     private void chooseplant(MouseEvent event) {
         Node source = (Node) event.getSource();
-        Dragboard db = source.startDragAndDrop(TransferMode.MOVE);
-        ImageView imageView = (ImageView) source;
-        ClipboardContent content = new ClipboardContent();
-        content.putString("");
-        db.setContent(content);
-        ImageView duplicateImage = new ImageView(imageView.getImage());
-        duplicateImage.setOpacity(1);
-        db.setDragView(duplicateImage.getImage(), 70, 70);
+        Pane pane = (Pane) source.getParent();
+        DeckPane dp = (DeckPane) pane.getChildren().getFirst();
+        if(Sun.getSun() >= dp.getPlants().getCost() && !dp.getPlants().getCDStatus()) {
+            Dragboard db = source.startDragAndDrop(TransferMode.MOVE);
+            ImageView imageView = (ImageView) source;
+            ClipboardContent content = new ClipboardContent();
+            content.putString("");
+            db.setContent(content);
+            ImageView duplicateImage = new ImageView(imageView.getImage());
+            duplicateImage.setOpacity(1);
+            db.setDragView(duplicateImage.getImage(), 70, 70);
+        }
         event.consume();
     }
 

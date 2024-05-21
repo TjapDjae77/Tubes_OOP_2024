@@ -10,13 +10,13 @@ public class Inventory {
     public static ArrayList<Plants> plantsList;
 
     public Inventory(Plants plant) {
-        this.selectedPlant = plant;
+//        this.selectedPlant = plant;
         gameDeck = new ArrayList<>(Arrays.asList(new Plants[6]));
         plantsList = new ArrayList<>();
     }
 
     public Inventory() {
-        this.selectedPlant = null;
+//        this.selectedPlant = null;
         gameDeck = new ArrayList<>(Arrays.asList(new Plants[6]));
         plantsList = new ArrayList<>();
     }

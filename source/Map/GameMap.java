@@ -24,7 +24,7 @@ public class GameMap extends JPanel {
         JackInTheBoxZombie jackInTheBoxZombie = new JackInTheBoxZombie();
         NewspaperZombie newspaperZombie = new NewspaperZombie();
         NormalZombie normalZombie = new NormalZombie();
-        PoleVaultingZombie poleVaultingZombie = new PoleVaultingZombie();
+//        PoleVaultingZombie poleVaultingZombie = new PoleVaultingZombie();
         ScreenDoorZombie screenDoorZombie = new ScreenDoorZombie();
         zombieList.addZombie(bucketheadZombie);
         zombieList.addZombie(coneheadZombie);
@@ -34,7 +34,7 @@ public class GameMap extends JPanel {
         zombieList.addZombie(jackInTheBoxZombie);
         zombieList.addZombie(newspaperZombie);
         zombieList.addZombie(normalZombie);
-        zombieList.addZombie(poleVaultingZombie);
+//        zombieList.addZombie(poleVaultingZombie);
         zombieList.addZombie(screenDoorZombie);
         inGameZombie = new ZombieList<>();
         grid = new Tiles[height][width];

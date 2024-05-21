@@ -52,19 +52,19 @@ public class Lilypad extends Plants{
         }
     }
 
-    public void checkAndRemove(GameMap gameMap) {
-        if (this.getHealth() <= 0) {
-            System.out.println("The plant on top of the Lilypad and the Lilypad itself have died.");
-            this.plantOnTop = null; // Remove reference to the plant on top
-            gameMap.getTile(this.row, this.column).setPlanted(null);
-        }
-    }
-
-    @Override
-    public void setHealth(int health, GameMap gameMap) {
-        super.setHealth(health, gameMap);
-        if (this.getHealth() <= 0 && this.plantOnTop != null) {
-            this.plantOnTop.setHealth(0, gameMap); // Ensure the plant on top is also considered dead
-        }
-    }
+//    public void checkAndRemove(GameMap gameMap) {
+//        if (this.getHealth() <= 0) {
+//            System.out.println("The plant on top of the Lilypad and the Lilypad itself have died.");
+//            this.plantOnTop = null; // Remove reference to the plant on top
+//            gameMap.getTile(this.row, this.column).setPlanted(null);
+//        }
+//    }
+//
+//    @Override
+//    public void setHealth(int health, GameMap gameMap) {
+//        super.setHealth(health, gameMap);
+//        if (this.getHealth() <= 0 && this.plantOnTop != null) {
+//            this.plantOnTop.setHealth(0, gameMap); // Ensure the plant on top is also considered dead
+//        }
+//    }
 }

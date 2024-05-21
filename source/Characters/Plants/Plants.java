@@ -34,12 +34,12 @@ public abstract class Plants extends Characters{
         return this.cooldown;
     }
 
-    public void setHealth(int health, GameMap gameMap) {
-        this.setHealth(health); 
-        if (this.getHealth() <= 0) {
-            gameMap.getTile(this.row, this.column).setPlanted(null);
-        }
-    }
+//    public void setHealth(int health, GameMap gameMap) {
+//        this.setHealth(health);
+//        if (this.getHealth() <= 0) {
+//            gameMap.getTile(this.row, this.column).setPlanted(null);
+//        }
+//    }
 
     public boolean getCDStatus(){
         return on_cooldown;
@@ -65,25 +65,25 @@ public abstract class Plants extends Characters{
         this.column = column;
     }
 
-    public boolean validatePosition(Tiles tile) {
-        if (this.getIsAquatic()) {
-            return tile instanceof PoolTiles;
-        } else {
-            return tile instanceof GrassTiles || (tile instanceof PoolTiles && tile.getPlanted() instanceof Lilypad);
-        }
-    }
+//    public boolean validatePosition(Tiles tile) {
+//        if (this.getIsAquatic()) {
+//            return tile instanceof PoolTiles;
+//        } else {
+//            return tile instanceof GrassTiles || (tile instanceof PoolTiles && tile.getPlanted() instanceof Lilypad);
+//        }
+//    }
 
-    public boolean setPosition(int row, int column, GameMap gameMap) {
-        Tiles tile = gameMap.getTile(row, column);
-        if (validatePosition(tile)) {
-            this.row = row;
-            this.column = column;
-            tile.setPlanted(this);
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean setPosition(int row, int column, GameMap gameMap) {
+//        Tiles tile = gameMap.getTile(row, column);
+//        if (validatePosition(tile)) {
+//            this.row = row;
+//            this.column = column;
+//            tile.setPlanted(this);
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     public void attack(Zombie zombie) {
         if (zombie != null) {

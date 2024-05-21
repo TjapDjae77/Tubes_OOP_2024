@@ -17,22 +17,22 @@ public class DolphinRiderZombie extends Zombie {
         GameMap gameMap = new GameMap();
         int row = getCurrentRow(); 
         int column = getCurrentColumn(); 
-        if (gameMap.getTile(row, column).getPlanted() != null) {
-            if (gameMap.getTile(row + 1, column).getPlanted() instanceof Spikeweed) {
-                return;
-            } else if (gameMap.getTile(row, column).getPlanted() instanceof Tallnut) {
-                this.Dolphin = false;
-                setOriginalSpeed(10);
-                return;
-            } else {
-                gameMap.getTile(row, column).setPlanted(null);
-                setCurrentColumn(column - 1);
-                this.Dolphin = false;
-                setOriginalSpeed(10);
-            }
-        } else {
-            return;
-        }
+//        if (gameMap.getTile(row, column).getPlanted() != null) {
+//            if (gameMap.getTile(row + 1, column).getPlanted() instanceof Spikeweed) {
+//                return;
+//            } else if (gameMap.getTile(row, column).getPlanted() instanceof Tallnut) {
+//                this.Dolphin = false;
+//                setOriginalSpeed(10);
+//                return;
+//            } else {
+//                gameMap.getTile(row, column).setPlanted(null);
+//                setCurrentColumn(column - 1);
+//                this.Dolphin = false;
+//                setOriginalSpeed(10);
+//            }
+//        } else {
+//            return;
+//        }
     }
 
     public void showDescription() {

@@ -79,7 +79,7 @@ public abstract class Zombie extends Characters {
         if (plant instanceof Spikeweed) {
             System.out.println(getName() + " cannot eat Spikeweed!");
         } else {
-            plant.setHealth(plant.getHealth() - getAttackDamage(), gameMap);
+//            plant.setHealth(plant.getHealth() - getAttackDamage(), gameMap);
             System.out.println(getName() + " attacks " + plant.getName() + " for " + getAttackDamage() + " damage.");
             System.out.println(plant.getName() + " has " + plant.getHealth() + " health remaining.");
         }

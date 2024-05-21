@@ -7,7 +7,7 @@ public class demo {
         Snowpea snopy = new Snowpea();
         NormalZombie zombie = new NormalZombie();
 
-        snopy.startAttacking(zombie);
+//        snopy.startAttacking(zombie);
     }
 }
 // javac source/Characters/Characters.java source/Characters/Plants/Plants.java source/Characters/Plants/Peashooter.java source/Characters/Zombie/Zombie.java source/Characters/Zombie/NormalZombie.java
