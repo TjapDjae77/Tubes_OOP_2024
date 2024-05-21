@@ -9,19 +9,20 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Sunflower extends Plants {
     Timer timer = new Timer();
     private Thread generatingSunThread;
-    private boolean startproduce = false;
-    private boolean stopRequested = false;
+    private boolean startProduce = false;
+    private volatile boolean stopRequested = false;
 
     public Sunflower(int row, int column) {
         super("Sunflower", 100, 0, 0, 50, 0, 10, false, row, column);
-        startproduce = false;
+        startProduce = false;
     }
 
     public Sunflower() {
         super("Sunflower", 100, 0, 0, 50, 0, 10, false, 0, 0);
-        startproduce = false;
+        startProduce = false;
     }
     public void startGeneratingSun() {
+        stopRequested = false;
         generatingSunThread = new Thread(() -> {
             try {
                 while (!stopRequested) {
@@ -33,18 +34,23 @@ public class Sunflower extends Plants {
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                System.out.println("Thread interrupted");
             }
         });
         generatingSunThread.start();
     }
 
-    public boolean isStartproduce() {
-        return startproduce;
+    public boolean isStartProduce() {
+        return startProduce;
     }
 
-    public void setStartproduce(boolean startproduce) {
-        this.startproduce = startproduce;
-        if(startproduce){
+    public boolean isStopRequested() {
+        return stopRequested;
+    }
+
+    public void setStartProduce(boolean startproduce) {
+        this.startProduce = startproduce;
+        if(isStartProduce()){
             startGeneratingSun();
         }
     }
@@ -55,9 +61,7 @@ public class Sunflower extends Plants {
 
     public void stopGeneratingSun() {
         stopRequested = true;
-        if (generatingSunThread != null) {
-            generatingSunThread.interrupt();
-        }
+        generatingSunThread.interrupt();
     }
 
     public void addSunSunflower(){

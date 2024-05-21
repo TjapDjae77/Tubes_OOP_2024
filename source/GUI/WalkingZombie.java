@@ -10,7 +10,7 @@ public class WalkingZombie extends Pane {
     private Zombie zombie;
     private ImageView zombieimg1;
     private ImageView zombieimg2 = null;
-    private int x;
+    private int x = 111;
 
 
     public WalkingZombie(Zombie zombie){

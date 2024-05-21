@@ -158,24 +158,24 @@ public class ControllerMainGame implements Initializable {
 
     private void updateDeckPaneAvailability(){
         int i = 0;
-        System.out.println("--------ITERASI AVAILABILITY--------");
+//        System.out.println("--------ITERASI AVAILABILITY--------");
         for(Pane pane : listdeckpane){
-            System.out.println("Slot ke-"+i);
+//            System.out.println("Slot ke-"+i);
             DeckPane dp = (DeckPane) pane.getChildren().getFirst();
             ImageView img3 = (ImageView) pane.getChildren().get(3);
             ImageView img2 = (ImageView) pane.getChildren().get(2);
-            System.out.println("Get Status: " + dp.getPlants().getCDStatus());
+
             if(Sun.getSun() >= dp.getPlants().getCost() && !dp.getPlants().getCDStatus()){
                 img3.setOnDragDetected(this::chooseplant);
                 img3.setCursor(Cursor.HAND);
                 img2.setVisible(true);
-                System.out.println("AVAILABLE");
+
             }
             else {
                 img3.setOnDragDetected(null);
                 img3.setCursor(Cursor.DEFAULT);
                 img2.setVisible(false);
-                System.out.println("NONE");
+
             }
             i++;
 
@@ -281,18 +281,13 @@ public class ControllerMainGame implements Initializable {
                 Pane targetPane = (Pane) target;
                 Pane sourcePane = (Pane) source.getParent();
                 if(sourcePane.getId().equals("shovelPane")){
-
-                    for(Node node : targetPane.getChildren()){
-                        if(node instanceof InformationPlant){
-                            if(((InformationPlant) node).getPlant().getName().equals("Sunflower")){
-                                InformationPlant infoPlant = (InformationPlant) node;
-                                ((Sunflower)infoPlant.getPlant()).stopGeneratingSun();
-                            }
-                        }
-                    }
-
                     int sizepane = targetPane.getChildren().size();
+                    InformationPlant infoplant = ((InformationPlant)targetPane.getChildren().get(sizepane-4));
+                    if(infoplant.getPlant() instanceof Sunflower) {
 
+                        ((Sunflower)infoplant.getPlant()).stopGeneratingSun();
+                        System.out.println("Sunflower berhenti produksi sun:" + ((Sunflower)infoplant.getPlant()).isStopRequested());
+                    }
                     targetPane.getChildren().remove(1, sizepane-1);
                 }
                 else {
@@ -362,7 +357,7 @@ public class ControllerMainGame implements Initializable {
         sourceImage.setCursor(Cursor.DEFAULT);
 
         if(dp.getPlantsName().equals("Sunflower")){
-            ((Sunflower) dp.getPlants()).setStartproduce(true);
+            ((Sunflower) plantInfo.getPlant()).setStartProduce(true);
         }
 
         targetPane.getChildren().add(plantInfo);
@@ -380,6 +375,7 @@ public class ControllerMainGame implements Initializable {
         sourcePane.getChildren().get(2).setVisible(false);
         sourcePane.getChildren().get(3).setOnDragDetected(null);
         sourcePane.getChildren().get(3).setCursor(Cursor.DEFAULT);
+        updateDeckPaneAvailability();
         startCooldown(dpold);
     }
 
