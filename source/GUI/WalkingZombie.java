@@ -30,4 +30,17 @@ public class WalkingZombie extends Pane {
     public void setX(int x){
         this.x = x;
     }
+
+
+    public Zombie getZombie() {
+        return zombie;
+    }
+
+    public ImageView getZombieimg1() {
+        return zombieimg1;
+    }
+
+    public ImageView getZombieimg2() {
+        return zombieimg2;
+    }
 }
