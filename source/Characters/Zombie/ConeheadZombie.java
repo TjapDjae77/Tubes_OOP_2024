@@ -5,7 +5,7 @@ public class ConeheadZombie extends Zombie {
 
     public ConeheadZombie() {
         super("Conehead Zombie", 250, 100, 1, false, 10, 0, 10);
-        setCurrentColumn(randomColumn());
+//        setCurrentColumn(randomColumn());
         this.Conehead = true;
     }
 

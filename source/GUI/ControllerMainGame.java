@@ -88,7 +88,7 @@ public class ControllerMainGame implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.setVolume(1);
+        mediaPlayer.setVolume(0.3);
         mediaPlayer.play();
 
         initializeDeck(deck);
@@ -298,7 +298,7 @@ public class ControllerMainGame implements Initializable {
                 else {
                     DeckPane dp = new DeckPane((DeckPane) sourcePane.getChildren().getFirst());
                     DeckPane dpold = (DeckPane) sourcePane.getChildren().getFirst();
-                    if (targetPane.getChildren().size() < 2){
+                    if (targetPane.getChildren().size() < 3){
                         if(((TilesPane) targetPane.getChildren().getFirst()).getTiles() instanceof PoolTiles && dp.getPlants().getIsAquatic()){
                             addingPlant(sourcePane, targetPane, dp, dpold);
                         }
@@ -309,7 +309,7 @@ public class ControllerMainGame implements Initializable {
 //                            throw new IllegalArgumentException("Tanaman harus ditanam sesuai dengan tipe tiles");
                         }
                     }
-                    else if(((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !dp.getPlants().getIsAquatic() && targetPane.getChildren().size() == 2){
+                    else if(((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !dp.getPlants().getIsAquatic() && targetPane.getChildren().size() == 5){
                         addingPlant(sourcePane, targetPane, dp, dpold);
 
                     }
@@ -366,7 +366,7 @@ public class ControllerMainGame implements Initializable {
         }
 
         targetPane.getChildren().add(plantInfo);
-//        targetPane.getChildren().add(dp);
+        targetPane.getChildren().add(dp);
         targetPane.getChildren().add(sourceImage);
 
 
@@ -469,7 +469,7 @@ public class ControllerMainGame implements Initializable {
 //                    else{
 //                            throw new IllegalArgumentException("Tanaman harus ditanam sesuai dengan tipe tiles");
 //                    }
-                    } else if (((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !aquatic) {
+                    } else if (((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !aquatic && targetPane.getChildren().size() < 6) {
                         showtransparent(source, targetPane, dp);
                     }
                 }

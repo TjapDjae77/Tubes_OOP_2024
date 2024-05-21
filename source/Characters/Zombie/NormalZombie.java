@@ -3,7 +3,7 @@ package source.Characters.Zombie;
 public class NormalZombie extends Zombie {
     public NormalZombie() {
         super("Normal Zombie", 125, 100, 1, false, 10, 0, 10);
-        setCurrentColumn(randomColumn());
+//        setCurrentColumn(randomColumn());
     }
 
     public void showDescription() {
