@@ -18,7 +18,7 @@ public class ZombieFactory {
                 return new BucketheadZombie();
 
             default:
-                return null;
+                return new DuckyTubeZombie();
         }
     }
 

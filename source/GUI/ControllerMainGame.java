@@ -112,6 +112,8 @@ public class ControllerMainGame implements Initializable {
 
         startUpdatingDeckPaneAvailability();
 
+//        ini
+
         Sun.sunProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> sunValue.setText(newValue.toString()));
 
