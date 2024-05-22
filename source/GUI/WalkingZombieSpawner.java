@@ -3,13 +3,17 @@ package source.GUI;
 import javafx.application.Platform;
 
 import javafx.scene.layout.GridPane;
+import javafx.scene.image.ImageView;
+
+import javafx.scene.layout.Pane;
 import source.Characters.Zombie.Zombie;
 import source.Characters.Zombie.ZombieFactory;
 
-import javax.swing.text.html.ImageView;
-import java.awt.*;
+
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class WalkingZombieSpawner {
 
@@ -54,8 +58,19 @@ public class WalkingZombieSpawner {
         WalkingZombie walkingZombie = new WalkingZombie(randomZombie);
 //        walkingZombie.setX();
         zombies.add(walkingZombie);
-//        ImageView imageZombie = new ImageView((walkingZombie.getZombieimg1()).getImage());
-//        stateGridPane.getChildren()
+        ImageView imageZombie = new ImageView(walkingZombie.getZombieimg1().getImage());
+
+        int[] values = {10, 21, 32, 43, 54, 65};
+
+        Random random = new Random();
+
+        // Menghasilkan indeks acak
+        int randomIndex = random.nextInt(values.length);
+
+        // Mengambil nilai dari array berdasarkan indeks acak
+        int randomValue = values[randomIndex];
+
+        ((Pane) stateGridPane.getChildren().get(randomValue))
     }
 
 
