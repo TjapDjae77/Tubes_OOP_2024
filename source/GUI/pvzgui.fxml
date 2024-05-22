@@ -12,63 +12,77 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="layardasar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.ControllerMainGame">
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.ControllerMainGame">
    <children>
-      <ImageView fitHeight="1080.0" fitWidth="1920.0">
-         <image>
-            <Image url="@../../assets/Tiles/Day/Template%20Day%20kosong.png" />
-         </image>
-      </ImageView>
-      <Pane prefHeight="1080.0" prefWidth="1920.0">
+      <AnchorPane fx:id="layardasar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0">
          <children>
-            <Label fx:id="sunValue" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="107.0" prefHeight="42.0" prefWidth="115.0" text="0" textAlignment="CENTER">
-               <font>
-                  <Font name="Retro Gaming" size="30.0" />
-               </font>
-            </Label>
-            <Button fx:id="menubutton" layoutX="1644.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#backToMenu" prefHeight="38.0" prefWidth="282.0" text="Menu" textFill="#0eae16">
-               <font>
-                  <Font size="29.0" />
-               </font>
-               <effect>
-                  <ImageInput>
-                     <source>
-                        <Image url="@../../assets/Menu/MenuButton.png" />
-                     </source>
-                  </ImageInput>
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <HBox fx:id="hboxdeck" layoutX="207.0" layoutY="13.0" prefHeight="130.0" prefWidth="1004.0" spacing="85.0" />
-            <Pane fx:id="shovelPane" layoutX="1236.0" layoutY="4.0" prefHeight="144.0" prefWidth="141.0" />
-            <GridPane fx:id="gridtilesmap" layoutX="-6.0" layoutY="162.0" prefHeight="919.0" prefWidth="2054.0">
-              <columnConstraints>
-                <ColumnConstraints maxWidth="98.0" minWidth="10.0" prefWidth="94.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="188.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="203.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="201.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="187.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="565.0" minWidth="10.0" prefWidth="203.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="180.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="572.0" minWidth="10.0" prefWidth="181.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="607.0" minWidth="10.0" prefWidth="189.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="660.0" minWidth="10.0" prefWidth="177.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="0.0" prefWidth="236.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="287.6666564941406" minHeight="10.0" prefHeight="168.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="171.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="271.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="134.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
+            <ImageView fitHeight="1080.0" fitWidth="1920.0">
+               <image>
+                  <Image url="@../../assets/Tiles/Day/Template Day kosong.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="1080.0" prefWidth="1920.0">
+               <children>
+                  <Label fx:id="sunValue" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="107.0" prefHeight="42.0" prefWidth="115.0" text="0" textAlignment="CENTER">
+                     <font>
+                        <Font name="Retro Gaming" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="menubutton" layoutX="1644.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#backToMenu" prefHeight="38.0" prefWidth="282.0" text="Menu" textFill="#0eae16">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="@../../assets/Menu/MenuButton.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <HBox fx:id="hboxdeck" layoutX="207.0" layoutY="13.0" prefHeight="130.0" prefWidth="1004.0" spacing="85.0" />
+                  <Pane fx:id="shovelPane" layoutX="1236.0" layoutY="4.0" prefHeight="144.0" prefWidth="141.0" />
+                  <GridPane fx:id="gridtilesmap" layoutX="-6.0" layoutY="162.0" prefHeight="919.0" prefWidth="2054.0">
+                    <columnConstraints>
+                      <ColumnConstraints maxWidth="98.0" minWidth="10.0" prefWidth="94.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="188.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="203.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="201.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="187.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="565.0" minWidth="10.0" prefWidth="203.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="180.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="572.0" minWidth="10.0" prefWidth="181.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="607.0" minWidth="10.0" prefWidth="189.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="660.0" minWidth="10.0" prefWidth="177.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="0.0" prefWidth="236.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="287.6666564941406" minHeight="10.0" prefHeight="168.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="171.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="271.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="134.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </Pane>
          </children>
-      </Pane>
+      </AnchorPane>
+      <AnchorPane fx:id="zombieArea" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="245.0" fitWidth="152.0" layoutX="2090.0" layoutY="830.0">
+               <image>
+                  <Image url="@../../assets/Zombies/PVZ_Normal%20Zombie.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

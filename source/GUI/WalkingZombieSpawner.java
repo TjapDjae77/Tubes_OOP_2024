@@ -2,6 +2,7 @@ package source.GUI;
 
 import javafx.application.Platform;
 
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 
@@ -52,7 +53,7 @@ public class WalkingZombieSpawner {
 
     private void spawnZombie() {
         ControllerMainGame mainGameController = ControllerMainGame.getInstanceGame();
-        GridPane stateGridPane = mainGameController.getGridtilesmap();
+        AnchorPane zombieArea = mainGameController.getZombieArea();
         Zombie randomZombie = ZombieFactory.createZombie();
         WalkingZombie walkingZombie = new WalkingZombie(randomZombie);
 
@@ -61,43 +62,43 @@ public class WalkingZombieSpawner {
         ImageView imageZombie2 = null;
 
         if(walkingZombie.getZombie() instanceof NormalZombie){
-            setupImageView(imageZombie, 152, 245, -100, 12);
+            setupImageView(imageZombie, 152, 245, -100, 2090);
         }
         else if(walkingZombie.getZombie() instanceof ConeheadZombie){
-            setupImageView(imageZombie, 151, 290, -150, 12);
+            setupImageView(imageZombie, 151, 290, -150, 2090);
         }
         else if(walkingZombie.getZombie() instanceof BucketheadZombie){
-            setupImageView(imageZombie, 158, 275, -135, 12);
+            setupImageView(imageZombie, 158, 275, -135, 2090);
         }
         else if(walkingZombie.getZombie() instanceof DuckyTubeZombie){
-            setupImageView(imageZombie, 154, 245, -100, 12);
+            setupImageView(imageZombie, 154, 245, -100, 2090);
         }
         else if(walkingZombie.getZombie() instanceof FootballZombie){
-            setupImageView(imageZombie, 257, 275, -125, 12);
+            setupImageView(imageZombie, 257, 275, -125, 2090);
         }
         else if(walkingZombie.getZombie() instanceof JackInTheBoxZombie){
-            setupImageView(imageZombie, 185, 245, -100, 125);
+            setupImageView(imageZombie, 185, 245, -100, 2090);
         }
         else if(walkingZombie.getZombie() instanceof DolphinRiderZombie){
-            setupImageView(imageZombie, 203, 245, -100, 125);
+            setupImageView(imageZombie, 203, 245, -100, 2090);
         }
         else if(walkingZombie.getZombie() instanceof ScreenDoorZombie){
-            setupImageView(imageZombie, 298, 240, -100, 125);
+            setupImageView(imageZombie, 298, 240, -100, 2090);
         }
         else if(walkingZombie.getZombie() instanceof PoleVaultingZombie){
-            setupImageView(imageZombie, 320, 245, -100, 125);
+            setupImageView(imageZombie, 320, 245, -100, 2090);
             imageZombie2 = new ImageView(walkingZombie.getZombieimg2().getImage());
-            setupImageView(imageZombie2, 211, 250, -110, 125);
+            setupImageView(imageZombie2, 211, 250, -110, 2090);
             imageZombie2.setOpacity(0);
         }
         else if(walkingZombie.getZombie() instanceof NewspaperZombie){
-            setupImageView(imageZombie, 180, 245, -100, 125);
+            setupImageView(imageZombie, 180, 245, -100, 2090);
             imageZombie2 = new ImageView(walkingZombie.getZombieimg2().getImage());
-            setupImageView(imageZombie2, 245, 245, -120, 125);
+            setupImageView(imageZombie2, 245, 245, -120, 2090);
             imageZombie2.setOpacity(0);
         }
 
-        int[] values = {10, 21, 32, 43, 54, 65};
+        int[] values = {70, 230, 380, 530, 700, 830};
 
 
         Random random = new Random();
@@ -112,11 +113,11 @@ public class WalkingZombieSpawner {
 
         walkingZombie.setMoving(true);
 
-        ((Pane) stateGridPane.getChildren().get(randomValue)).getChildren().add(walkingZombie);
+        zombieArea.getChildren().add(walkingZombie);
         if(walkingZombie.getZombie() instanceof PoleVaultingZombie || walkingZombie.getZombie() instanceof NewspaperZombie){
-            ((Pane) stateGridPane.getChildren().get(randomValue)).getChildren().add(imageZombie2);
+            zombieArea.getChildren().add(imageZombie2);
         }
-        ((Pane) stateGridPane.getChildren().get(randomValue)).getChildren().add(imageZombie);
+        zombieArea.getChildren().add(imageZombie);
 
 
 

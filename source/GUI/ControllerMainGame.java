@@ -42,6 +42,9 @@ public class ControllerMainGame implements Initializable {
     private AnchorPane layardasar;
 
     @FXML
+    private AnchorPane zombieArea;
+
+    @FXML
     private GridPane gridtilesmap;
 
     @FXML
@@ -84,6 +87,10 @@ public class ControllerMainGame implements Initializable {
 
     public GridPane getGridtilesmap(){
         return gridtilesmap;
+    }
+
+    public AnchorPane getZombieArea() {
+        return zombieArea;
     }
 
     @Override
