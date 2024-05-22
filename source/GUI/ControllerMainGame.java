@@ -71,6 +71,8 @@ public class ControllerMainGame implements Initializable {
 
     private static ControllerMainGame instanceGame;
 
+    private static WalkingZombieSpawner walkingZombieSpawner;
+
 
     public ControllerMainGame() {
         instanceGame = this;
@@ -112,12 +114,14 @@ public class ControllerMainGame implements Initializable {
 
         startUpdatingDeckPaneAvailability();
 
-//        ini
+        walkingZombieSpawner = new WalkingZombieSpawner();
 
         Sun.sunProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> sunValue.setText(newValue.toString()));
 
         });
+
+        walkingZombieSpawner.startSpawning();
     }
 
     private void startUpdatingDeckPaneAvailability() {
@@ -319,7 +323,7 @@ public class ControllerMainGame implements Initializable {
 //                            throw new IllegalArgumentException("Tanaman harus ditanam sesuai dengan tipe tiles");
                         }
                     }
-                    else if(((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !dp.getPlants().getIsAquatic() && targetPane.getChildren().size() == 5){
+                    else if(((InformationPlant) targetPane.getChildren().get(1)).getPlant() instanceof Lilypad && !dp.getPlants().getIsAquatic() && !(dp.getPlants() instanceof Spikeweed) && targetPane.getChildren().size() == 5){
                         addingPlant(sourcePane, targetPane, dp, dpold);
 
                     }
@@ -471,7 +475,7 @@ public class ControllerMainGame implements Initializable {
 //                    else{
 //                            throw new IllegalArgumentException("Tanaman harus ditanam sesuai dengan tipe tiles");
 //                    }
-                    } else if (((InformationPlant) targetPane.getChildren().get(1)).getPlant().getName().equals("Lilypad") && !aquatic && targetPane.getChildren().size() < 6) {
+                    } else if (((InformationPlant) targetPane.getChildren().get(1)).getPlant() instanceof Lilypad && !aquatic && !(dp.getPlants() instanceof Spikeweed) && targetPane.getChildren().size() < 6) {
                         showtransparent(source, targetPane, dp);
                     }
                 }

@@ -16,7 +16,7 @@ import java.util.Random;
 public class WalkingZombieSpawner {
 
     private static final int MAX_ZOMBIE = 10;
-    private static final double SPAWN_PROBABILITY = 0.3;
+    private static final double SPAWN_PROBABILITY = 1;
     private static final int SPAWN_INTERVAL = 3000;
     private ArrayList<WalkingZombie> zombies;
     private Thread spawningThread;
@@ -61,19 +61,19 @@ public class WalkingZombieSpawner {
         ImageView imageZombie2 = null;
 
         if(walkingZombie.getZombie() instanceof NormalZombie){
-            setupImageView(imageZombie, 152, 245, -100, 125);
+            setupImageView(imageZombie, 152, 245, -100, 12);
         }
         else if(walkingZombie.getZombie() instanceof ConeheadZombie){
-            setupImageView(imageZombie, 151, 290, -150, 125);
+            setupImageView(imageZombie, 151, 290, -150, 12);
         }
         else if(walkingZombie.getZombie() instanceof BucketheadZombie){
-            setupImageView(imageZombie, 158, 275, -135, 125);
+            setupImageView(imageZombie, 158, 275, -135, 12);
         }
         else if(walkingZombie.getZombie() instanceof DuckyTubeZombie){
-            setupImageView(imageZombie, 154, 245, -100, 125);
+            setupImageView(imageZombie, 154, 245, -100, 12);
         }
         else if(walkingZombie.getZombie() instanceof FootballZombie){
-            setupImageView(imageZombie, 257, 275, -125, 125);
+            setupImageView(imageZombie, 257, 275, -125, 12);
         }
         else if(walkingZombie.getZombie() instanceof JackInTheBoxZombie){
             setupImageView(imageZombie, 185, 245, -100, 125);
@@ -110,11 +110,16 @@ public class WalkingZombieSpawner {
 
         System.out.println("Zombie yang tercetak: " + walkingZombie.getZombie().getClass().getSimpleName() + "   Di-spawn di tiles: " + randomValue);
 
+        walkingZombie.setMoving(true);
+
         ((Pane) stateGridPane.getChildren().get(randomValue)).getChildren().add(walkingZombie);
         if(walkingZombie.getZombie() instanceof PoleVaultingZombie || walkingZombie.getZombie() instanceof NewspaperZombie){
             ((Pane) stateGridPane.getChildren().get(randomValue)).getChildren().add(imageZombie2);
         }
         ((Pane) stateGridPane.getChildren().get(randomValue)).getChildren().add(imageZombie);
+
+
+
     }
 
 

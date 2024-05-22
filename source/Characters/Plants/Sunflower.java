@@ -29,7 +29,7 @@ public class Sunflower extends Plants {
                     Thread.sleep(3000);
                     synchronized (Sun.class) {
                         Sun.addSun(25); // Generate 25 sun every 3 seconds
-                        System.out.println("Sun saat ini ding : " + Sun.getSun() + " di row " + this.getCurrentRow() + " dan column " + getCurrentColumn());
+
                     }
                 }
             } catch (InterruptedException e) {

@@ -24,7 +24,7 @@ public class Sun{
             @Override
             public void run(){
                 Platform.runLater(() -> addSun(25));
-                System.out.println("Sun saat ini : " + sun);
+
                 spawnSun();
             }
         }, randomTime(5, 10)*1000);
