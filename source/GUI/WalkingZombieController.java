@@ -24,7 +24,7 @@ public class WalkingZombieController extends Pane{
 
     public Pane getZombiePane(){ return zombiePane; }
 
-    private WalkingZombie getWalkingZombie(){
+    public WalkingZombie getWalkingZombie(){
         return wz;
     }
 

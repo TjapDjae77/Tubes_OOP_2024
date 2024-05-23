@@ -10,8 +10,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.Pane;
+import source.Characters.Plants.Spikeweed;
+import source.Characters.Plants.*;
 import source.Characters.Zombie.*;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class WalkingZombieSpawner {
     private Thread spawningThread;
     private Thread movementThread;
     private boolean isGameOver = false;
+    private static boolean[][] plantPositions = new boolean[6][11];
 
 
     public WalkingZombieSpawner(){
@@ -57,6 +59,60 @@ public class WalkingZombieSpawner {
         });
         spawningThread.start();
     }
+
+    public void setPlantPositions(boolean setter, int row, int col){
+        plantPositions[row][col] = setter;
+    }
+
+    public boolean isPlantInFront(WalkingZombieController zombie){
+        int row = zombie.getWalkingZombie().getZombie().getCurrentRow();
+        int col = zombie.getWalkingZombie().getZombie().getCurrentColumn();
+        return plantPositions[row][col];
+    }
+
+    public void zStartAttack(WalkingZombieController walkingZombieController, Pane targetPane ) {
+        new Thread(() -> {
+            while (isPlantInFront(walkingZombieController)) {
+                Platform.runLater(() -> {
+                    // Get the plant in front of the zombie
+                    int sizepane = targetPane.getChildren().size();
+                    if (sizepane > 3) {
+                        Plants plant = ((InformationPlant) targetPane.getChildren().get(sizepane - 4)).getPlant();
+                        if (plant != null) {
+                            // Damage the plant
+                            plant.setHealth(plant.getHealth() - walkingZombieController.getWalkingZombie().getZombie().getAttackDamage());
+                            System.out.println("Zombie attacked plant. Plant health: " + plant.getHealth());
+                            // Check if the plant is destroyed
+                            if (plant.getHealth() <= 0) {
+                                System.out.println("Plant destroyed!");
+                                deadPlant(targetPane);
+                                walkingZombieController.setMoving(true);
+                            }
+                        }
+                    }
+                });
+                try {
+                    Thread.sleep(walkingZombieController.getWalkingZombie().getZombie().getAttackSpeed() * 1000L);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+                if (!isPlantInFront(walkingZombieController)) {
+                    break;
+                }
+            }
+        }).start();
+    }
+
+    public void deadPlant(Pane targetPane) {
+        InformationPlant infoPlant = (InformationPlant) targetPane.getChildren().get(1);
+        Plants plant = infoPlant.getPlant();
+        int row = plant.getCurrentRow();
+        int col = plant.getCurrentColumn();
+        setPlantPositions(false, row, col);
+        infoPlant.setPlant(null);
+    }
+
 
     private void trySpawnZombie() throws IOException {
         if(zombies.size() < MAX_ZOMBIE && Math.random() < SPAWN_PROBABILITY){
@@ -154,14 +210,45 @@ public class WalkingZombieSpawner {
                    Thread.sleep(48);
                    Platform.runLater(() -> {
                        if(walkingZombieController.isMoving()) {
-                           walkingZombieController.moveZombie(1);
-                           System.out.println("Zombie " + zombies.size() + " moved to x: " + walkingZombieController.getZombiePane().getLayoutX());
-                           if(walkingZombieController.getZombiePane().getLayoutX() < 10){
-                               ControllerMainGame mainGameController = ControllerMainGame.getInstanceGame();
-                               mainGameController.stopGame(false);
-                               stopSpawning();
+                           Pane targetPane = walkingZombieController.getZombiePane();
+                           if (!isPlantInFront(walkingZombieController) || ((InformationPlant)targetPane.getChildren().get(1)).getPlant() instanceof Spikeweed) {
+                               walkingZombieController.moveZombie(1);
+                               double layoutX = walkingZombieController.getZombiePane().getLayoutX();
+                               System.out.println("Zombie " + zombies.size() + " moved to x: " + walkingZombieController.getZombiePane().getLayoutX());
+                               if (layoutX >= 1636 && layoutX < 1815) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(9);
+                               } else if (layoutX >= 1445 && layoutX < 1636) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(8);
+                               } else if (layoutX >= 1248 && layoutX < 1445) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(7);
+                               } else if (layoutX >= 1057 && layoutX < 1248) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(6);
+                               } else if (layoutX >= 874 && layoutX < 1057) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(5);
+                               } else if (layoutX >= 694 && layoutX < 874) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(4);
+                               } else if (layoutX >= 513 && layoutX < 694) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(3);
+                               } else if (layoutX >= 332 && layoutX < 513) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(2);
+                               } else if (layoutX >= 150 && layoutX < 332) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(1);
+                               } else if (layoutX < 150) {
+                                   walkingZombieController.getWalkingZombie().getZombie().setCurrentRow(0);
+                               }
+
+                               if(walkingZombieController.getZombiePane().getLayoutX() < 10) {
+                                   ControllerMainGame mainGameController = ControllerMainGame.getInstanceGame();
+                                   mainGameController.stopGame(false);
+                                   stopSpawning();
+                               }
+                           }
+                           else{
+                               walkingZombieController.setMoving(false);
+                               zStartAttack(walkingZombieController,targetPane);
                            }
                        }
+
                    });
 
                } catch (InterruptedException e) {

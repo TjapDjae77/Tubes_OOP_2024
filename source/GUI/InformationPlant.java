@@ -14,4 +14,5 @@ public class InformationPlant extends Pane {
     public Plants getPlant() {
         return plant;
     }
+    public void setPlant(Plants plant) {this.plant = plant;}
 }

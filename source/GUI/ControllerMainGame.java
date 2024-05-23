@@ -73,6 +73,8 @@ public class ControllerMainGame implements Initializable {
 
     MediaPlayer mediaPlayer;
 
+    WalkingZombieSpawner wzs = new WalkingZombieSpawner();
+
     private ArrayList<DeckPane> deck;
 
     private ArrayList<Pane> listdeckpane;
@@ -418,6 +420,7 @@ public class ControllerMainGame implements Initializable {
         int column = GridPane.getColumnIndex(targetPane);
 
         Plants plant = createPlant(dp.getPlantsName(), row, column);
+        wzs.setPlantPositions(true,row,column);
 
         InformationPlant plantInfo = new InformationPlant(plant);
 
@@ -456,7 +459,7 @@ public class ControllerMainGame implements Initializable {
             public void run() {
                 deckPane.getPlants().setOnCooldown(false);
             }
-        }, deckPane.getPlants().getCooldown()*1000);
+        }, deckPane.getPlants().getCooldown()*1000L);
     }
 
     private Plants createPlant(String plantName, int row, int column){
