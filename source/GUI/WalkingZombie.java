@@ -11,10 +11,9 @@ public class WalkingZombie extends Pane {
     private Zombie zombie;
     private ImageView zombieimg1;
     private ImageView zombieimg2 = null;
-    private int x = 12;
+    private int x=0;
     private Thread movementThread;
-    private boolean moving;
-    private boolean isDead = false;
+
 
 
     public WalkingZombie(Zombie zombie){
@@ -48,44 +47,36 @@ public class WalkingZombie extends Pane {
         return zombieimg2;
     }
 
-    public boolean isMoving() {
-        return moving;
-    }
+//    public void setMoving(boolean moving) {
+//        this.moving = moving;
+//        if(moving){
+//            startMoving();
+//        }
+//    }
 
-    public void setDead(boolean dead) {
-        isDead = dead;
-    }
+//    public void startMoving(){
+//        movementThread = new Thread(() -> {
+//            while (!isDead) {
+//                try {
+//                    Thread.sleep(100); // Adjust the speed of the movement
+//                    Platform.runLater(() -> {
+//                        if (isMoving()) {
+//                            moveLeft();
+//
+//                        }
+//                    });
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//        movementThread.start();
+//    }
 
-    public void setMoving(boolean moving) {
-        this.moving = moving;
-        if(moving){
-            startMoving();
-        }
-    }
-
-    public void startMoving(){
-        movementThread = new Thread(() -> {
-            while (!isDead) {
-                try {
-                    Thread.sleep(100); // Adjust the speed of the movement
-                    Platform.runLater(() -> {
-                        if (isMoving()) {
-                            moveLeft();
-
-                        }
-                    });
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        movementThread.start();
-    }
-
-    private void moveLeft() {
-        this.setX(getX() - 5);
-        zombieimg1.setLayoutX(getX() - 5);
-        System.out.println("TESTING SUDAH JALAN");
-        System.out.println("x: " + getX());
-    }
+//    private void moveLeft() {
+//        this.setX(getX() - 5);
+//        zombieimg1.setLayoutX(getX() - 5);
+//        System.out.println("TESTING SUDAH JALAN");
+//        System.out.println("x: " + getX());
+//    }
 }
