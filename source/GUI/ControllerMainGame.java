@@ -45,11 +45,19 @@ public class ControllerMainGame implements Initializable {
     private AnchorPane zombieArea;
 
     @FXML
+    private ImageView loseImage;
+
+    @FXML
+    private ImageView winImage;
+
+    @FXML
     private GridPane gridtilesmap;
 
     @FXML
     private HBox hboxdeck;
 
+    @FXML
+    private Pane paneEndGame;
 
     @FXML
     private Pane shovelPane;
@@ -59,6 +67,9 @@ public class ControllerMainGame implements Initializable {
 
     @FXML
     private Button menubutton;
+
+    @FXML
+    private Button quitButton;
 
     MediaPlayer mediaPlayer;
 
@@ -100,6 +111,8 @@ public class ControllerMainGame implements Initializable {
         ControllerPrepGame prepGameController = ControllerPrepGame.getInstance();
         deck = prepGameController.getListDeck();
 
+        quitButton.setDisable(true);
+
         Timer tm = new Timer();
 
         java.net.URL resource = getClass().getClassLoader().getResource("assets/Music/Pool_Day_Song.mp3");
@@ -113,6 +126,9 @@ public class ControllerMainGame implements Initializable {
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.setVolume(0.3);
         mediaPlayer.play();
+
+        loseImage.setVisible(false);
+        winImage.setVisible(false);
 
         initializeDeck(deck);
         initializeShovelPane();
@@ -344,6 +360,32 @@ public class ControllerMainGame implements Initializable {
         }
         dragEvent.setDropCompleted(success);
         dragEvent.consume();
+    }
+
+    public void stopGame(boolean wins) {
+        for (Node node : gridtilesmap.getChildren()) {
+            if (node instanceof Pane) {
+                Pane tilePane = (Pane) node;
+                for (Node childNode : tilePane.getChildren()) {
+                    if (childNode instanceof InformationPlant) {
+                        InformationPlant infoPlant = (InformationPlant) childNode;
+                        if (infoPlant.getPlant() instanceof Sunflower) {
+                            ((Sunflower) infoPlant.getPlant()).stopGeneratingSun();
+                        }
+                    }
+                }
+            }
+        }
+        paneEndGame.toFront();
+        if(wins){
+            winImage.setVisible(true);
+        }
+        else{
+            loseImage.setVisible(true);
+        }
+        quitButton.setDisable(false);
+        quitButton.setCursor(Cursor.HAND);
+        menubutton.setDisable(true);
     }
 
     private void addingPlant(Pane sourcePane, Pane targetPane, DeckPane dp, DeckPane dpold){
@@ -595,6 +637,12 @@ public class ControllerMainGame implements Initializable {
     void backToMenu(MouseEvent event) throws IOException {
         loadScene((Stage) menubutton.getScene().getWindow(), "/source/GUI/mainmenu.fxml");
     }
+
+    @FXML
+    void quitGame(MouseEvent event) {
+        System.exit(0);
+    }
+
 
     private void loadScene(Stage stage, String fxmlPath) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));

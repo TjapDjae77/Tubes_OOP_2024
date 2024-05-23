@@ -17,6 +17,25 @@
 
 <StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.ControllerMainGame">
    <children>
+      <Pane fx:id="paneEndGame" prefHeight="200.0" prefWidth="1920.0">
+         <children>
+            <ImageView fx:id="winImage" fitHeight="1015.0" fitWidth="1151.0" layoutX="360.0" layoutY="48.0">
+               <image>
+                  <Image url="@../../assets/EndGame/GUI PVZ-3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="loseImage" fitHeight="1070.0" fitWidth="1105.0" layoutX="393.0" layoutY="-4.0">
+               <image>
+                  <Image url="@../../assets/EndGame/GUI PVZ-2.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="quitButton" layoutX="719.0" layoutY="921.0" mnemonicParsing="false" onMouseClicked="#quitGame" opacity="0.0" prefHeight="133.0" prefWidth="448.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
       <ImageView fitHeight="1080.0" fitWidth="1920.0">
          <image>
             <Image url="@../../assets/Tiles/Day/Template Day kosong.png" />
@@ -50,8 +69,8 @@
                   <HBox fx:id="hboxdeck" layoutX="207.0" layoutY="13.0" prefHeight="130.0" prefWidth="1004.0" spacing="85.0" />
                   <Pane fx:id="shovelPane" layoutX="1236.0" layoutY="4.0" prefHeight="144.0" prefWidth="141.0" />
                   <GridPane fx:id="gridtilesmap" layoutX="-6.0" layoutY="162.0" prefHeight="919.0" prefWidth="2054.0">
-                    <columnConstraints>
-                      <ColumnConstraints maxWidth="98.0" minWidth="10.0" prefWidth="94.0" />
+                     <columnConstraints>
+                        <ColumnConstraints maxWidth="98.0" minWidth="10.0" prefWidth="94.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="188.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="203.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="201.0" />
@@ -62,15 +81,15 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="607.0" minWidth="10.0" prefWidth="189.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="660.0" minWidth="10.0" prefWidth="177.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="0.0" prefWidth="236.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="287.6666564941406" minHeight="10.0" prefHeight="168.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="287.6666564941406" minHeight="10.0" prefHeight="168.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="171.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="271.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="134.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                     </rowConstraints>
                   </GridPane>
                </children>
             </Pane>

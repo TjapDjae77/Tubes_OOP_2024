@@ -5,10 +5,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.ImageView;
 
-public class WalkingZombieController extends AnchorPane{
+public class WalkingZombieController extends Pane{
 
     @FXML
-    private AnchorPane zombieRoot;
+    private Pane zombiePane;
 
     @FXML
     private ImageView img1;
@@ -21,9 +21,8 @@ public class WalkingZombieController extends AnchorPane{
     private boolean moving = true;
     private boolean isDead = false;
 
-    public AnchorPane getZombieRoot(){
-        return zombieRoot;
-    }
+
+    public Pane getZombiePane(){ return zombiePane; }
 
     private WalkingZombie getWalkingZombie(){
         return wz;
@@ -54,8 +53,8 @@ public class WalkingZombieController extends AnchorPane{
     }
 
     public void moveZombie(double deltaX) {
-        double currentX = zombieRoot.getLayoutX();
-        zombieRoot.setLayoutX(currentX - deltaX);
+        double currentX = zombiePane.getLayoutX();
+        zombiePane.setLayoutX(currentX - deltaX);
     }
 
 }

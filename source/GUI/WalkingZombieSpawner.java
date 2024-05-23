@@ -3,6 +3,7 @@ package source.GUI;
 import javafx.application.Platform;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -24,6 +25,7 @@ public class WalkingZombieSpawner {
     private static final int SPAWN_INTERVAL = 3000;
     private ArrayList<WalkingZombieController> zombies;
     private Thread spawningThread;
+    private Thread movementThread;
     private boolean isGameOver = false;
 
 
@@ -47,7 +49,9 @@ public class WalkingZombieSpawner {
                     System.out.println("JUMLAH ZOMBIE: " + zombies.size());
                 }
                 catch(InterruptedException e){
-                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
+                    System.out.println("GAME SELESAI");
+
                 }
             }
         });
@@ -71,10 +75,21 @@ public class WalkingZombieSpawner {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("walkingzombie.fxml"));
         try {
-            AnchorPane zombiePane = loader.load();
+            Pane zombiePane = loader.load();
             WalkingZombieController walkingZombieController = loader.getController();
 
-            Zombie randomZombie = ZombieFactory.createZombie();
+            int[] values = {60, 230, 380, 530, 700, 830};
+            Random random = new Random();
+            int randomIndex = random.nextInt(values.length);
+            int randomValue = values[randomIndex];
+
+            Zombie randomZombie;
+            if(randomValue == 380 || randomValue == 530){
+                randomZombie = ZombieFactory.createZombie(true);
+            }
+            else{
+                randomZombie = ZombieFactory.createZombie(false);
+            }
             WalkingZombie walkingZombie = new WalkingZombie(randomZombie);
             walkingZombieController.setWz(walkingZombie);
 
@@ -93,17 +108,15 @@ public class WalkingZombieSpawner {
                 walkingZombieController.getZombieImageView2().setFitHeight(image2.getHeight());
             }
 
-            int[] values = {70, 230, 380, 530, 700, 830};
-            Random random = new Random();
-            int randomIndex = random.nextInt(values.length);
-            int randomValue = values[randomIndex];
-
-            zombiePane.setLayoutX(1900);
+            zombiePane.setLayoutX(2090);
             zombiePane.setLayoutY(randomValue);
 //            zombiePane.getChildren().add(walkingZombie);
 
+            zombiePane.setPadding(new Insets(0, 0, 0, 0));
+
             zombies.add(walkingZombieController);
             zombieArea.getChildren().add(zombiePane);
+            System.out.println("ANAKAN: " + zombieArea.getChildren().get(0).getClass().getSimpleName());
 
             walkingZombieController.setMoving(true);
 
@@ -135,19 +148,25 @@ public class WalkingZombieSpawner {
     }
 
     private void startZombieMovement(WalkingZombieController walkingZombieController) {
-        Thread movementThread = new Thread(() -> {
+        movementThread = new Thread(() -> {
            while (!isGameOver) {
                try {
-                   Thread.sleep(100);
+                   Thread.sleep(48);
                    Platform.runLater(() -> {
                        if(walkingZombieController.isMoving()) {
                            walkingZombieController.moveZombie(1);
-                           System.out.println("Zombie moved to x: " + walkingZombieController.getZombieRoot().getLayoutX());
+                           System.out.println("Zombie " + zombies.size() + " moved to x: " + walkingZombieController.getZombiePane().getLayoutX());
+                           if(walkingZombieController.getZombiePane().getLayoutX() < 10){
+                               ControllerMainGame mainGameController = ControllerMainGame.getInstanceGame();
+                               mainGameController.stopGame(false);
+                               stopSpawning();
+                           }
                        }
                    });
 
                } catch (InterruptedException e) {
-                   e.printStackTrace();
+                   Thread.currentThread().interrupt();
+                   System.out.println("ZOMBIE BERHENTI");
                }
            }
         });
@@ -215,6 +234,8 @@ public class WalkingZombieSpawner {
 
     public void stopSpawning() {
         isGameOver = true;
+        spawningThread.interrupt();
+        movementThread.interrupt();
     }
 
 //    public void setupImageView(ImageView img, int fitWidth, int fitHeight, int layoutY, int layoutX){
