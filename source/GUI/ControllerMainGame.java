@@ -563,7 +563,7 @@ public class ControllerMainGame implements Initializable {
                 .filter(zombie -> zombie.getWalkingZombie().getZombie().getCurrentRow() == row)
                 .collect(Collectors.toList());
 
-        if (plant.canShoot()){
+        if (plant.canShoot() || plant instanceof Squash || plant instanceof TangleKelp){
             startAttacking(plant,zombiesInRow);
         }
         System.out.println("TERJADI PENANAMAN TANAMAN PADA ROW: " + row + " COL: " + column + " DENGAN TIPE: " + plantInfo.getPlant().getClass().getSimpleName());
