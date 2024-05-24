@@ -16,7 +16,7 @@
 2. Install JavaFX
 3. Sesuaikan JDK menjadi JDK 22
 4. Open folder source -> GUI
-5. Run file
+5. Run file Main.java
 
 
 ## Anggota Kelompok
