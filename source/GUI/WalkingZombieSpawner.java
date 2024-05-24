@@ -68,7 +68,7 @@ public class WalkingZombieSpawner {
 
     public void setPlantPositions(boolean setter, int row, int col){
         plantPositions[row][col] = setter;
-        System.out.println("PLANT POSITION ON ROW " + row + " COL " + col + " : " + plantPositions[row][col]);
+
     }
 
     public void startSpawning() {
@@ -86,11 +86,11 @@ public class WalkingZombieSpawner {
                                     e.printStackTrace();
                                 }
                             });
-                            System.out.println("JUMLAH ZOMBIE: " + zombies.size());
+
                         }
                         catch(InterruptedException e){
                             Thread.currentThread().interrupt();
-                            System.out.println("ZOMBIE SELESAI DI-SPAWN");
+
 
                         }
                     }
@@ -218,7 +218,7 @@ public class WalkingZombieSpawner {
                            if (!isPlantInFront(walkingZombieController)) {
                                walkingZombieController.moveZombie(1);
                                double layoutX = walkingZombieController.getZombiePane().getLayoutX();
-                               System.out.println("Zombie " + zombies.size() + " moved to x: " + walkingZombieController.getZombiePane().getLayoutX());
+
                                if (layoutX >= BATASKIRI9 && layoutX < BATASKIRI10) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(9);
                                } else if (layoutX >= BATASKIRI8 && layoutX < BATASKIRI9) {
@@ -249,7 +249,7 @@ public class WalkingZombieSpawner {
                                if (targetPane.getChildren().get(1) instanceof ImageView || ((InformationPlant)targetPane.getChildren().get(1)).getPlant() instanceof Spikeweed) {
                                    walkingZombieController.moveZombie(1);
                                    double layoutX = walkingZombieController.getZombiePane().getLayoutX();
-                                   System.out.println("Zombie " + zombies.size() + " moved to x: " + walkingZombieController.getZombiePane().getLayoutX());
+
                                    if (layoutX >= BATASKIRI9 && layoutX < BATASKIRI10) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(9);
                                    } else if (layoutX >= BATASKIRI8 && layoutX < BATASKIRI9) {

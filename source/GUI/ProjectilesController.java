@@ -14,6 +14,8 @@ public class ProjectilesController extends Pane {
     private Pane projectilesPane;
 
     private Projectile projectile = null;
+    private boolean moving = false;
+
 
     public Pane getProjectilesPane() { return projectilesPane; }
 
@@ -22,6 +24,14 @@ public class ProjectilesController extends Pane {
     public void setProjectile(Projectile projectile) { this.projectile = projectile; }
 
     public Projectile getProjectile() { return projectile; }
+
+    public boolean isMoving(){
+        return moving;
+    }
+
+    public void setMoving(boolean moving){
+        this.moving = moving;
+    }
 
     public void moveProjectile(double deltaX) {
         double currentX = projectilesPane.getLayoutX();
