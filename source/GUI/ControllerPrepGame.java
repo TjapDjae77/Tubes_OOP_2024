@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.application.Platform;
+
 public class ControllerPrepGame implements Initializable {
 
     @FXML private HBox hboxdeck;
@@ -162,7 +164,10 @@ public class ControllerPrepGame implements Initializable {
         TimerTask nightIsHere = new TimerTask(){
             @Override
             public void run() {
-                setToNight(true);
+                Platform.runLater(() -> {
+                    ControllerMainGame.getInstanceGame().switchToNight();
+                    setToNight(true);
+                });
             }
         };
         timer.schedule(nightIsHere, 100000);

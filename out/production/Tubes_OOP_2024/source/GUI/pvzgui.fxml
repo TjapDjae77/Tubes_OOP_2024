@@ -36,9 +36,14 @@
             </Button>
          </children>
       </Pane>
-      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+      <ImageView fx:id="MapPagi" fitHeight="1080.0" fitWidth="1920.0">
          <image>
             <Image url="@../../assets/Tiles/Day/Template Day kosong.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="MapMalem" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/Tiles/Night/Template Night kosong.png" />
          </image>
       </ImageView>
       <AnchorPane fx:id="zombieArea" prefHeight="200.0" prefWidth="200.0" />

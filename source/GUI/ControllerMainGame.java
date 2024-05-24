@@ -46,6 +46,12 @@ public class ControllerMainGame implements Initializable {
     private AnchorPane zombieArea;
 
     @FXML
+    private ImageView MapMalem;
+
+    @FXML
+    private ImageView MapPagi;
+
+    @FXML
     private ImageView loseImage;
 
     @FXML
@@ -131,6 +137,7 @@ public class ControllerMainGame implements Initializable {
 
         loseImage.setVisible(false);
         winImage.setVisible(false);
+        MapMalem.setVisible(false);
 
         initializeDeck(deck);
         initializeShovelPane();
@@ -147,6 +154,20 @@ public class ControllerMainGame implements Initializable {
         });
         WalkingZombieSpawner walkingZombieSpawner = WalkingZombieSpawner.getInstanceSpawner();
         walkingZombieSpawner.startSpawning();
+
+        TimerTask night = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> switchToNight());
+            }
+        };
+        tm.schedule(night,100000);
+    }
+
+    public void switchToNight(){
+        MapPagi.setVisible(false);
+        MapMalem.setVisible(true);
+        System.out.println("Malam telah tiba!");
     }
 
     private void startUpdatingDeckPaneAvailability() {
