@@ -207,7 +207,7 @@ public class WalkingZombieSpawner {
         movementThread = new Thread(() -> {
            while (!isGameOver) {
                try {
-                   Thread.sleep(48);
+                   Thread.sleep(48 * (10/((int)walkingZombieController.getWalkingZombie().getZombie().getOriginalSpeed())));
                    Platform.runLater(() -> {
                        if(walkingZombieController.isMoving()) {
                            int rowNow = walkingZombieController.getWalkingZombie().getZombie().getCurrentRow();
@@ -321,7 +321,6 @@ public class WalkingZombieSpawner {
                         normalAttacking(mainGameController, targetPane, walkingZombieController);
                     }
 
-                    }
                     if (walkingZombieController.getWalkingZombie().getZombie() instanceof JackInTheBoxZombie){
                         walkingZombieController.setDead(true);
                     }
@@ -468,12 +467,12 @@ public class WalkingZombieSpawner {
 
         Pane behindJumpPane = mainGameController.getPaneAt(rownow, colnow-1);
         int sumOfPlant = mainGameController.sumOfInformationPlant(behindJumpPane);
-
-        if (walkingZombieController.getWalkingZombie().getZombie() instanceof DolphinRiderZombie && sumOfPlant == 2){
-            deadPlant(walkingZombieController, behindJumpPane, 3);
-        }
-        else {
-            deadPlant(walkingZombieController, behindJumpPane, sumOfPlant);
+        if(sumOfPlant != 0) {
+            if (walkingZombieController.getWalkingZombie().getZombie() instanceof DolphinRiderZombie && sumOfPlant == 2) {
+                deadPlant(walkingZombieController, behindJumpPane, 3);
+            } else{
+                deadPlant(walkingZombieController, behindJumpPane, sumOfPlant);
+            }
         }
     }
 

@@ -7,7 +7,7 @@ public class PoleVaultingZombie extends Zombie {
     private boolean pole = true;
 
     public PoleVaultingZombie() {
-        super("Pole Vaulting Zombie", 175, 100, 1, false, 5, 0, 10);
+        super("Pole Vaulting Zombie", 175, 100, 1, false, 10, 0, 10);
 
     }
 

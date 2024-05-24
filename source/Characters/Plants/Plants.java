@@ -93,64 +93,64 @@ public abstract class Plants extends Characters{
         }
     }
 
-    public void attackZombiesInRange(GameMap gameMap) {
-        int range = this.getRange();
-        Zombie closestZombie = null;
-        int minDistance = Integer.MAX_VALUE;
+//    public void attackZombiesInRange(GameMap gameMap) {
+//        int range = this.getRange();
+//        Zombie closestZombie = null;
+//        int minDistance = Integer.MAX_VALUE;
+//
+//        // Obtain the list of zombies currently in the game
+//        ZombieList<Zombie> inGameZombies = gameMap.getInGameZombies();
+//        List<Zombie> zombiesInRow = inGameZombies.getZombies().stream()
+//                .filter(z -> z.getCurrentRow() == this.row)
+//                .toList();
+//
+//        if (range == -1) {
+//            // Infinite range: search all zombies in the same row to the right
+//            for (Zombie zombie : zombiesInRow) {
+//                int zombieColumn = zombie.getCurrentColumn();
+//                if (zombieColumn > this.column && zombieColumn < minDistance) {
+//                    closestZombie = zombie;
+//                    minDistance = zombieColumn;
+//                }
+//            }
+//        } else {
+//            // Finite range: search zombies within the specified range
+//            for (Zombie zombie : zombiesInRow) {
+//                int zombieColumn = zombie.getCurrentColumn();
+//                if (zombieColumn > this.column && zombieColumn <= this.column + range && zombieColumn < minDistance) {
+//                    closestZombie = zombie;
+//                    minDistance = zombieColumn;
+//                }
+//            }
+//        }
+//        // Attack the closest zombie if found
+//        if (closestZombie != null) {
+//            if (this.canShoot()) {  // Check if the plant can shoot
+//                shoot(gameMap);     // Highlight Create a projectile to attack the closest zombie
+//            } else {
+//                attack(closestZombie); // Perform a melee attack if the plant cannot shoot
+//            }
+//        }
+//    }
 
-        // Obtain the list of zombies currently in the game
-        ZombieList<Zombie> inGameZombies = gameMap.getInGameZombies();
-        List<Zombie> zombiesInRow = inGameZombies.getZombies().stream()
-                .filter(z -> z.getCurrentRow() == this.row)
-                .toList();
-
-        if (range == -1) {
-            // Infinite range: search all zombies in the same row to the right
-            for (Zombie zombie : zombiesInRow) {
-                int zombieColumn = zombie.getCurrentColumn();
-                if (zombieColumn > this.column && zombieColumn < minDistance) {
-                    closestZombie = zombie;
-                    minDistance = zombieColumn;
-                }
-            }
-        } else {
-            // Finite range: search zombies within the specified range
-            for (Zombie zombie : zombiesInRow) {
-                int zombieColumn = zombie.getCurrentColumn();
-                if (zombieColumn > this.column && zombieColumn <= this.column + range && zombieColumn < minDistance) {
-                    closestZombie = zombie;
-                    minDistance = zombieColumn;
-                }
-            }
-        }
-        // Attack the closest zombie if found
-        if (closestZombie != null) {
-            if (this.canShoot()) {  // Check if the plant can shoot
-                shoot(gameMap);     // Highlight Create a projectile to attack the closest zombie
-            } else {
-                attack(closestZombie); // Perform a melee attack if the plant cannot shoot
-            }
-        }
-    }
-
-    public void shoot(GameMap gameMap) {
-        Projectile projectile = new Projectile(this.getAttackDamage(), 1.0, this.row, this.column);
-        projectile.move(gameMap);
-    }
+//    public void shoot(GameMap gameMap) {
+//        Projectile projectile = new Projectile(this.getAttackDamage(), 1.0, this.row, this.column);
+//        projectile.move(gameMap);
+//    }
 
 
-    public void startAttacking(GameMap gameMap) {
-        new Thread(() -> {
-            while (true) {
-                attackZombiesInRange(gameMap);
-                try {
-                    Thread.sleep(this.getAttackSpeed() * 1000); // Sleep to simulate attack speed
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
+//    public void startAttacking(GameMap gameMap) {
+//        new Thread(() -> {
+//            while (true) {
+//                attackZombiesInRange(gameMap);
+//                try {
+//                    Thread.sleep(this.getAttackSpeed() * 1000); // Sleep to simulate attack speed
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//    }
 
     public abstract boolean canShoot();
 

@@ -30,6 +30,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.stream.Collectors;
 
 import source.Characters.Plants.*;
 import source.Sun.Sun;
@@ -44,6 +45,9 @@ public class ControllerMainGame implements Initializable {
 
     @FXML
     private AnchorPane zombieArea;
+
+    @FXML
+    private AnchorPane projectilesArea;
 
     @FXML
     private ImageView MapMalem;
@@ -92,8 +96,6 @@ public class ControllerMainGame implements Initializable {
 
     private static ControllerMainGame instanceGame;
 
-//    private static WalkingZombieSpawner walkingZombieSpawner;
-
 
     public ControllerMainGame() {
         instanceGame = this;
@@ -109,6 +111,10 @@ public class ControllerMainGame implements Initializable {
 
     public AnchorPane getZombieArea() {
         return zombieArea;
+    }
+
+    public AnchorPane getProjectilesArea() {
+        return projectilesArea;
     }
 
     @Override
@@ -332,7 +338,10 @@ public class ControllerMainGame implements Initializable {
                 synchronized (zombies) {
                     WalkingZombieController targetZombie = findTargetZombie(plant, zombies);
                     if (targetZombie != null) {
-                        Platform.runLater(() -> plant.attack(targetZombie.getWalkingZombie().getZombie()));
+                        Platform.runLater(() -> {
+                            plant.attack(targetZombie.getWalkingZombie().getZombie());
+
+                        });
                         if (targetZombie.getWalkingZombie().getZombie().getHealth() <= 0) {
                             Platform.runLater(() -> zombies.remove(targetZombie));
                         }
@@ -516,6 +525,8 @@ public class ControllerMainGame implements Initializable {
         int column = GridPane.getColumnIndex(targetPane);
 
         Plants plant = createPlant(dp.getPlantsName(), row, column);
+        plant.setCurrentRow(row);
+        plant.setCurrentColumn(column);
 
         InformationPlant plantInfo = new InformationPlant(plant);
 
@@ -547,8 +558,13 @@ public class ControllerMainGame implements Initializable {
 
         WalkingZombieSpawner walkingZombieSpawner = WalkingZombieSpawner.getInstanceSpawner();
         walkingZombieSpawner.setPlantPositions(true, row, column);
+
+        List<WalkingZombieController> zombiesInRow = WalkingZombieSpawner.getInstanceSpawner().getZombies().stream()
+                .filter(zombie -> zombie.getWalkingZombie().getZombie().getCurrentRow() == row)
+                .collect(Collectors.toList());
+
         if (plant.canShoot()){
-            startAttacking(plant,walkingZombieSpawner.getZombies());
+            startAttacking(plant,zombiesInRow);
         }
         System.out.println("TERJADI PENANAMAN TANAMAN PADA ROW: " + row + " COL: " + column + " DENGAN TIPE: " + plantInfo.getPlant().getClass().getSimpleName());
     }

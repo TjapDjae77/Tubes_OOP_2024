@@ -46,37 +46,4 @@ public class WalkingZombie extends Pane {
     public ImageView getZombieimg2() {
         return zombieimg2;
     }
-
-//    public void setMoving(boolean moving) {
-//        this.moving = moving;
-//        if(moving){
-//            startMoving();
-//        }
-//    }
-
-//    public void startMoving(){
-//        movementThread = new Thread(() -> {
-//            while (!isDead) {
-//                try {
-//                    Thread.sleep(100); // Adjust the speed of the movement
-//                    Platform.runLater(() -> {
-//                        if (isMoving()) {
-//                            moveLeft();
-//
-//                        }
-//                    });
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//        movementThread.start();
-//    }
-
-//    private void moveLeft() {
-//        this.setX(getX() - 5);
-//        zombieimg1.setLayoutX(getX() - 5);
-//        System.out.println("TESTING SUDAH JALAN");
-//        System.out.println("x: " + getX());
-//    }
 }

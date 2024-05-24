@@ -47,6 +47,7 @@
          </image>
       </ImageView>
       <AnchorPane fx:id="zombieArea" prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane fx:id="projectilesArea" prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane fx:id="layardasar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0">
          <children>
             <Pane prefHeight="1080.0" prefWidth="1920.0">
