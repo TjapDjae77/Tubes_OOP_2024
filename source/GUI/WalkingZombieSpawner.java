@@ -104,7 +104,7 @@ public class WalkingZombieSpawner {
             }
         };
 
-        timer.schedule(startSpawnTime, 19000);
+        timer.schedule(startSpawnTime, 10000);
         timer.schedule(stopSpawnTime, 160000);
     }
 
