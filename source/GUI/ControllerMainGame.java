@@ -334,13 +334,12 @@ public class ControllerMainGame implements Initializable {
 
     public void startAttacking(Plants plant, List<WalkingZombieController> zombies) {
         new Thread(() -> {
-            while (plant.getHealth()>0) {
-                synchronized (zombies) {
+            while (plant.getHealth()>=0) {
+                {
                     WalkingZombieController targetZombie = findTargetZombie(plant, zombies);
                     if (targetZombie != null) {
                         Platform.runLater(() -> {
                             plant.attack(targetZombie.getWalkingZombie().getZombie());
-
                         });
                         if (targetZombie.getWalkingZombie().getZombie().getHealth() <= 0) {
                             Platform.runLater(() -> zombies.remove(targetZombie));
