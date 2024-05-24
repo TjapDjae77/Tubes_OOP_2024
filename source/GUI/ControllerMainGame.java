@@ -707,8 +707,8 @@ public class ControllerMainGame implements Initializable {
     }
 
     @FXML
-    void quitGame(MouseEvent event) {
-        System.exit(0);
+    void quitGame(MouseEvent event) throws IOException {
+        loadScene((Stage) quitButton.getScene().getWindow(), "/source/GUI/mainmenu.fxml");;
     }
 
 
