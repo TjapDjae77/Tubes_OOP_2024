@@ -38,21 +38,3 @@
 | Jeremy Deandito    | 18222112 |
 | Fadian Alif Mahardika       | 18222124 |
 | Timothy Haposan S.       | 18222137 |
-QUIT` : Menu untuk keluar dari permainan. 
-
-## Cara Kompilasi Program
-1. Install IntelliJ
-2. Install JavaFX
-3. Sesuaikan JDK menjadi JDK 22
-4. Open folder source -> GUI
-5. Run file Main.java
-
-
-## Anggota Kelompok
-| Identitas                          | NIM |
-| -----------------------------------|-----------------|
-| Rajendra Farras Rayhan         | 18222105       |
-| Audra Zelvania Putri H.  | 18222106      |
-| Jeremy Deandito    | 18222112 |
-| Fadian Alif Mahardika       | 18222124 |
-| Timothy Haposan S.       | 18222137 |
