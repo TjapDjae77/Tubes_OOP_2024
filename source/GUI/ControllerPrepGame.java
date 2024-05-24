@@ -22,6 +22,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ControllerPrepGame implements Initializable {
 
@@ -39,6 +41,15 @@ public class ControllerPrepGame implements Initializable {
 
     private int x=0;
 
+    private boolean isNight = false;
+
+    public boolean getDayStatus(){
+        return isNight;
+    }
+
+    public void setToNight(boolean setNight) {
+        this.isNight = setNight;
+    }
 
     public ControllerPrepGame() {
         instance = this;
@@ -47,6 +58,7 @@ public class ControllerPrepGame implements Initializable {
     public static ControllerPrepGame getInstance() {
         return instance;
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -146,6 +158,14 @@ public class ControllerPrepGame implements Initializable {
     @FXML
     private void goToPlay(MouseEvent event) throws IOException {
         loadScene((Stage) letsrockbutton.getScene().getWindow(), "/source/GUI/pvzgui.fxml");
+        Timer timer = new Timer();
+        TimerTask nightIsHere = new TimerTask(){
+            @Override
+            public void run() {
+                setToNight(true);
+            }
+        };
+        timer.schedule(nightIsHere, 100000);
     }
 
     private void loadScene(Stage stage, String fxmlPath) throws IOException {
