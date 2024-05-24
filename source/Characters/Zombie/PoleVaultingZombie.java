@@ -33,6 +33,14 @@ public class PoleVaultingZombie extends Zombie {
         }
     }
 
+    public boolean isPole() {
+        return pole;
+    }
+
+    public void setPole(boolean pole) {
+        this.pole = pole;
+    }
+
     public void showDescription() {
         System.out.println("Name : " + getName());
         System.out.println("Health : " + getHealth());

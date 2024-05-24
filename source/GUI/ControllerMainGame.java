@@ -46,6 +46,12 @@ public class ControllerMainGame implements Initializable {
     private AnchorPane zombieArea;
 
     @FXML
+    private ImageView MapMalem;
+
+    @FXML
+    private ImageView MapPagi;
+
+    @FXML
     private ImageView loseImage;
 
     @FXML
@@ -131,6 +137,7 @@ public class ControllerMainGame implements Initializable {
 
         loseImage.setVisible(false);
         winImage.setVisible(false);
+        MapMalem.setVisible(false);
 
         initializeDeck(deck);
         initializeShovelPane();
@@ -147,6 +154,20 @@ public class ControllerMainGame implements Initializable {
         });
         WalkingZombieSpawner walkingZombieSpawner = WalkingZombieSpawner.getInstanceSpawner();
         walkingZombieSpawner.startSpawning();
+
+        TimerTask night = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> switchToNight());
+            }
+        };
+        tm.schedule(night,100000);
+    }
+
+    public void switchToNight(){
+        MapPagi.setVisible(false);
+        MapMalem.setVisible(true);
+        System.out.println("Malam telah tiba!");
     }
 
     private void startUpdatingDeckPaneAvailability() {
@@ -385,18 +406,29 @@ public class ControllerMainGame implements Initializable {
                 Pane sourcePane = (Pane) source.getParent();
                 if(sourcePane.getId().equals("shovelPane")){
                     int sizepane = targetPane.getChildren().size();
-                    InformationPlant infoplant = ((InformationPlant)targetPane.getChildren().get(sizepane-4));
-                    if(infoplant.getPlant() instanceof Sunflower) {
+                    if(sizepane == 5){
+                        InformationPlant infoplant = ((InformationPlant)targetPane.getChildren().get(sizepane-4));
+                        if(infoplant.getPlant() instanceof Sunflower) {
 
-                        ((Sunflower)infoplant.getPlant()).stopGeneratingSun();
-                        System.out.println("Sunflower berhenti produksi sun:" + ((Sunflower)infoplant.getPlant()).isStopRequested());
-                    }
-
-                    for (Node node : targetPane.getChildren()) {
-                        if (node instanceof InformationPlant || node instanceof DeckPane || node instanceof ImageView) {
-                            targetPane.getChildren().remove(node);
+                            ((Sunflower)infoplant.getPlant()).stopGeneratingSun();
+                            System.out.println("Sunflower berhenti produksi sun:" + ((Sunflower)infoplant.getPlant()).isStopRequested());
                         }
+                        targetPane.getChildren().remove(1,5);
+                    } else if (sizepane == 8) {
+                        InformationPlant infoplant2 = ((InformationPlant)targetPane.getChildren().get(sizepane-4));
+                        if(infoplant2.getPlant() instanceof Sunflower) {
+                            ((Sunflower)infoplant2.getPlant()).stopGeneratingSun();
+                            System.out.println("Sunflower berhenti produksi sun:" + ((Sunflower)infoplant2.getPlant()).isStopRequested());
+                        }
+                        targetPane.getChildren().remove(1,8);
                     }
+
+
+//                    for (Node node : targetPane.getChildren()) {
+//                        if (node instanceof InformationPlant || node instanceof DeckPane || node instanceof ImageView) {
+//                            targetPane.getChildren().remove(node);
+//                        }
+//                    }
                 }
                 else {
                     DeckPane dp = new DeckPane((DeckPane) sourcePane.getChildren().getFirst());
@@ -713,8 +745,8 @@ public class ControllerMainGame implements Initializable {
     }
 
     @FXML
-    void quitGame(MouseEvent event) {
-        System.exit(0);
+    void quitGame(MouseEvent event) throws IOException {
+        loadScene((Stage) quitButton.getScene().getWindow(), "/source/GUI/mainmenu.fxml");;
     }
 
 

@@ -7,10 +7,10 @@ public class ZombieFactory {
 
     public static Zombie createZombie(boolean aquatic){
         if(aquatic) {
-            int zombieType = ThreadLocalRandom.current().nextInt(2);
+            int zombieType = ThreadLocalRandom.current().nextInt(1);
             switch (zombieType) {
                 case 0:
-                    return new DuckyTubeZombie();
+                    return new DolphinRiderZombie();
 
                 case 1:
                     return new DolphinRiderZombie();
@@ -20,10 +20,10 @@ public class ZombieFactory {
             }
         }
         else {
-            int zombieType = ThreadLocalRandom.current().nextInt(3);
+            int zombieType = ThreadLocalRandom.current().nextInt(1);
             switch (zombieType) {
                 case 0:
-                    return new NormalZombie();
+                    return new PoleVaultingZombie();
 
                 case 1:
                     return new ConeheadZombie();

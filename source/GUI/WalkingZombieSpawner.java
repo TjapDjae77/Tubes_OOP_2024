@@ -4,6 +4,7 @@ import javafx.application.Platform;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -18,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class WalkingZombieSpawner {
 
@@ -25,6 +28,18 @@ public class WalkingZombieSpawner {
     private static final int MAX_ZOMBIE = 10;
     private static final double SPAWN_PROBABILITY = 0.3;
     private static final int SPAWN_INTERVAL = 3000;
+
+    private static final int BATASKIRI10 = 1810;
+    private static final int BATASKIRI9 = 1560;
+    private static final int BATASKIRI8 = 1360;
+    private static final int BATASKIRI7 = 1180;
+    private static final int BATASKIRI6 = 980;
+    private static final int BATASKIRI5 = 790;
+    private static final int BATASKIRI4 = 570;
+    private static final int BATASKIRI3 = 420;
+    private static final int BATASKIRI2 = 220;
+    private static final int BATASKIRI1 = 10;
+
     private ArrayList<WalkingZombieController> zombies = new ArrayList<>();
     private Thread spawningThread;
     private Thread movementThread;
@@ -57,27 +72,40 @@ public class WalkingZombieSpawner {
     }
 
     public void startSpawning() {
-        spawningThread = new Thread(() -> {
-            while(!isGameOver){
-                try {
-                    Thread.sleep(SPAWN_INTERVAL);
-                    Platform.runLater(() -> {
+        Timer timer = new Timer();
+        TimerTask startSpawnTime = new TimerTask() {
+            public void run() {
+                spawningThread = new Thread(() -> {
+                    while(!isGameOver){
                         try {
-                            trySpawnZombie();
-                        } catch (IOException e){
-                            e.printStackTrace();
+                            Thread.sleep(SPAWN_INTERVAL);
+                            Platform.runLater(() -> {
+                                try {
+                                    trySpawnZombie();
+                                } catch (IOException e){
+                                    e.printStackTrace();
+                                }
+                            });
+                            System.out.println("JUMLAH ZOMBIE: " + zombies.size());
                         }
-                    });
-                    System.out.println("JUMLAH ZOMBIE: " + zombies.size());
-                }
-                catch(InterruptedException e){
-                    Thread.currentThread().interrupt();
-                    System.out.println("GAME SELESAI");
+                        catch(InterruptedException e){
+                            Thread.currentThread().interrupt();
+                            System.out.println("ZOMBIE SELESAI DI-SPAWN");
 
-                }
+                        }
+                    }
+                });
+                spawningThread.start();
             }
-        });
-        spawningThread.start();
+        };
+        TimerTask stopSpawnTime = new TimerTask() {
+            public void run() {
+                stopSpawning();
+            }
+        };
+
+        timer.schedule(startSpawnTime, 19000);
+        timer.schedule(stopSpawnTime, 160000);
     }
 
     private void trySpawnZombie() throws IOException {
@@ -122,11 +150,16 @@ public class WalkingZombieSpawner {
             walkingZombieController.getZombieImageView1().setFitWidth(image1.getWidth());
             walkingZombieController.getZombieImageView1().setFitHeight(image1.getHeight());
 
-            if (randomZombie instanceof NewspaperZombie || randomZombie instanceof PoleVaultingZombie) {
+            if (randomZombie instanceof NewspaperZombie || randomZombie instanceof PoleVaultingZombie || randomZombie instanceof DolphinRiderZombie) {
                 String imagePath2 = "@../../assets/Zombies/PVZ_" + randomZombie.getName() + "2.png";
                 Image image2 = new Image(imagePath2);
                 walkingZombieController.getZombieImageView2().setImage(image2);
                 walkingZombieController.getZombieImageView2().setOpacity(0);
+                if(randomZombie instanceof DolphinRiderZombie){
+                    walkingZombieController.getZombieImageView2().setLayoutY(70);
+                } else if (randomZombie instanceof PoleVaultingZombie) {
+                    walkingZombieController.getZombieImageView2().setLayoutX(40);
+                }
                 walkingZombieController.getZombieImageView2().setFitWidth(image2.getWidth());
                 walkingZombieController.getZombieImageView2().setFitHeight(image2.getHeight());
             }
@@ -185,26 +218,26 @@ public class WalkingZombieSpawner {
                            if (!isPlantInFront(walkingZombieController)) {
                                walkingZombieController.moveZombie(1);
                                double layoutX = walkingZombieController.getZombiePane().getLayoutX();
-//                               System.out.println("Zombie " + zombies.size() + " moved to x: " + walkingZombieController.getZombiePane().getLayoutX());
-                               if (layoutX >= 1560 && layoutX < 1810) {
+                               System.out.println("Zombie " + zombies.size() + " moved to x: " + walkingZombieController.getZombiePane().getLayoutX());
+                               if (layoutX >= BATASKIRI9 && layoutX < BATASKIRI10) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(9);
-                               } else if (layoutX >= 1360 && layoutX < 1560) {
+                               } else if (layoutX >= BATASKIRI8 && layoutX < BATASKIRI9) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(8);
-                               } else if (layoutX >= 1180 && layoutX < 1360) {
+                               } else if (layoutX >= BATASKIRI7 && layoutX < BATASKIRI8) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(7);
-                               } else if (layoutX >= 980 && layoutX < 1180) {
+                               } else if (layoutX >= BATASKIRI6 && layoutX < BATASKIRI7) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(6);
-                               } else if (layoutX >= 790 && layoutX < 980) {
+                               } else if (layoutX >= BATASKIRI5 && layoutX < BATASKIRI6) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(5);
-                               } else if (layoutX >= 570 && layoutX < 790) {
+                               } else if (layoutX >= BATASKIRI4 && layoutX < BATASKIRI5) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(4);
-                               } else if (layoutX >= 420 && layoutX < 570) {
+                               } else if (layoutX >= BATASKIRI3 && layoutX < BATASKIRI4) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(3);
-                               } else if (layoutX >= 220 && layoutX < 420) {
+                               } else if (layoutX >= BATASKIRI2 && layoutX < BATASKIRI3) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(2);
-                               } else if (layoutX >= 10 && layoutX < 220) {
+                               } else if (layoutX >= BATASKIRI1 && layoutX < BATASKIRI2) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(1);
-                               } else if (layoutX < 10) {
+                               } else if (layoutX < BATASKIRI1) {
                                    walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(0);
                                }
 
@@ -216,30 +249,30 @@ public class WalkingZombieSpawner {
                                if (targetPane.getChildren().get(1) instanceof ImageView || ((InformationPlant)targetPane.getChildren().get(1)).getPlant() instanceof Spikeweed) {
                                    walkingZombieController.moveZombie(1);
                                    double layoutX = walkingZombieController.getZombiePane().getLayoutX();
-//                               System.out.println("Zombie " + zombies.size() + " moved to x: " + walkingZombieController.getZombiePane().getLayoutX());
-                                   if (layoutX >= 1560 && layoutX < 1810) {
+                                   System.out.println("Zombie " + zombies.size() + " moved to x: " + walkingZombieController.getZombiePane().getLayoutX());
+                                   if (layoutX >= BATASKIRI9 && layoutX < BATASKIRI10) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(9);
-                                   } else if (layoutX >= 1360 && layoutX < 1560) {
+                                   } else if (layoutX >= BATASKIRI8 && layoutX < BATASKIRI9) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(8);
-                                   } else if (layoutX >= 1180 && layoutX < 1360) {
+                                   } else if (layoutX >= BATASKIRI7 && layoutX < BATASKIRI8) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(7);
-                                   } else if (layoutX >= 980 && layoutX < 1180) {
+                                   } else if (layoutX >= BATASKIRI6 && layoutX < BATASKIRI7) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(6);
-                                   } else if (layoutX >= 790 && layoutX < 980) {
+                                   } else if (layoutX >= BATASKIRI5 && layoutX < BATASKIRI6) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(5);
-                                   } else if (layoutX >= 570 && layoutX < 790) {
+                                   } else if (layoutX >= BATASKIRI4 && layoutX < BATASKIRI5) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(4);
-                                   } else if (layoutX >= 420 && layoutX < 570) {
+                                   } else if (layoutX >= BATASKIRI3 && layoutX < BATASKIRI4) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(3);
-                                   } else if (layoutX >= 220 && layoutX < 420) {
+                                   } else if (layoutX >= BATASKIRI2 && layoutX < BATASKIRI3) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(2);
-                                   } else if (layoutX >= 10 && layoutX < 220) {
+                                   } else if (layoutX >= BATASKIRI1 && layoutX < BATASKIRI2) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(1);
-                                   } else if (layoutX < 10) {
+                                   } else if (layoutX < BATASKIRI1) {
                                        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(0);
                                    }
 
-                                   if (walkingZombieController.getZombiePane().getLayoutX() < -30) {
+                                   if(walkingZombieController.getZombiePane().getLayoutX() < -30) {
                                        mainGameController.stopGame(false);
                                        stopSpawning();
                                    }
@@ -262,38 +295,31 @@ public class WalkingZombieSpawner {
         movementThread.start();
     }
 
-    public void zStartAttack(WalkingZombieController walkingZombieController, Pane targetPane ) {
+    public void zStartAttack(WalkingZombieController walkingZombieController, Pane targetPane) {
         new Thread(() -> {
             while (isPlantInFront(walkingZombieController)) {
                 Platform.runLater(() -> {
                     // Get the plant in front of the zombie
                     ControllerMainGame mainGameController = ControllerMainGame.getInstanceGame();
-                    int sumOfPlant = mainGameController.sumOfInformationPlant(targetPane);
-                    if (sumOfPlant == 1) { // INI HARUS GW SESUAIKAN SAMA CONTROLLER MAIN GAME, SOALNYA TANAMAN BISA LEBIH DARI 1
-                        Plants plant = ((InformationPlant) targetPane.getChildren().get(1)).getPlant();
-                        System.out.println("Jenis plant: " + plant.getName());
-                        // Damage the plant
-                        plant.setHealth(plant.getHealth() - walkingZombieController.getWalkingZombie().getZombie().getAttackDamage());
-                        System.out.println("Zombie attacked plant. Plant health: " + plant.getHealth());
-                        // Check if the plant is destroyed
-                        if (plant.getHealth() <= 0) {
-                            System.out.println("Plant destroyed!");
-                            deadPlant(walkingZombieController, targetPane, 1);
-                            walkingZombieController.setMoving(true);
+                    if(walkingZombieController.getWalkingZombie().getZombie() instanceof PoleVaultingZombie){
+                        PoleVaultingZombie pvz = (PoleVaultingZombie) walkingZombieController.getWalkingZombie().getZombie();
+                        if (pvz.isPole()){
+                            jumping(mainGameController, targetPane, walkingZombieController);
                         }
-
-                    } else if (sumOfPlant == 2) {
-                        Plants plant2 = ((InformationPlant) targetPane.getChildren().get(4)).getPlant();
-                        System.out.println("Jenis plant: " + plant2.getName());
-
-                        // Damage the plant
-                        plant2.setHealth(plant2.getHealth() - walkingZombieController.getWalkingZombie().getZombie().getAttackDamage());
-                        System.out.println("Zombie attacked plant. Plant health: " + plant2.getHealth());
-
-                        if(plant2.getHealth() <= 0){
-                            System.out.println("Plant Atas destroyed!");
-                            deadPlant(walkingZombieController, targetPane, 2);
+                        else {
+                            normalAttacking(mainGameController, targetPane, walkingZombieController);
                         }
+                    } else if (walkingZombieController.getWalkingZombie().getZombie() instanceof DolphinRiderZombie) {
+                        DolphinRiderZombie drz = (DolphinRiderZombie) walkingZombieController.getWalkingZombie().getZombie();
+                        if(drz.isDolphin()){
+                            jumping(mainGameController, targetPane, walkingZombieController);
+                        }
+                        else {
+                            normalAttacking(mainGameController, targetPane, walkingZombieController);
+                        }
+                    } else {
+                        normalAttacking(mainGameController, targetPane, walkingZombieController);
+                    }
 
                     }
                     if (walkingZombieController.getWalkingZombie().getZombie() instanceof JackInTheBoxZombie){
@@ -326,6 +352,129 @@ public class WalkingZombieSpawner {
             targetPane.getChildren().remove(4, 7);
         }
 
+        else{ // BIKIN SEMUA HILANG
+            int row = walkingZombieController.getWalkingZombie().getZombie().getCurrentRow();
+            int col = walkingZombieController.getWalkingZombie().getZombie().getCurrentColumn();
+            setPlantPositions(false, row, col);
+            targetPane.getChildren().remove(1, 7);
+        }
+
+    }
+
+    public void deadZombie(WalkingZombieController walkingZombieController){
+        movementThread.interrupt();
+        int mustBeDeletedIndex = zombies.indexOf(walkingZombieController);
+        zombies.remove(mustBeDeletedIndex);
+        for (int i = 0; i < zombies.size(); i++) {
+            startZombieMovement(zombies.get(i));
+        }
+    }
+
+
+
+    public void normalAttacking(ControllerMainGame mainGameController, Pane targetPane, WalkingZombieController walkingZombieController) {
+        int sumOfPlant = mainGameController.sumOfInformationPlant(targetPane);
+        if (sumOfPlant == 1) {
+            Plants plant = ((InformationPlant) targetPane.getChildren().get(1)).getPlant();
+            System.out.println("Jenis plant: " + plant.getName());
+            // Damage the plant
+            plant.setHealth(plant.getHealth() - walkingZombieController.getWalkingZombie().getZombie().getAttackDamage());
+            System.out.println("Zombie attacked plant. Plant health: " + plant.getHealth());
+            // Check if the plant is destroyed
+            if (plant.getHealth() <= 0) {
+                System.out.println("Plant destroyed!");
+                deadPlant(walkingZombieController, targetPane, 1);
+                walkingZombieController.setMoving(true);
+            }
+
+        } else if (sumOfPlant == 2) {
+            Plants plant2 = ((InformationPlant) targetPane.getChildren().get(4)).getPlant();
+            System.out.println("Jenis plant: " + plant2.getName());
+
+            // Damage the plant
+            plant2.setHealth(plant2.getHealth() - walkingZombieController.getWalkingZombie().getZombie().getAttackDamage());
+            System.out.println("Zombie attacked plant. Plant health: " + plant2.getHealth());
+
+            if (plant2.getHealth() <= 0) {
+                System.out.println("Plant Atas destroyed!");
+                deadPlant(walkingZombieController, targetPane, 2);
+            }
+        }
+    }
+
+    public void jumping(ControllerMainGame mainGameController, Pane targetPane, WalkingZombieController walkingZombieController) {
+         if(walkingZombieController.getWalkingZombie().getZombie() instanceof PoleVaultingZombie) {
+             if (!(((InformationPlant) targetPane.getChildren().get(1)).getPlant() instanceof Tallnut)) {
+                 setupPosition(mainGameController, walkingZombieController);
+             }
+         }
+        else if (walkingZombieController.getWalkingZombie().getZombie() instanceof DolphinRiderZombie) {
+            if(targetPane.getChildren().size() > 4) {
+                if (!(targetPane.getChildren().get(4) instanceof ImageView)) { // Kalo bukan foreshadowing
+                    if(!(((InformationPlant) targetPane.getChildren().get(4)).getPlant() instanceof Tallnut)) { // Kalo bukan Tallnut
+                        setupPosition(mainGameController, walkingZombieController);
+
+                    }
+                }
+                else { // Cuma satu tanaman (dan itu pasti lilypad)
+                    setupPosition(mainGameController, walkingZombieController);
+                }
+            }
+            else { // Cuma satu tanaman (dan itu pasti lilypad)
+                setupPosition(mainGameController, walkingZombieController);
+            }
+        }
+
+        if (walkingZombieController.getWalkingZombie().getZombie() instanceof PoleVaultingZombie){
+            PoleVaultingZombie pvz = (PoleVaultingZombie) walkingZombieController.getWalkingZombie().getZombie();
+            pvz.setPole(false);
+        }
+        else {
+            DolphinRiderZombie drz = (DolphinRiderZombie) walkingZombieController.getWalkingZombie().getZombie();
+            drz.setDolphin(false);
+        }
+        walkingZombieController.getZombieImageView2().setOpacity(1);
+        walkingZombieController.getZombieImageView1().setOpacity(0);
+
+        walkingZombieController.setMoving(true);
+
+    }
+
+    public void setupPosition(ControllerMainGame mainGameController, WalkingZombieController walkingZombieController){
+        int colnow = walkingZombieController.getWalkingZombie().getZombie().getCurrentColumn();
+        int rownow = walkingZombieController.getWalkingZombie().getZombie().getCurrentRow();
+        System.out.println("COLUMN SAAT INI: " + colnow);
+        walkingZombieController.getWalkingZombie().getZombie().setCurrentColumn(colnow - 1);
+
+        if ((colnow - 1) == 8) {
+            walkingZombieController.getZombiePane().setLayoutX(BATASKIRI9 - 40);
+        } else if ((colnow - 1) == 7) {
+            walkingZombieController.getZombiePane().setLayoutX(BATASKIRI8 - 40);
+        } else if ((colnow - 1) == 6) {
+            walkingZombieController.getZombiePane().setLayoutX(BATASKIRI7 - 40);
+        } else if ((colnow - 1) == 5) {
+            walkingZombieController.getZombiePane().setLayoutX(BATASKIRI6 - 40);
+        } else if ((colnow - 1) == 4) {
+            walkingZombieController.getZombiePane().setLayoutX(BATASKIRI5 - 40);
+        } else if ((colnow - 1) == 3) {
+            walkingZombieController.getZombiePane().setLayoutX(BATASKIRI4 - 40);
+        } else if ((colnow - 1) == 2) {
+            walkingZombieController.getZombiePane().setLayoutX(BATASKIRI3 - 40);
+        } else if ((colnow - 1) == 1) {
+            walkingZombieController.getZombiePane().setLayoutX(BATASKIRI2 - 40);
+        } else if ((colnow - 1) == 0) {
+            walkingZombieController.getZombiePane().setLayoutX(BATASKIRI1 - 40);
+        }
+
+        Pane behindJumpPane = mainGameController.getPaneAt(rownow, colnow-1);
+        int sumOfPlant = mainGameController.sumOfInformationPlant(behindJumpPane);
+
+        if (walkingZombieController.getWalkingZombie().getZombie() instanceof DolphinRiderZombie && sumOfPlant == 2){
+            deadPlant(walkingZombieController, behindJumpPane, 3);
+        }
+        else {
+            deadPlant(walkingZombieController, behindJumpPane, sumOfPlant);
+        }
     }
 
     public void stopSpawning() {

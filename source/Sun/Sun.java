@@ -18,7 +18,6 @@ public class Sun{
     private boolean isDay = true;
 
     public Sun(){
-        spawnSun();
         TimerTask stopSpawningSun = new TimerTask() {
           @Override
           public void run() {
@@ -27,6 +26,7 @@ public class Sun{
           }
         };
         timer.schedule(stopSpawningSun,100000);
+        spawnSun();
     }
 
     public void spawnSun(){
