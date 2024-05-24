@@ -155,7 +155,9 @@ public class ProjectilesLauncher {
             try {
                 Thread.sleep(48);
                 Platform.runLater(() -> {
-                    if (projectilesController.isMoving()) {
+                    if (checkZombieCollision(projectilesController)) {
+                        projectilesController.setMoving(false);
+                    } else {
                         projectilesController.moveProjectile(1);
                     }
                 });
@@ -164,6 +166,31 @@ public class ProjectilesLauncher {
             }
         }).start();
     }
+
+    private boolean checkZombieCollision(ProjectilesController projectilesController) {
+        ControllerMainGame mainGameController = ControllerMainGame.getInstanceGame();
+        AnchorPane zombiesArea = mainGameController.getZombieArea();
+        List<WalkingZombieController> zombies = zombiesArea.getChildren().stream()
+                .filter(node -> node instanceof Pane)
+                .map(node -> (Pane) node)
+                .flatMap(pane -> pane.getChildren().stream())
+                .filter(node -> node instanceof WalkingZombieController)
+                .map(node -> (WalkingZombieController) node)
+                .collect(Collectors.toList());
+
+        for (WalkingZombieController zombie : zombies) {
+            // Periksa jika zombie berada pada posisi yang sama dengan proyektil
+            if (zombie.getWalkingZombie().getZombie().getCurrentRow() == projectilesController.getProjectile().getRow() &&
+                    zombie.getWalkingZombie().getZombie().getCurrentColumn() == projectilesController.getProjectile().getColumn()) {
+                // Kurangi darah zombie
+                zombie.getWalkingZombie().getZombie().setHealth(zombie.getWalkingZombie().getZombie().getHealth() - projectilesController.getProjectile().getAttackDamage());
+                return true; // Collision detected
+            }
+        }
+        return false; // No collision
+    }
+
+
 
 
 //    public boolean isZombieInRow(int row) {
