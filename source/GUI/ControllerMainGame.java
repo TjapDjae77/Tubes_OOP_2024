@@ -335,6 +335,7 @@ public class ControllerMainGame implements Initializable {
     public void startAttacking(Plants plant, List<WalkingZombieController> zombies) {
         new Thread(() -> {
             while (plant.getHealth()>=0) {
+                synchronized (zombies)
                 {
                     WalkingZombieController targetZombie = findTargetZombie(plant, zombies);
                     if (targetZombie != null) {
@@ -570,7 +571,7 @@ public class ControllerMainGame implements Initializable {
                 .collect(Collectors.toList());
 
         if (plant.canShoot() || plant instanceof Squash || plant instanceof TangleKelp){
-            startAttacking(plant,zombiesInRow);
+            startAttacking(plant,walkingZombieSpawner.getZombies());
         }
         System.out.println("TERJADI PENANAMAN TANAMAN PADA ROW: " + row + " COL: " + column + " DENGAN TIPE: " + plantInfo.getPlant().getClass().getSimpleName());
     }
