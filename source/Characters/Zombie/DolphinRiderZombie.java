@@ -13,6 +13,14 @@ public class DolphinRiderZombie extends Zombie {
         this.Dolphin = true;
     }
 
+    public boolean isDolphin() {
+        return Dolphin;
+    }
+
+    public void setDolphin(boolean dolphin) {
+        Dolphin = dolphin;
+    }
+
     public void jump(){
         GameMap gameMap = new GameMap();
         int row = getCurrentRow(); 

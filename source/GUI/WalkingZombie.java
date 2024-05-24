@@ -20,7 +20,7 @@ public class WalkingZombie extends Pane {
         this.zombie = zombie;
         String imagePath = "@../../assets/Zombies/PVZ_"+ zombie.getName() + ".png";
         zombieimg1 = new ImageView(new Image(imagePath));
-        if(zombie.getName().equals("Newspaper Zombie") || zombie.getName().equals("Pole Vaulting Zombie")){
+        if(zombie.getName().equals("Newspaper Zombie") || zombie.getName().equals("Pole Vaulting Zombie") || zombie.getName().equals("Dolphin Rider Zombie")){
             imagePath = "@../../assets/Zombies/PVZ_"+ zombie.getName() + "2.png";
             zombieimg2 = new ImageView(new Image(imagePath));
         }

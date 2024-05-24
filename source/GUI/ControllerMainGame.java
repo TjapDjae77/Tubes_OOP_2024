@@ -349,18 +349,29 @@ public class ControllerMainGame implements Initializable {
                 Pane sourcePane = (Pane) source.getParent();
                 if(sourcePane.getId().equals("shovelPane")){
                     int sizepane = targetPane.getChildren().size();
-                    InformationPlant infoplant = ((InformationPlant)targetPane.getChildren().get(sizepane-4));
-                    if(infoplant.getPlant() instanceof Sunflower) {
+                    if(sizepane == 5){
+                        InformationPlant infoplant = ((InformationPlant)targetPane.getChildren().get(sizepane-4));
+                        if(infoplant.getPlant() instanceof Sunflower) {
 
-                        ((Sunflower)infoplant.getPlant()).stopGeneratingSun();
-                        System.out.println("Sunflower berhenti produksi sun:" + ((Sunflower)infoplant.getPlant()).isStopRequested());
-                    }
-
-                    for (Node node : targetPane.getChildren()) {
-                        if (node instanceof InformationPlant || node instanceof DeckPane || node instanceof ImageView) {
-                            targetPane.getChildren().remove(node);
+                            ((Sunflower)infoplant.getPlant()).stopGeneratingSun();
+                            System.out.println("Sunflower berhenti produksi sun:" + ((Sunflower)infoplant.getPlant()).isStopRequested());
                         }
+                        targetPane.getChildren().remove(1,5);
+                    } else if (sizepane == 8) {
+                        InformationPlant infoplant2 = ((InformationPlant)targetPane.getChildren().get(sizepane-4));
+                        if(infoplant2.getPlant() instanceof Sunflower) {
+                            ((Sunflower)infoplant2.getPlant()).stopGeneratingSun();
+                            System.out.println("Sunflower berhenti produksi sun:" + ((Sunflower)infoplant2.getPlant()).isStopRequested());
+                        }
+                        targetPane.getChildren().remove(1,8);
                     }
+
+
+//                    for (Node node : targetPane.getChildren()) {
+//                        if (node instanceof InformationPlant || node instanceof DeckPane || node instanceof ImageView) {
+//                            targetPane.getChildren().remove(node);
+//                        }
+//                    }
                 }
                 else {
                     DeckPane dp = new DeckPane((DeckPane) sourcePane.getChildren().getFirst());
