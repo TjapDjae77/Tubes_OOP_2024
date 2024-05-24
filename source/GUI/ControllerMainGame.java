@@ -367,7 +367,14 @@ public class ControllerMainGame implements Initializable {
 
     private boolean isInRange(Plants plant, WalkingZombieController zombie) {
         int distance = (zombie.getWalkingZombie().getZombie().getCurrentRow()-plant.getCurrentRow());
-        return (zombie.getWalkingZombie().getZombie().getCurrentColumn()==plant.getCurrentColumn() && distance < plant.getRange());
+        if (zombie.getWalkingZombie().getZombie().getCurrentColumn()==plant.getCurrentColumn()){
+            if (plant.getRange()==-1){
+                return true;
+            }
+            else
+                return (distance <= plant.getRange());
+        };
+        return false;
     }
 
 

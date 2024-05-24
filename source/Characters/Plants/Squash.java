@@ -33,7 +33,7 @@ public class Squash extends Plants{
     }
     @Override
     public void attack(Zombie zombie) {
-        super.attack(zombie);
+        zombie.setHealth(0);
         this.vanish();
         }
     }

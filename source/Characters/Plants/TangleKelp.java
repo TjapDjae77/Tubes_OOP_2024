@@ -28,7 +28,7 @@ public class TangleKelp extends Plants{
     }
 
     public void attack(Zombie zombie) {
-        super.attack(zombie);
+        zombie.setHealth(0);
         this.vanish();
     }
 
