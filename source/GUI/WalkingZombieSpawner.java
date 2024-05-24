@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class WalkingZombieSpawner {
 
@@ -66,31 +68,44 @@ public class WalkingZombieSpawner {
     }
 
     public void startSpawning() {
-        spawningThread = new Thread(() -> {
-            while(!isGameOver){
-                try {
-                    Thread.sleep(SPAWN_INTERVAL);
-                    Platform.runLater(() -> {
+        Timer timer = new Timer();
+        TimerTask startSpawnTime = new TimerTask() {
+            public void run() {
+                spawningThread = new Thread(() -> {
+                    while(!isGameOver){
                         try {
-                            trySpawnZombie();
-                        } catch (IOException e){
-                            e.printStackTrace();
+                            Thread.sleep(SPAWN_INTERVAL);
+                            Platform.runLater(() -> {
+                                try {
+                                    trySpawnZombie();
+                                } catch (IOException e){
+                                    e.printStackTrace();
+                                }
+                            });
+                            System.out.println("JUMLAH ZOMBIE: " + zombies.size());
                         }
-                    });
-                    System.out.println("JUMLAH ZOMBIE: " + zombies.size());
-                }
-                catch(InterruptedException e){
-                    Thread.currentThread().interrupt();
-                    System.out.println("GAME SELESAI");
+                        catch(InterruptedException e){
+                            Thread.currentThread().interrupt();
+                            System.out.println("ZOMBIE SELESAI DI-SPAWN");
 
-                }
+                        }
+                    }
+                });
+                spawningThread.start();
             }
-        });
-        spawningThread.start();
+        };
+        TimerTask stopSpawnTime = new TimerTask() {
+            public void run() {
+                stopSpawning();
+            }
+        };
+
+        timer.schedule(startSpawnTime, 19000);
+        timer.schedule(stopSpawnTime, 160000);
     }
 
     private void trySpawnZombie() throws IOException {
-        if(zombies.size() < 6 && Math.random() < SPAWN_PROBABILITY){
+        if(zombies.size() < 10 && Math.random() < SPAWN_PROBABILITY){
             try {
                 spawnZombie();
             } catch (IOException e) {
