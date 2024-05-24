@@ -1,4 +1,4 @@
-* # Tugas Besar IF2212 Pemrograman Berorientasi Objek K03-G05 <!-- omit in toc -->
+# Tugas Besar IF2212 Pemrograman Berorientasi Objek K03-G05 <!-- omit in toc -->
 
 <p align="justify"> Michael vs. Lalapan merupakan versi sederhana dari permainan populer Plant vs. Zombies. Tujuan dari permainan ini adalah melindungi rumah pemain dari serangan zombie. Untuk mewujudkan hal tersebut, disediakan beberapa tanaman yang mampu menyerang zombie. Pemain harus menanam tanaman secara strategis untuk melindungi rumah dari serangan zombie. Setiap tanaman dan zombie memiliki aksi-nya masing - masing. </p>
 
