@@ -5,7 +5,7 @@ public class FootballZombie extends Zombie {
 
     public FootballZombie() {
         super("Football Zombie", 200, 100, 1, false, 5, 0, 10);
-        setCurrentColumn(randomColumn());
+
         this.Football = true;
     }
 

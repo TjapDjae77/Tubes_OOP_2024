@@ -54,18 +54,7 @@ public abstract class Zombie extends Characters {
     public void setCurrentColumn(int column) {
         this.column = column;
     }
-    public int randomColumn() {
-        if (getIsAquatic() == true){
-            int [] numbers = {2,3};
-            Random rand = new Random();
-            return numbers[rand.nextInt(numbers.length)];
-        }
-        else{
-            int [] numbers = {0,1,4,5};
-            Random rand = new Random();
-            return numbers[rand.nextInt(numbers.length)];
-        }
-    }
+
     public void deadZombie(GameMap gameMap) {
         if (getHealth() <= 0){
             gameMap.deadZombie(this);

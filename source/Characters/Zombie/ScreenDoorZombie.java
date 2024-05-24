@@ -5,7 +5,7 @@ public class ScreenDoorZombie extends Zombie {
 
     public ScreenDoorZombie() {
         super("Screen Door Zombie", 250, 100, 1, false, 10, 0, 10);
-        setCurrentColumn(randomColumn());
+
         this.door = true;
     }
 

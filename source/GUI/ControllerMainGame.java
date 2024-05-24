@@ -3,6 +3,7 @@ package source.GUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -73,8 +74,6 @@ public class ControllerMainGame implements Initializable {
 
     MediaPlayer mediaPlayer;
 
-    WalkingZombieSpawner wzs = new WalkingZombieSpawner();
-
     private ArrayList<DeckPane> deck;
 
     private ArrayList<Pane> listdeckpane;
@@ -87,7 +86,7 @@ public class ControllerMainGame implements Initializable {
 
     private static ControllerMainGame instanceGame;
 
-    private static WalkingZombieSpawner walkingZombieSpawner;
+//    private static WalkingZombieSpawner walkingZombieSpawner;
 
 
     public ControllerMainGame() {
@@ -114,6 +113,7 @@ public class ControllerMainGame implements Initializable {
         deck = prepGameController.getListDeck();
 
         quitButton.setDisable(true);
+        zombieArea.setPadding(new Insets(0));
 
         Timer tm = new Timer();
 
@@ -139,13 +139,13 @@ public class ControllerMainGame implements Initializable {
 
         startUpdatingDeckPaneAvailability();
 
-        walkingZombieSpawner = new WalkingZombieSpawner();
+
 
         Sun.sunProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> sunValue.setText(newValue.toString()));
 
         });
-
+        WalkingZombieSpawner walkingZombieSpawner = WalkingZombieSpawner.getInstanceSpawner();
         walkingZombieSpawner.startSpawning();
     }
 
@@ -282,6 +282,29 @@ public class ControllerMainGame implements Initializable {
         }
     }
 
+    public Pane getPaneAt(int row, int col){
+        Pane targetPane = null;
+        for (Node node : gridtilesmap.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                if (node instanceof Pane) {
+                    targetPane = (Pane) node;
+                    break;
+                }
+            }
+        }
+        return targetPane;
+    }
+
+    public int sumOfInformationPlant(Pane pane) {
+        int sum = 0;
+        for (Node node : pane.getChildren()) {
+            if (node instanceof InformationPlant) {
+                sum++;
+            }
+        }
+        return sum;
+    }
+
     private Tiles createTiles(String tilestype) {
         switch (tilestype) {
             case "Protected":
@@ -332,7 +355,12 @@ public class ControllerMainGame implements Initializable {
                         ((Sunflower)infoplant.getPlant()).stopGeneratingSun();
                         System.out.println("Sunflower berhenti produksi sun:" + ((Sunflower)infoplant.getPlant()).isStopRequested());
                     }
-                    targetPane.getChildren().remove(1, sizepane-1);
+
+                    for (Node node : targetPane.getChildren()) {
+                        if (node instanceof InformationPlant || node instanceof DeckPane || node instanceof ImageView) {
+                            targetPane.getChildren().remove(node);
+                        }
+                    }
                 }
                 else {
                     DeckPane dp = new DeckPane((DeckPane) sourcePane.getChildren().getFirst());
@@ -420,7 +448,6 @@ public class ControllerMainGame implements Initializable {
         int column = GridPane.getColumnIndex(targetPane);
 
         Plants plant = createPlant(dp.getPlantsName(), row, column);
-        wzs.setPlantPositions(true,row,column);
 
         InformationPlant plantInfo = new InformationPlant(plant);
 
@@ -435,19 +462,25 @@ public class ControllerMainGame implements Initializable {
         targetPane.getChildren().add(dp);
         targetPane.getChildren().add(sourceImage);
 
-
-
         Node shadowImage = targetPane.lookup("#shadowImage");
         if(shadowImage != null){
             targetPane.getChildren().remove(shadowImage);
         }
 
         Sun.reduceSun(plant.getCost());
+
         sourcePane.getChildren().get(2).setVisible(false);
         sourcePane.getChildren().get(3).setOnDragDetected(null);
         sourcePane.getChildren().get(3).setCursor(Cursor.DEFAULT);
+
         updateDeckPaneAvailability();
+
         startCooldown(dpold);
+
+        WalkingZombieSpawner walkingZombieSpawner = WalkingZombieSpawner.getInstanceSpawner();
+        walkingZombieSpawner.setPlantPositions(true, row, column);
+
+        System.out.println("TERJADI PENANAMAN TANAMAN PADA ROW: " + row + " COL: " + column + " DENGAN TIPE: " + plantInfo.getPlant().getClass().getSimpleName());
     }
 
     private void startCooldown(DeckPane deckPane) {
