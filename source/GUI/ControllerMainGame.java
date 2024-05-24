@@ -332,7 +332,7 @@ public class ControllerMainGame implements Initializable {
         return sum;
     }
 
-    public void startAttacking(Plants plant, List<WalkingZombieController> zombies) {
+    public void startAttacking(Plants plant, List<WalkingZombieController> zombies, Pane targetPane) {
         new Thread(() -> {
             while (plant.getHealth()>0) {
                 synchronized (zombies) {
@@ -571,9 +571,9 @@ public class ControllerMainGame implements Initializable {
                 .collect(Collectors.toList());
 
         if (plant.canShoot() || plant instanceof Squash || plant instanceof TangleKelp){
-            startAttacking(plant,zombiesInRow);
+            startAttacking(plant, zombiesInRow, targetPane);
         }
-        System.out.println("TERJADI PENANAMAN TANAMAN PADA ROW: " + row + " COL: " + column + " DENGAN TIPE: " + plantInfo.getPlant().getClass().getSimpleName());
+        
     }
 
     private void startCooldown(DeckPane deckPane) {
