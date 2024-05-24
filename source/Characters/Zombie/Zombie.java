@@ -19,13 +19,6 @@ public abstract class Zombie extends Characters {
         this.column = 10;
     }
 
-    public void setHealth(int health) {
-        getHealth();
-        if (getHealth() < 0) {
-            health = 0; 
-        }
-    }
-
     public double getSpeed() {
         return speed;
     }
