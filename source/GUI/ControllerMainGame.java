@@ -332,7 +332,7 @@ public class ControllerMainGame implements Initializable {
         return sum;
     }
 
-    public void startAttacking(Plants plant, List<WalkingZombieController> zombies, Pane targetPane) {
+    public void startAttacking(Plants plant, List<WalkingZombieController> zombies) {
         new Thread(() -> {
             while (plant.getHealth()>=0) {
                 synchronized (zombies)
