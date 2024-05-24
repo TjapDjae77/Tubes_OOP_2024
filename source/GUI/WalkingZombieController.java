@@ -50,6 +50,8 @@ public class WalkingZombieController extends Pane{
 
     public void setDead(boolean dead) {
         isDead = dead;
+        WalkingZombieSpawner wzs = new WalkingZombieSpawner();
+        wzs.getZombies().remove(this);
     }
 
     public void moveZombie(double deltaX) {

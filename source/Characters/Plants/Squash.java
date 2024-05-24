@@ -27,16 +27,13 @@ public class Squash extends Plants{
         System.out.println("Is Aquatic: " + this.getIsAquatic()); 
     }
 
-    public void attack(Zombie zombie) {
-        super.attack(zombie);
-        if (this.getHealth() > 0) {
-            this.vanish();
-        }
-    }
-
-    private void vanish() { 
+    private void vanish() {
         this.setHealth(0);
         System.out.println(this.getName() + " has vanished after its attack.");
     }
-
-}
+    @Override
+    public void attack(Zombie zombie) {
+        super.attack(zombie);
+        this.vanish();
+        }
+    }

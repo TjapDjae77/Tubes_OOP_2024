@@ -23,7 +23,7 @@ public class WalkingZombieSpawner {
 
     private static WalkingZombieSpawner instanceSpawner;
     private static final int MAX_ZOMBIE = 10;
-    private static final double SPAWN_PROBABILITY = 1;
+    private static final double SPAWN_PROBABILITY = 0.3;
     private static final int SPAWN_INTERVAL = 3000;
     private ArrayList<WalkingZombieController> zombies = new ArrayList<>();
     private Thread spawningThread;
@@ -45,6 +45,10 @@ public class WalkingZombieSpawner {
             instanceSpawner = new WalkingZombieSpawner();
         }
         return instanceSpawner;
+    }
+
+    public ArrayList<WalkingZombieController> getZombies() {
+        return zombies;
     }
 
     public void setPlantPositions(boolean setter, int row, int col){
@@ -77,7 +81,7 @@ public class WalkingZombieSpawner {
     }
 
     private void trySpawnZombie() throws IOException {
-        if(zombies.size() < 1 && Math.random() < SPAWN_PROBABILITY){
+        if(zombies.size() < MAX_ZOMBIE && Math.random() < SPAWN_PROBABILITY){
             try {
                 spawnZombie();
             } catch (IOException e) {
@@ -291,6 +295,9 @@ public class WalkingZombieSpawner {
                             deadPlant(walkingZombieController, targetPane, 2);
                         }
 
+                    }
+                    if (walkingZombieController.getWalkingZombie().getZombie() instanceof JackInTheBoxZombie){
+                        walkingZombieController.setDead(true);
                     }
                 });
                 try {

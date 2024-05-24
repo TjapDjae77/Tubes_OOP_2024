@@ -27,6 +27,8 @@ public class Spikeweed extends Plants{
     }
 
     public void attack(Zombie zombie) {
-        super.attack(zombie);
+        if (zombie.getCurrentColumn()==this.getCurrentColumn() && zombie.getCurrentRow()==this.getCurrentRow()){
+            super.attack(zombie);
+        }
     }
 }

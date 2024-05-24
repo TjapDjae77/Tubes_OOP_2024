@@ -305,6 +305,42 @@ public class ControllerMainGame implements Initializable {
         return sum;
     }
 
+    public void startAttacking(Plants plant, List<WalkingZombieController> zombies) {
+        new Thread(() -> {
+            while (plant.getHealth()>0) {
+                synchronized (zombies) {
+                    WalkingZombieController targetZombie = findTargetZombie(plant, zombies);
+                    if (targetZombie != null) {
+                        Platform.runLater(() -> plant.attack(targetZombie.getWalkingZombie().getZombie()));
+                        if (targetZombie.getWalkingZombie().getZombie().getHealth() <= 0) {
+                            Platform.runLater(() -> zombies.remove(targetZombie));
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(plant.getAttackSpeed() * 1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private WalkingZombieController findTargetZombie(Plants plant, List<WalkingZombieController> zombies) {
+        for (WalkingZombieController zombie : zombies) {
+            if (isInRange(plant, zombie)) {
+                return zombie;
+            }
+        }
+        return null;
+    }
+
+    private boolean isInRange(Plants plant, WalkingZombieController zombie) {
+        int distance = (zombie.getWalkingZombie().getZombie().getCurrentRow()-plant.getCurrentRow());
+        return (zombie.getWalkingZombie().getZombie().getCurrentColumn()==plant.getCurrentColumn() && distance < plant.getRange());
+    }
+
+
     private Tiles createTiles(String tilestype) {
         switch (tilestype) {
             case "Protected":
@@ -479,7 +515,9 @@ public class ControllerMainGame implements Initializable {
 
         WalkingZombieSpawner walkingZombieSpawner = WalkingZombieSpawner.getInstanceSpawner();
         walkingZombieSpawner.setPlantPositions(true, row, column);
-
+        if (plant.canShoot()){
+            startAttacking(plant,walkingZombieSpawner.getZombies());
+        }
         System.out.println("TERJADI PENANAMAN TANAMAN PADA ROW: " + row + " COL: " + column + " DENGAN TIPE: " + plantInfo.getPlant().getClass().getSimpleName());
     }
 
@@ -689,7 +727,6 @@ public class ControllerMainGame implements Initializable {
 
     @FXML
     void startGame() {
-
 
     }
 }
