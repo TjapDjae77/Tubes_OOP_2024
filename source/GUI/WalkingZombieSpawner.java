@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import source.Characters.Plants.Spikeweed;
 import source.Characters.Plants.*;
 import source.Characters.Zombie.*;
@@ -104,7 +105,7 @@ public class WalkingZombieSpawner {
             }
         };
 
-        timer.schedule(startSpawnTime, 10000);
+        timer.schedule(startSpawnTime, 20000);
         timer.schedule(stopSpawnTime, 160000);
     }
 
@@ -169,8 +170,14 @@ public class WalkingZombieSpawner {
 
             zombiePane.setPadding(new Insets(0));
 
+            StackPane.setMargin(walkingZombieController.getZombiePane(), new Insets(0));
+
             zombies.add(walkingZombieController);
+            StackPane.setMargin(zombiePane, new Insets(0));
+
             zombieArea.getChildren().add(zombiePane);
+            StackPane.setMargin(zombieArea, new Insets(0));
+
 
             walkingZombieController.setMoving(true);
 
@@ -199,7 +206,6 @@ public class WalkingZombieSpawner {
     public boolean isPlantInFront(WalkingZombieController zombie){
         int row = zombie.getWalkingZombie().getZombie().getCurrentRow();
         int col = zombie.getWalkingZombie().getZombie().getCurrentColumn();
-        System.out.println("TYPE: "+ zombie.getWalkingZombie().getZombie().getClass().getSimpleName() + " ROW: " + (row) + ", COL: " + (col));
         return plantPositions[row][col];
     }
 

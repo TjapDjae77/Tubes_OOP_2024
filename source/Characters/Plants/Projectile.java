@@ -11,14 +11,14 @@ import java.util.List;
 import source.Characters.Zombie.Zombie;
 import source.Characters.Zombie.ZombieList;
 
-public class Projectile extends Pane {
+public class Projectile {
     private int attackDamage;
     private double speed; // tiles per second
     private int row;
     private int column;
     private boolean active;
     private String type;
-    private ImageView projectileImage;
+
 
     public Projectile(int attackDamage, double speed, int row, int column, String type) {
         this.attackDamage = attackDamage;
@@ -27,8 +27,6 @@ public class Projectile extends Pane {
         this.column = column;
         this.active = true;
         this.type = type;
-        String imagePath = "@../../assets/Projectiles/PVZ_" + type + "Projectiles.png";
-        projectileImage = new ImageView(new Image(imagePath));
     }
 
     public int getAttackDamage() {
@@ -38,6 +36,7 @@ public class Projectile extends Pane {
     public double getSpeed() {
         return speed;
     }
+
     public void setSpeed(double speed) {
         this.speed = speed;
     }
@@ -66,7 +65,18 @@ public class Projectile extends Pane {
         this.type = type;
     }
 
-    //    public void move() {
+
+    private void deactivate() {
+        this.active = false;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+}
+
+// DUMP
+//    public void move() {
 //        new Thread(() -> {
 //            while (active) {
 //                try {
@@ -95,12 +105,3 @@ public class Projectile extends Pane {
 //            break;
 //        }
 //    }
-
-    private void deactivate() {
-        this.active = false;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-}

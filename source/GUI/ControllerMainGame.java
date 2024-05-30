@@ -41,6 +41,9 @@ import javafx.application.Platform;
 public class ControllerMainGame implements Initializable {
 
     @FXML
+    private StackPane rootSPane;
+
+    @FXML
     private AnchorPane layardasar;
 
     @FXML
@@ -126,6 +129,7 @@ public class ControllerMainGame implements Initializable {
 
         quitButton.setDisable(true);
         zombieArea.setPadding(new Insets(0));
+        StackPane.setMargin(zombieArea, new Insets(0,0,0,0));
 
         Timer tm = new Timer();
 
@@ -339,8 +343,11 @@ public class ControllerMainGame implements Initializable {
                 {
                     WalkingZombieController targetZombie = findTargetZombie(plant, zombies);
                     if (targetZombie != null) {
+                        System.out.println("ZOMBIE TERLIHAT DENGAN TYPE: " + targetZombie.getWalkingZombie().getZombie().getName());
                         Platform.runLater(() -> {
                             plant.attack(targetZombie.getWalkingZombie().getZombie());
+//                            ProjectilesLauncher projectilesLauncher = ProjectilesLauncher.getInstance();
+//                            projectilesLauncher.launchProjectiles(plant);
                         });
                         if (targetZombie.getWalkingZombie().getZombie().getHealth() <= 0) {
                             Platform.runLater(() -> zombies.remove(targetZombie));
@@ -366,8 +373,8 @@ public class ControllerMainGame implements Initializable {
     }
 
     private boolean isInRange(Plants plant, WalkingZombieController zombie) {
-        int distance = (zombie.getWalkingZombie().getZombie().getCurrentRow()-plant.getCurrentRow());
-        if (zombie.getWalkingZombie().getZombie().getCurrentColumn()==plant.getCurrentColumn()){
+        int distance = (zombie.getWalkingZombie().getZombie().getCurrentColumn()-plant.getCurrentColumn());
+        if (zombie.getWalkingZombie().getZombie().getCurrentRow()==plant.getCurrentRow()){
             if (plant.getRange()==-1){
                 return true;
             }
@@ -566,12 +573,9 @@ public class ControllerMainGame implements Initializable {
         WalkingZombieSpawner walkingZombieSpawner = WalkingZombieSpawner.getInstanceSpawner();
         walkingZombieSpawner.setPlantPositions(true, row, column);
 
-        List<WalkingZombieController> zombiesInRow = WalkingZombieSpawner.getInstanceSpawner().getZombies().stream()
-                .filter(zombie -> zombie.getWalkingZombie().getZombie().getCurrentRow() == row)
-                .collect(Collectors.toList());
-
         if (plant.canShoot() || plant instanceof Squash || plant instanceof TangleKelp){
             startAttacking(plant,walkingZombieSpawner.getZombies());
+            System.out.println(plant.getName() + " SIAP MENEMBAK");
         }
         
     }

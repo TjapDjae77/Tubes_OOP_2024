@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.ControllerMainGame">
+<StackPane fx:id="rootSPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.GUI.ControllerMainGame">
    <children>
       <Pane fx:id="paneEndGame" prefHeight="200.0" prefWidth="1920.0">
          <children>
@@ -46,7 +46,11 @@
             <Image url="@../../assets/Tiles/Night/Template Night kosong.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="zombieArea" prefHeight="200.0" prefWidth="200.0" />
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <AnchorPane fx:id="zombieArea" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </StackPane>
       <AnchorPane fx:id="projectilesArea" prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane fx:id="layardasar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0">
          <children>
