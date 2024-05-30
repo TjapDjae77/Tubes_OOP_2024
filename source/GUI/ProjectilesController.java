@@ -35,6 +35,6 @@ public class ProjectilesController extends Pane {
 
     public void moveProjectile(double deltaX) {
         double currentX = projectilesPane.getLayoutX();
-        projectilesPane.setLayoutX(currentX - deltaX);
+        projectilesPane.setLayoutX(currentX + deltaX);
     }
 }

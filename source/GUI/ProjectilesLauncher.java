@@ -26,15 +26,15 @@ public class ProjectilesLauncher {
 
     private Thread movementThread;
 
-    private static final int PANEL9 = 1620;
-    private static final int PANEL8 = 1420;
-    private static final int PANEL7 = 1240;
-    private static final int PANEL6 = 1040;
-    private static final int PANEL5 = 850;
-    private static final int PANEL4 = 630;
-    private static final int PANEL3 = 480;
-    private static final int PANEL2 = 280;
-    private static final int PANEL1 = 70;
+    private static final int PANEL9 = 1790;
+    private static final int PANEL8 = 1590;
+    private static final int PANEL7 = 1410;
+    private static final int PANEL6 = 1210;
+    private static final int PANEL5 = 1020;
+    private static final int PANEL4 = 800;
+    private static final int PANEL3 = 650;
+    private static final int PANEL2 = 450;
+    private static final int PANEL1 = 240;
 
 
     private ProjectilesLauncher() {
@@ -101,7 +101,7 @@ public class ProjectilesLauncher {
 
             projectilesController.setProjectile(projectile);
 
-            String imagePath = "@../../assets/Zombies/PVZ_" + projectile.getType() + "Projectiles.png";
+            String imagePath = "@../../assets/Projectiles/PVZ_" + projectile.getType() + "Projectiles.png";
             Image image = new Image(imagePath);
             projectilesController.getImg1().setImage(image);
             projectilesController.getImg1().setFitWidth(image.getWidth());
@@ -110,17 +110,17 @@ public class ProjectilesLauncher {
 
 
             if(plant.getCurrentRow() == 0){
-                projectilePane.setLayoutY(60);
+                projectilePane.setLayoutY(210);
             } else if (plant.getCurrentRow() == 1) {
-                projectilePane.setLayoutY(230);
+                projectilePane.setLayoutY(365);
             } else if (plant.getCurrentRow() == 2) {
-                projectilePane.setLayoutY(380);
+                projectilePane.setLayoutY(520);
             } else if (plant.getCurrentRow() == 3) {
-                projectilePane.setLayoutY(530);
+                projectilePane.setLayoutY(680);
             } else if (plant.getCurrentRow() == 4) {
-                projectilePane.setLayoutY(700);
+                projectilePane.setLayoutY(850);
             } else if (plant.getCurrentRow() == 5) {
-                projectilePane.setLayoutY(830);
+                projectilePane.setLayoutY(1000);
             }
 
             if(plant.getCurrentColumn() == 1){
@@ -161,22 +161,25 @@ public class ProjectilesLauncher {
     }
 
     private void moveRight(ProjectilesController projectilesController) {
-        new Thread(() -> {
-            try {
-                Thread.sleep(48);
-                Platform.runLater(() -> {
-                    if (checkZombieCollision(projectilesController)) {
-                        projectilesController.setMoving(false);
-                        System.out.println("Projectile berhenti");
-                    } else {
-                        projectilesController.moveProjectile(1);
-                        System.out.println("Projectile di: " + projectilesController.getProjectilesPane().getLayoutX());
-                    }
-                });
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        movementThread = new Thread(() -> {
+            while (projectilesController.isMoving()) {
+                try {
+                    Thread.sleep(28);
+                    Platform.runLater(() -> {
+                        if (checkZombieCollision(projectilesController)) {
+                            projectilesController.setMoving(false);
+                            System.out.println("Projectile berhenti");
+                        } else {
+                            projectilesController.moveProjectile(1);
+                            System.out.println("Projectile di: " + projectilesController.getProjectilesPane().getLayoutX());
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }).start();
+        });
+        movementThread.start();
     }
 
     private boolean checkZombieCollision(ProjectilesController projectilesController) {

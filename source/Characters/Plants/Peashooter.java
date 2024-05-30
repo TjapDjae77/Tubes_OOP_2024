@@ -1,6 +1,7 @@
 package source.Characters.Plants;
 
 import source.Characters.Zombie.Zombie;
+import source.GUI.ProjectilesLauncher;
 
 public class Peashooter extends Plants{
     public Peashooter(int row, int column) {
@@ -27,6 +28,7 @@ public class Peashooter extends Plants{
     }
 
     public void attack(Zombie zombie) {
-        super.attack(zombie);
+        ProjectilesLauncher projectilesLauncher = ProjectilesLauncher.getInstance();
+        projectilesLauncher.launchProjectiles(this);
     }
 }
